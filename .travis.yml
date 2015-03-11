@@ -2,6 +2,13 @@ language: node_js
 node_js:
   - "0.10"
 
+notifications:
+  email:
+    recipients:
+      secure:  YV65hpSBxWZm0OtflPGnMcGFnjiun/fbDiZoYqGs7DYTJ2b6H32BCPkE5L2/05pXbMYzUACE9j17qoLtV7cCguBM/hMbOPcx3Apmq1/f4BhJqR2MFJltK2efE49cjjYVs49ES4XXMrw03g6Ma0lQId/jUAZDkcZmSHYB/1IGA44=
+    on_success: change
+    on_failure: always
+
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
@@ -10,5 +17,5 @@ before_script:
   - sleep 1 # give server time to start
 
 script:
-  - node_modules/.bin/karma start karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox
+  #- node_modules/.bin/karma start karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox
   - node_modules/.bin/protractor e2e-tests/protractor.conf.js --browser=firefox
