@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/philsawicki/GoogleAnalytics-WebTester.svg?branch=master)](https://travis-ci.org/philsawicki/GoogleAnalytics-WebTester)
 
-# GA Web Tester — Live testing of Google Analytics Events
+# Google Analytics Web Tester — Live testing of GA Events
 
 Testing proper tracking of Google Analytics Events on a website can be a tricky thing to do. But it doesn't have to be that way.
 
@@ -12,6 +12,13 @@ Automating the process of validating that Events are fired when the user interac
 * QAs can spend more time testing other parts of the application.
 
 This library eases the process of writing automated tests by providing a set of easy to use utility methods. It comes with an AngularJS demo application to show how to validate that the `ga()` snippet receives the expected data when the user interacts with the page.
+
+
+Wheter using the **Google Analytics** tracking snippet directly (`ga()`) or **Google Tag Manager** (GTM), all Events can be recorded the exact same way.
+
+Just set the URL of your website, write a couple of specs and run the app, or set it to run after each build/deployment. Easy!
+
+## Preview
 
 Here's what the demo Application looks like:
 ![Google Analytics Web Tester Demo Application](http://i.imgur.com/NY39cmV.png "Google Analytics Web Tester Demo Application")
@@ -25,7 +32,7 @@ The library uses the [Protractor](http://angular.github.io/protractor/#/ "Protra
 
 It's fast, lightweight, easy to configure, and integrates beautifully with existing build systems, providing nice integration reports with Jenkins, Travis CI and many others.
 
-Complete Spec example:
+### Sample Spec file
 ```javascript
 describe('Google Analytics "click" tracking', function () {
    it('should fire an Event when clicking on the Jumbotron CTA', function (done) {
@@ -68,6 +75,32 @@ describe('Google Analytics "click" tracking', function () {
 });
 ```
 
+### How to get the Event data?
+
+Simple. 
+
+Let's say your standard `ga()` call looks like this when clicking on the _Jumbotron CTA_ of the demo application (will be the same if Event Tracking is set through GTM*):
+```javascript
+ga('send', 'event', 'Button', 'Click', 'Jumbotron CTA');
+    │       │        │         │        └──> 5. Event Label
+    │       │        │         └───────────> 4. Event Action
+    │       │        └─────────────────────> 3. Event Category
+    │       └──────────────────────────────> 2. (Standard Google Analytics parameter)
+    └──────────────────────────────────────> 1. (Standard Google Analytics parameter)
+```
+Then, after the `ga()` is executed, the value of `window.gaLastEventData` will be:
+```javascript
+  ['send', 'event', 'Button', 'Click', 'Jumbotron CTA']
+    │       │        │         │        └──> 5. Event Label
+    │       │        │         └───────────> 4. Event Action
+    │       │        └─────────────────────> 3. Event Category
+    │       └──────────────────────────────> 2. (Standard Google Analytics parameter)
+    └──────────────────────────────────────> 1. (Standard Google Analytics parameter)
+```
+You then just need to use the Jasmine-provided matchers to make sure that the actual value of `window.gaLastEventData` is the same as the expected one.
+
+*: _If using Event tracking through Google Tag Manager (GTM), then the Container will generate some JavaScript exactly matching the pattern of the `ga()` call above. Just add the `send` and `event` values to the Array._
+
 ## Installing the Library
 
 To get started, simply clone this repository and install the dependencies:
@@ -91,3 +124,6 @@ The tests should now run, and the calls to Google Analytics' `ga()` method shoul
 ## Contact
 
 For more information, please check out [http://philippesawicki.com](http://philippesawicki.com "Philippe Sawicki - Fullstack Developer and Digital Analyst")
+
+
+
