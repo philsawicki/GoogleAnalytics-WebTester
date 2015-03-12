@@ -5,7 +5,7 @@
      * Track clicks on the "Jumbotron" CTA.
      * @return {void}
      */
-    var trackJumbotronCTA = function () {
+    var _trackJumbotronCTA = function () {
         var jumbotronCTA = $('#jumbotronCTA');
         if (jumbotronCTA.length > 0) {
             jumbotronCTA.on('click', function (event) {
@@ -17,13 +17,17 @@
     /**
      * Track clicks on "Heading" CTAs.
      * @return {void}
-     *
-     * @todo Find a workaround to delay the loading of this function until the Angular template has loaded.
      */
-    var trackHeadingCTA = function () {
+    var _trackHeadingCTA = function () {
         var headingCTA = $('.heading-cta');
         if (headingCTA.length > 0) {
             headingCTA.on('click', function (event) {
+                // Get the index of the clicked CTA button:
+                var button = $(this);
+                var buttonIndex = button.closest('.col-md-4').index() + 1;
+                ga('set', 'metric1', buttonIndex.toString());
+                
+                // Send "click" Event:
                 ga('send', 'event', 'Button', 'Click', 'Heading CTA');
             });
         }
@@ -36,8 +40,8 @@
      */
     var bootstrap = function () {
         var trackingCallbacks = [
-            trackJumbotronCTA,
-            trackHeadingCTA
+            _trackJumbotronCTA,
+            _trackHeadingCTA
        ];
 
         for (var i = 0, nbCallbacks = trackingCallbacks.length; i < nbCallbacks; i++) {

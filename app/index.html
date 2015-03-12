@@ -14,12 +14,16 @@
 
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
-    <link rel="stylesheet" href="css/app.css">
 
     <!-- Bootstrap core CSS -->
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap-theme.min.css"> -->
     <!-- Custom styles for this template -->
-    <link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="http://getbootstrap.com/examples/jumbotron/jumbotron.css"> -->
+	
+	<link rel="stylesheet" href="https://bootswatch.com/simplex/bootstrap.css">
+	<link rel="stylesheet" href="https://bootswatch.com/assets/css/bootswatch.min.css">
+    <link rel="stylesheet" href="css/app.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -38,7 +42,12 @@
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-58402941-1', 'auto');
+        ga('create', {
+            trackingId: 'UA-58402941-1',
+            cookieDomain: location.hostname === 'localhost' ? 'none' : 'auto', 
+            siteSpeedSampleRate: 100
+        });
+        ga('require', 'displayfeatures');
         ga('send', 'pageview');
     </script>
 
@@ -120,6 +129,8 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+	<script src="https://bootswatch.com/assets/js/bootswatch.js"></script>
+	
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 

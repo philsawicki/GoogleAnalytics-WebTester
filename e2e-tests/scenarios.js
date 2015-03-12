@@ -1,15 +1,169 @@
 'use strict';
 
-/**
- * https://github.com/angular/protractor/blob/master/docs/referenceConf.js
- * https://github.com/angular/protractor/blob/master/docs/toc.md
- */
 
 describe('Demo application for Google Analytics WebTester', function () {
-    browser.get('index.html');
+    describe('The AngularJS Demo Application setup', function () {
+		browser.get('index.html');
 
-    it('should automatically redirect to "/" when location hash/fragment is empty', function () {
-        expect(browser.getLocationAbsUrl()).toMatch('/');
+		it('should automatically redirect to "/" when location hash/fragment is empty', function () {
+			expect(browser.getLocationAbsUrl()).toMatch('/');
+		});
+	});
+
+	
+    describe('Library deployment', function () {
+		describe('Behavior of the page without "Google Analytics Event Data Interceptor"', function () {
+			beforeEach(function () {
+				browser.get('index.html#/');
+			});
+
+			it('should have "window.ga()" defined', function (done) {
+				browser.driver.executeScript(function () {
+					return window.ga;
+				})
+				.then(function successCallback (ga) {
+					expect(ga).toBeDefined();
+					expect(ga).not.toBeNull();
+				})
+				.then(null, function errorCallback (error) {
+					fail('Error: ' + JSON.stringify(error));
+				})
+				.then(done);
+			});
+			
+			it('should have "window.gaEventDataBuffer" defined', function (done) {
+				browser.driver.executeScript(function () {
+					return window.gaEventDataBuffer;
+				})
+				.then(function successCallback (gaEventDataBuffer) {
+					expect(gaEventDataBuffer).toBeNull();
+				})
+				.then(null, function errorCallback (error) {
+					fail('Error: ' + JSON.stringify(error));
+				})
+				.then(done);
+			});
+			
+			it('should have "window.gaLastEventData" defined', function (done) {
+				browser.driver.executeScript(function () {
+					return window.gaLastEventData;
+				})
+				.then(function successCallback (gaLastEventData) {
+					expect(gaLastEventData).toBeNull();
+				})
+				.then(null, function errorCallback (error) {
+					fail('Error: ' + JSON.stringify(error));
+				})
+				.then(done);
+			});
+		});
+		
+		
+		describe('Registration of the "Google Analytics Event Data Interceptor"', function () {
+			beforeEach(function () {
+				browser.get('index.html#/');
+				
+				// Register the Google Analytics Event Data Interceptor:
+				browser.driver.registerGoogleAnalyticsEventDataInterceptor();
+			});
+
+			it('should have "window.ga()" defined', function (done) {
+				browser.driver.executeScript(function () {
+					return window.ga;
+				})
+				.then(function successCallback (ga) {
+					expect(ga).toBeDefined();
+					expect(ga).not.toBeNull();
+				})
+				.then(null, function errorCallback (error) {
+					fail('Error: ' + JSON.stringify(error));
+				})
+				.then(done);
+			});
+			
+			it('should have "window.gaEventDataBuffer" defined', function (done) {
+				browser.driver.executeScript(function () {
+					return window.gaEventDataBuffer;
+				})
+				.then(function successCallback (gaEventDataBuffer) {
+					expect(gaEventDataBuffer).toBeDefined();
+					expect(gaEventDataBuffer).not.toBeNull();
+					expect(gaEventDataBuffer).toEqual([]);
+				})
+				.then(null, function errorCallback (error) {
+					fail('Error: ' + JSON.stringify(error));
+				})
+				.then(done);
+			});
+			
+			it('should have "window.gaLastEventData" defined', function (done) {
+				browser.driver.executeScript(function () {
+					return window.gaLastEventData;
+				})
+				.then(function successCallback (gaLastEventData) {
+					expect(gaLastEventData).toBeDefined();
+					expect(gaLastEventData).not.toBeNull();
+					expect(gaLastEventData).toEqual({});
+				})
+				.then(null, function errorCallback (error) {
+					fail('Error: ' + JSON.stringify(error));
+				})
+				.then(done);
+			});
+		});
+		
+		
+		describe('Deregistration of the "Google Analytics Event Data Interceptor"', function () {
+			beforeEach(function () {
+				browser.get('index.html#/');
+				
+				// Register the Google Analytics Event Data Interceptor:
+				browser.driver.registerGoogleAnalyticsEventDataInterceptor();
+				
+				// Unregister the Google Analytics Event Data Interceptor:
+				browser.driver.unregisterGoogleAnalyticsEventDataInterceptor();
+			});
+
+			it('should have "window.ga()" defined', function (done) {
+				browser.driver.executeScript(function () {
+					return window.ga;
+				})
+				.then(function successCallback (ga) {
+					expect(ga).toBeDefined();
+					expect(ga).not.toBeNull();
+				})
+				.then(null, function errorCallback (error) {
+					fail('Error: ' + JSON.stringify(error));
+				})
+				.then(done);
+			});
+			
+			it('should have "window.gaEventDataBuffer" be null', function (done) {
+				browser.driver.executeScript(function () {
+					return window.gaEventDataBuffer;
+				})
+				.then(function successCallback (gaEventDataBuffer) {
+					expect(gaEventDataBuffer).toBeNull();
+				})
+				.then(null, function errorCallback (error) {
+					fail('Error: ' + JSON.stringify(error));
+				})
+				.then(done);
+			});
+			
+			it('should have "window.gaLastEventData" be null', function (done) {
+				browser.driver.executeScript(function () {
+					return window.gaLastEventData;
+				})
+				.then(function successCallback (gaLastEventData) {
+					expect(gaLastEventData).toBeNull();
+				})
+				.then(null, function errorCallback (error) {
+					fail('Error: ' + JSON.stringify(error));
+				})
+				.then(done);
+			});
+		});
     });
 	
 	
@@ -38,6 +192,7 @@ describe('Demo application for Google Analytics WebTester', function () {
 			.then(done);
 		});
 	});
+	
 	
 	describe('The wiring up of the Google Analytics Event Data interceptor', function () {
 		beforeEach(function () {
@@ -162,16 +317,37 @@ describe('Demo application for Google Analytics WebTester', function () {
 			// Click on the first "Heading" CTA:
 			element.all( by.css('.heading-cta') ).get(0).click();
 				
-			// Get the "gaLastEventData" object back from the browser:
+			// Get the "gaEventDataBuffer" object back from the browser:
 			browser.driver.executeScript(function () {
-				return window.gaLastEventData;
+				return window.gaEventDataBuffer;
 			})
 			.then(
-				// Validate the content of the "gaLastEventData" object:
-				function successCallback (gaLastEventData) {
-					expect(gaLastEventData).toEqual(['send', 'event', 'Button', 'Click', 'Heading CTA']);
+				// Validate the content of the "gaEventDataBuffer" object:
+				function successCallback (gaEventDataBuffer) {
+					expect(gaEventDataBuffer).toContain(['send', 'event', 'Button', 'Click', 'Heading CTA']);
 				},
-				// If there was an error getting back the "gaLastEventData" object from the browser, fail the test:
+				// If there was an error getting back the "gaEventDataBuffer" object from the browser, fail the test:
+				function errorCallback (error) {
+					fail('Should not have received Error: ' + JSON.stringify(error));
+				}
+			)
+			.then(done);
+		});
+		
+		it('should fire a Metric when clicking on the Heading CTA', function (done) {
+			// Click on the first "Heading" CTA:
+			element.all( by.css('.heading-cta') ).get(0).click();
+			
+			// Get the "gaEventDataBuffer" object back from the browser:
+			browser.driver.executeScript(function () {
+				return window.gaEventDataBuffer;
+			})
+			.then(
+				// Validate the content of the "gaEventDataBuffer" object:
+				function successCallback (gaEventDataBuffer) {
+					expect(gaEventDataBuffer).toContain(['set', 'metric1', '1']);
+				},
+				// If there was an error getting back the "gaEventDataBuffer" object from the browser, fail the test:
 				function errorCallback (error) {
 					fail('Should not have received Error: ' + JSON.stringify(error));
 				}
@@ -180,193 +356,72 @@ describe('Demo application for Google Analytics WebTester', function () {
 		});
 	});
 
-    xdescribe('Google Analytics snippet detection', function () {
+	
+    describe('Alternative method of tracking Google Analytics Event Data, straight from the browser', function () {
         beforeEach(function () {
             browser.get('index.html#/');
         });
 
-        it('should have "window.ga()" defined', function (done) {
-            var gaIsDefined = false;
-
+        it('should fire an Event when clicking on the Jumbotron CTA', function (done) {
             browser.driver.executeScript(function () {
-                return typeof window.ga;
-            }).then(
-                function (result) {
-                    if (result !== 'undefined') {
-                        gaIsDefined = true;
-                    }
+                window.gaOriginal = window.ga;
+                window.gaEventDataBuffer = [];
+				window.gaLastEventData = arguments;
 
-                    expect(result).not.toEqual('undefined');
-                    expect(gaIsDefined).toBeTruthy();
-                    done();
-                },
-                function (error) {
-                    expect(gaIsDefined).toBeTruthy();
-                    done();
-                }
-            );
-        });
-    });
-
-    xdescribe('Click interaction', function () {
-        beforeEach(function () {
-            browser.get('index.html#/');
-        });
-
-        it('should call "window.ga(...)" when clicking on the Jumbotron CTA', function (done) {
-            var gaSpyRegistered = false;
-
-            browser.driver.executeScript(function () {
-                (function (globalScope) {
-                    var originalGA = ga;
-                    globalScope.gaEventData = {};
-
-                    var newGA = function(paramSend, paramEvent, paramCategory, paramAction, paramLabel, paramValue) {
-                        globalScope.gaEventData.send = paramSend;
-                        globalScope.gaEventData.event = paramEvent;
-                        globalScope.gaEventData.category = paramCategory;
-                        globalScope.gaEventData.action = paramAction;
-                        globalScope.gaEventData.label = paramLabel;
-                        globalScope.gaEventData.value = paramValue;
-
-                        originalGA(paramSend, paramEvent, paramCategory, paramAction, paramLabel, paramValue);
-                    };
-
-                    ga = newGA;
-                })(window);
-
-                return 'success';
-            }).then(
-                function (result) {
-                    if (result === 'success') {
-                        gaSpyRegistered = true;
-                    }
-
-                    expect(result).toEqual('success');
-                    expect(gaSpyRegistered).toBeTruthy();
-                    spyRegistered();
-                },
-                function (error) {
-                    expect(gaSpyRegistered).toBeTruthy();
-                    done();
-                }
-            );
-
-
-            var spyRegistered = function () {
-                var gaArgumentsDefined = false;
-
-                // Send a click on the "Jumbotron" CTA:
-                element(by.css('#jumbotronCTA')).click();
-
-                browser.driver.executeScript(function () {
-                    return gaEventData;
-                }).then(
-                    function (result) {
-                        if (result !== 'undefined') {
-                            gaArgumentsDefined = true;
-                        }
-
-                        expect(gaArgumentsDefined).toBeTruthy();
-                        expect(result).not.toEqual('undefined');
-                        expect(result).toEqual({
-                            send: 'send',
-                            event: 'event',
-                            category: 'Button',
-                            action: 'Click',
-                            label: 'Jumbotron CTA',
-                            value: null
-                        })
-
-                        done();
-                    },
-                    function (error) {
-                        expect(gaArgumentsDefined).toBeTruthy();
-
-                        done();
-                    }
-                );
-            };
+                window.ga = function () {
+					window.gaEventDataBuffer.push(arguments);
+					window.gaLastEventData = arguments;
+						
+					// Call the original "ga()" function with the supplied arguments:
+					window.gaOriginal.apply(null, arguments);
+				};
+            })
+			.then(function spySuccessfullyRegistered () {
+				// Click on the "Jumbotron" CTA:
+                element( by.css('#jumbotronCTA') ).click();
+				
+				browser.driver.executeScript(function () {
+                    return window.gaLastEventData;
+                })
+				.then(function (gaLastEventData) {
+					expect(gaLastEventData).toEqual(['send', 'event', 'Button', 'Click', 'Jumbotron CTA']);
+				});
+			})
+			.then(null, function errorCallback (error) {
+				fail('Error: ' + JSON.stringify(error));
+			})
+			.then(done);
         });
 
-
-
-
-
-        it('should call "window.ga(...)" when clicking on the Heading CTA', function (done) {
-            var gaSpyRegistered = false;
-
+        it('should fire an Event when clicking on the Heading CTA', function (done) {
             browser.driver.executeScript(function () {
-                (function (globalScope) {
-                    var originalGA = ga;
-                    globalScope.gaEventData = {};
+                window.gaOriginal = window.ga;
+                window.gaEventDataBuffer = [];
+				window.gaLastEventData = arguments;
 
-                    var newGA = function(paramSend, paramEvent, paramCategory, paramAction, paramLabel, paramValue) {
-                        globalScope.gaEventData.send = paramSend;
-                        globalScope.gaEventData.event = paramEvent;
-                        globalScope.gaEventData.category = paramCategory;
-                        globalScope.gaEventData.action = paramAction;
-                        globalScope.gaEventData.label = paramLabel;
-                        globalScope.gaEventData.value = paramValue;
-
-                        originalGA(paramSend, paramEvent, paramCategory, paramAction, paramLabel, paramValue);
-                    };
-
-                    ga = newGA;
-                })(window);
-
-                return 'success';
-            }).then(
-                function (result) {
-                    if (result === 'success') {
-                        gaSpyRegistered = true;
-                    }
-
-                    expect(result).toEqual('success');
-                    expect(gaSpyRegistered).toBeTruthy();
-                    spyRegistered();
-                },
-                function (error) {
-                    expect(gaSpyRegistered).toBeTruthy();
-                    done();
-                }
-            );
-
-
-            var spyRegistered = function () {
-                var gaArgumentsDefined = false;
-
-                // Send a click on the first "Heading" CTA:
-                element.all(by.css('.heading-cta')).get(0).click();
-
-                browser.driver.executeScript(function() {
-                    return gaEventData;
-                }).then(
-                    function (result) {
-                        if (result !== 'undefined') {
-                            gaArgumentsDefined = true;
-                        }
-
-                        expect(gaArgumentsDefined).toBeTruthy();
-                        expect(result).not.toEqual('undefined');
-                        expect(result).toEqual({
-                            send: 'send',
-                            event: 'event',
-                            category: 'Button',
-                            action: 'Click',
-                            label: 'Heading CTA',
-                            value: null
-                        })
-
-                        done();
-                    },
-                    function (error) {
-                        expect(gaArgumentsDefined).toBeTruthy();
-
-                        done();
-                    }
-                );
-            };
+                window.ga = function () {
+					window.gaEventDataBuffer.push(arguments);
+					window.gaLastEventData = arguments;
+						
+					// Call the original "ga()" function with the supplied arguments:
+					window.gaOriginal.apply(null, arguments);
+				};
+            })
+			.then(function spySuccessfullyRegistered () {
+				// Click on the first "Heading" CTA:
+                element.all( by.css('.heading-cta') ).get(0).click();
+				
+				browser.driver.executeScript(function () {
+                    return window.gaLastEventData;
+                })
+				.then(function (gaLastEventData) {
+					expect(gaLastEventData).toEqual(['send', 'event', 'Button', 'Click', 'Heading CTA']);
+				});
+			})
+			.then(null, function errorCallback (error) {
+				fail('Error: ' + JSON.stringify(error));
+			})
+			.then(done);
         });
     });
 });
