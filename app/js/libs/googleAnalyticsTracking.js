@@ -1,6 +1,15 @@
-'use strict';
+/**!
+ * @file Wiring up of Analytics Tracking to the website component (using jQuery).
+ * @author Philippe Sawicki <http://github.com/philsawicki> 
+ * @copyright Philippe Sawicki 2015
+ * @license MIT
+ */
+
 
 (function ($, window, undefined) {
+    'use strict';
+
+
     /**
      * Track clicks on the "Jumbotron" CTA.
      * @return {void}

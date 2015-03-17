@@ -1,3 +1,10 @@
+/**!
+ * @file Injects the Google Analytics Interceptor before running each Spec.
+ * @author Philippe Sawicki <http://github.com/philsawicki> 
+ * @copyright Philippe Sawicki 2015
+ * @license MIT
+ */
+
 // Things to do before every run:
 beforeEach(function () {
     'use strict';

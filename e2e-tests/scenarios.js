@@ -1,3 +1,10 @@
+/**!
+ * @file Base E2E test scenarios for the Application Demo.
+ * @author Philippe Sawicki <http://github.com/philsawicki> 
+ * @copyright Philippe Sawicki 2015
+ * @license MIT
+ */
+
 'use strict';
 
 
