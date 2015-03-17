@@ -10,14 +10,20 @@ beforeEach(function () {
     'use strict';
 
     // Forward "ga()" calls to the actual Google Analytics method?
-    var submitToGA = browser.params.GoogleAnalyticsWebTester.config.submitToGA;
+    var submitToGA = false;
+    if (typeof browser.params !== 'undefined'
+     && typeof browser.params.GoogleAnalyticsWebTester !== 'undefined'
+     && typeof browser.params.GoogleAnalyticsWebTester.config !== 'undefined'
+     && typeof browser.params.GoogleAnalyticsWebTester.config.submitToGA !== 'undefined') {
+        submitToGA = browser.params.GoogleAnalyticsWebTester.config.submitToGA;
+    }
 
 
     // Register the Google Analytics Event Data Interceptors:
     if (typeof browser.driver.registerGoogleAnalyticsEventDataInterceptor === 'undefined') {
         browser.driver.registerGoogleAnalyticsEventDataInterceptor = function () {
             browser.driver.executeScript(function () {
-                var submitToGA = true;
+                var submitToGA = false;
                 if (arguments.length > 0) {
                     submitToGA = arguments[0];
                 }
@@ -35,7 +41,7 @@ beforeEach(function () {
                         window.gaEventDataBuffer.push(arguments);
                         window.gaLastEventData = arguments;
 
-                        if (submitToGA) {
+                        if (submitToGA && window.gaOriginal) {
                             // Call the original "ga()" function with the supplied arguments:
                             window.gaOriginal.apply(null, arguments);
                         }
