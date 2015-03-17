@@ -32,50 +32,20 @@ exports.config = {
         // Default time to wait (in ms) before a test fails:
         defaultTimeoutInterval: 30000
     },
+
+    // The params object will be passed directly to the Protractor instance,
+    // and can be accessed from the tests. It is an arbitrary object and can
+    // contain anything needed for tests.
+    // This can be changed via the command line as:
+    //   --params.login.user 'Joe'
+    params: {
+        GoogleAnalyticsWebTester: {
+            config: {
+                submitToGA: true // Submit test data to Google Analytics?
+            }
+        }
+    },
     
-    onPrepare: function () {
-        // Things to do before every run:
-        beforeEach(function () {
-            'use strict';
-            
-            // Register the Google Analytics Event Data Interceptors:
-            if (typeof browser.driver.registerGoogleAnalyticsEventDataInterceptor === 'undefined') {
-                browser.driver.registerGoogleAnalyticsEventDataInterceptor = function () {
-                    browser.driver.executeScript(function () {
-                        if (window && window.ga && !window.gaEventDataBuffer && !window.gaLastEventData) {
-                            window.gaOriginal = ga;
-                            window.gaEventDataBuffer = [];
-                            window.gaLastEventData = {};
-
-                            // Temporarily override the original "ga()" function, in order to intercept its arguments:
-                            window.ga = function () {
-                                window.gaEventDataBuffer.push(arguments);
-                                window.gaLastEventData = arguments;
-
-                                // Call the original "ga()" function with the supplied arguments:
-                                window.gaOriginal.apply(null, arguments);
-                            };
-                        }
-                    });
-                };
-            }
-
-            // Unregister the Google Analytics Event Data Interceptors:
-            if (typeof browser.driver.unregisterGoogleAnalyticsEventDataInterceptor === 'undefined') {
-                browser.driver.unregisterGoogleAnalyticsEventDataInterceptor = function () {
-                    browser.driver.executeScript(function () {
-                        if (window && window.gaOriginal) {
-                            // Restore the original "ga()" function:
-                            window.ga = window.gaOriginal;
-
-                            // Remove the data accumulators:
-                            window.gaOriginal = undefined;
-                            window.gaEventDataBuffer = undefined;
-                            window.gaLastEventData = undefined;
-                        }
-                    });
-                };
-            }
-        });
-    }
+    // Place the "ga()" interceptor before executing the Specs in the browser:
+    onPrepare: './GoogleAnalyticsWebTesterInterceptor.js'
 };

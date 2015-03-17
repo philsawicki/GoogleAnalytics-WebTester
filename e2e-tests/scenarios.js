@@ -357,6 +357,8 @@ describe('Demo application for Google Analytics WebTester', function () {
 	});
 
 	
+	// Since this cannot access the "params" attribute set in "protractor.conf.js", this will actually submit the
+	// test data to "ga()":
     describe('Alternative method of tracking Google Analytics Event Data, straight from the browser', function () {
         beforeEach(function () {
             browser.get('index.html#/');
