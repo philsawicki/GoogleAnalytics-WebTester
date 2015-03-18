@@ -40,12 +40,12 @@ exports.config = {
     //   --params.login.user 'Joe'
     params: {
         GoogleAnalyticsWebTester: {
-            config: {
-                submitToGA: true // Submit test data to Google Analytics?
-            }
+            usesGACalls: false, // Does the Application reference "ga()" directly?
+            usesGTMCalls: true, // Does the Application reference "ga()" through Google Tag Manager?
+            submitToGA: false   // Submit test data to Google Analytics?
         }
     },
     
     // Place the "ga()" interceptor before executing the Specs in the browser:
-    onPrepare: './GoogleAnalyticsWebTesterInterceptor.js'
+    onPrepare: './onPrepare.js'
 };
