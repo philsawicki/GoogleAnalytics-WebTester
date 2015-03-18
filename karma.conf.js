@@ -13,7 +13,10 @@ module.exports = function (config) {
             'app/bower_components/angular-mocks/angular-mocks.js',
 
             'app/components/**/*.js',
-            'app/view*/**/*.js'
+            'app/view*/**/*.js',
+
+            'lib/**/*.js',
+            'test/unit/**/*.js'
         ],
 
         // List of files to exclude:
@@ -21,6 +24,11 @@ module.exports = function (config) {
 
         // Test result reporters to use:
         reporters: ['progress', 'coverage'],
+
+        // Source files for 'coverage' processing (do not include tests or librairies):
+        preprocessors: {
+            'lib/**/*.js': ['coverage']
+        },
 
         // Enable/disable colors in the output (for reporters and logs):
         colors: true,
@@ -35,8 +43,26 @@ module.exports = function (config) {
             'karma-chrome-launcher',
             'karma-firefox-launcher',
             'karma-jasmine',
-            'karma-junit-reporter'
+            'karma-junit-reporter',
+            'karma-coverage'
         ],
+
+        // Configuration for the "coverage" reporter:
+        coverageReporter: {
+            dir: 'build/reports/coverage', // Common output directory
+            reporters: [
+                // Reporters not supporting the 'file' property:
+                { type: 'html', subdir: 'report-html' },
+                { type: 'lcov', subdir: 'report-lcov' },
+                // Reporter supporting the 'file' property, using 'subdir' 
+                // to directly output them in the 'dir' directory:
+                //{ type: 'cobertura', subdir: '.', file: 'covertura.txt' },
+                //{ type: 'lcovonly', subdir: '.', file: 'report-lcovonly.txt' },
+                //{ type: 'teamcity', subdir: '.', file: 'teamcity.txt' },
+                //{ type: 'text', subdir: '.', file: 'text.txt' },
+                //{ type: 'text-summary', subdir: '.', file: 'text-summary.txt' }
+            ]
+        },
 
         // Configuration for the "JUnit" reporter:
         junitReporter: {
