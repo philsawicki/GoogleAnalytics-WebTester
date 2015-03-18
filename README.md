@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/philsawicki/GoogleAnalytics-WebTester.svg?branch=master)](https://travis-ci.org/philsawicki/GoogleAnalytics-WebTester)
+[![Coverage Status](https://coveralls.io/repos/philsawicki/GoogleAnalytics-WebTester/badge.svg?branch=master)](https://coveralls.io/r/philsawicki/GoogleAnalytics-WebTester?branch=master)
 [![Dependency Status](https://david-dm.org/philsawicki/GoogleAnalytics-WebTester.svg)](https://david-dm.org/philsawicki/GoogleAnalytics-WebTester)
 [![devDependency Status](https://david-dm.org/philsawicki/GoogleAnalytics-WebTester/dev-status.svg)](https://david-dm.org/philsawicki/GoogleAnalytics-WebTester#info=devDependencies)
 

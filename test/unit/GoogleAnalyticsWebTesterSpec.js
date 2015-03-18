@@ -19,8 +19,6 @@ describe('GoogleAnalyticsWebTester Module', function () {
 
 
     beforeEach(function () {
-        //window.ga = jasmine.createSpy().and.callThrough();
-
         module = window.GoogleAnalyticsWebTester;
 
         spyOn(module, 'initialize').and.callThrough();
@@ -91,19 +89,34 @@ describe('GoogleAnalyticsWebTester Module', function () {
 
 
     describe('The behavior of the "initialize" method', function () {
-        beforeEach(function () {
-            module.initialize({
-                browserParams: {},
-                browserDriver: {}
+        describe('Expected parameters', function () {
+            beforeEach(function () {
+                module.initialize({
+                    browserParams: {},
+                    browserDriver: {}
+                });
+            });
+
+            it('calls the "loadConfigurationSettings" method', function () {
+                expect( module.loadConfigurationSettings ).toHaveBeenCalled();
+            });
+
+            it('calls the "registerBrowserDriverUtilities" method', function () {
+                expect( module.registerBrowserDriverUtilities ).toHaveBeenCalled();
             });
         });
 
-        it('calls the "loadConfigurationSettings" method', function () {
-            expect( module.loadConfigurationSettings ).toHaveBeenCalled();
-        });
+        describe('Missing parameters', function () {
+            beforeEach(function () {
+                module.initialize({
+                    //browserParams: {},
+                    browserDriver: {}
+                });
+            });
 
-        it('calls the "registerBrowserDriverUtilities" method', function () {
-            expect( module.registerBrowserDriverUtilities ).toHaveBeenCalled();
+            it('calls the "loadConfigurationSettings" method', function () {
+                expect( module.loadConfigurationSettings ).toHaveBeenCalled();
+            });
         });
     });
 
@@ -152,10 +165,6 @@ describe('GoogleAnalyticsWebTester Module', function () {
 
 
             describe('The "executeScriptCallback"', function () {
-                //beforeEach(function () {
-                //    mockBrowserDriver.registerGoogleAnalyticsEventDataInterceptor();
-                //});
-
                 it('reads the given arguments', function () {
                     mockBrowserDriver.registerGoogleAnalyticsEventDataInterceptor();
                     mockBrowserDriver._executeScriptCallback(true);
@@ -166,15 +175,6 @@ describe('GoogleAnalyticsWebTester Module', function () {
                     mockBrowserDriver._executeScriptCallback(true);
 
                     window.ga();
-                });
-
-                xit('does not override "window.ga" if it is not defined', function () {
-                    window.ga = undefined;
-
-                    mockBrowserDriver.registerGoogleAnalyticsEventDataInterceptor();
-                    mockBrowserDriver._executeScriptCallback(true);
-
-                    //window.ga();
                 });
 
                 describe('The call to "ga()"', function () {
@@ -209,6 +209,33 @@ describe('GoogleAnalyticsWebTester Module', function () {
     });
 
 
+    describe('The behavior of the "registerGoogleAnalyticsEventDataInterceptor" method, with "window.ga()" defined', function () {
+        describe('Execution with methods not yet defined', function () {
+            it('saves "window.ga()" as "window.gaOriginal()"', function () {
+                window.ga = function () {};
+                window.gaEventDataBuffer = undefined;
+                window.gaLastEventData = undefined;
+                window.gaOriginal = function () {};
+
+                var mockDriver_ = {
+                    _executeScriptCallback: undefined,
+                    registerGoogleAnalyticsEventDataInterceptor: undefined
+                };
+                mockDriver_.executeScript = function (callback) {
+                    mockDriver_._executeScriptCallback = callback;
+                };
+                module.registerGoogleAnalyticsEventDataInterceptor(mockDriver_, defaultSettings);
+                mockDriver_.registerGoogleAnalyticsEventDataInterceptor();
+                mockDriver_._executeScriptCallback(true);
+
+                expect( window.gaOriginal ).toBeDefined();
+
+                window.ga();
+            });
+        });
+    });
+
+
     describe('The behavior of the "registerGoogleAnalyticsEventDataInterceptorCleanup" method', function () {
         describe('Execution with methods not yet defined', function () {
             beforeEach(function () {
@@ -231,49 +258,6 @@ describe('GoogleAnalyticsWebTester Module', function () {
                 expect( mockBrowserDriver._executeScriptCallback ).toBeDefined();
 
                 mockBrowserDriver._executeScriptCallback();
-            });
-
-
-            describe('The "executeScriptCallback"', function () {
-                //beforeEach(function () {
-                //    mockBrowserDriver.registerGoogleAnalyticsEventDataInterceptorCleanup();
-                //});
-
-                xit('reads the given arguments', function () {
-                    mockBrowserDriver.registerGoogleAnalyticsEventDataInterceptorCleanup();
-                    mockBrowserDriver._executeScriptCallback(true);
-                });
-
-                xit('overrides "window.ga" if it is defined', function () {
-                    mockBrowserDriver.registerGoogleAnalyticsEventDataInterceptorCleanup();
-                    mockBrowserDriver._executeScriptCallback(true);
-
-                    //window.ga();
-                });
-
-                xit('does not override "window.ga" if it is not defined', function () {
-                    window.ga = undefined;
-
-                    mockBrowserDriver.registerGoogleAnalyticsEventDataInterceptorCleanup();
-                    mockBrowserDriver._executeScriptCallback(true);
-
-                    //window.ga();
-                });
-
-                xdescribe('The call to "ga()"', function () {
-                    beforeEach(function () {
-                        window.ga('value1', 'value2');
-                    });
-
-                    it('sets the "window.gaEventDataBuffer" variable', function () {
-                        var eventBuffer = [
-                            window.gaEventDataBuffer[1][0],
-                            window.gaEventDataBuffer[1][1]
-                        ];
-
-                        expect( eventBuffer ).toEqual(['value1', 'value2']);
-                    });
-                });
             });
         });
 
