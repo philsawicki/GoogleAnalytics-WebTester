@@ -60,6 +60,14 @@ describe('GoogleAnalyticsWebTester Module', function () {
         it('exposes the "registerGoogleAnalyticsEventDataInterceptorCleanup" method', function () {
             expect( module.registerGoogleAnalyticsEventDataInterceptorCleanup ).toBeDefined();
         });
+
+        it('exposes the "usesGTM" method', function () {
+            expect( module.usesGTM ).toBeDefined();
+        });
+
+        it('exposes the "usesGA" method', function () {
+            expect( module.usesGA ).toBeDefined();
+        });
     });
 
 
@@ -272,6 +280,60 @@ describe('GoogleAnalyticsWebTester Module', function () {
             it('calls the "registerGoogleAnalyticsEventDataInterceptorCleanup" method', function () {
                 expect( module.registerGoogleAnalyticsEventDataInterceptorCleanup ).toHaveBeenCalled();
             });
+        });
+    });
+
+
+    describe('The behavior of the "usesGTM" method', function () {
+        xit('returns the default "options" value when "initialize()" called without parameters', function () {
+            module.initialize();
+
+            expect( module.usesGTM() ).toEqual( defaultSettings.usesGTMCalls );
+        });
+
+        it('returns the default "options" value given to "initialize(...)"', function () {
+            module.initialize({
+                browserParams: defaultSettings,
+                browserDriver: {}
+            });
+
+            expect( module.usesGTM() ).toEqual( defaultSettings.usesGTMCalls );
+        });
+
+        it('returns the customSettings "options" value given to "initialize(...)"', function () {
+            module.initialize({
+                browserParams: customSettings,
+                browserDriver: {}
+            });
+
+            expect( module.usesGTM() ).toEqual( customSettings.usesGTMCalls );
+        });
+    });
+
+
+    describe('The behavior of the "usesGA" method', function () {
+        xit('returns the default "options" value when "initialize()" called without parameters', function () {
+            module.initialize();
+
+            expect( module.usesGA() ).toEqual( defaultSettings.usesGACalls );
+        });
+
+        it('returns the default "options" value given to "initialize(...)"', function () {
+            module.initialize({
+                browserParams: defaultSettings,
+                browserDriver: {}
+            });
+
+            expect( module.usesGA() ).toEqual( defaultSettings.usesGACalls );
+        });
+
+        it('returns the customSettings "options" value given to "initialize(...)"', function () {
+            module.initialize({
+                browserParams: customSettings,
+                browserDriver: {}
+            });
+
+            expect( module.usesGA() ).toEqual( customSettings.usesGACalls );
         });
     });
 });

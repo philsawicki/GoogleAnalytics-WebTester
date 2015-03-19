@@ -42,6 +42,14 @@
         }
     };
 
+    /**
+     * Track clicks on the "Archive" links of the Blog page.
+     * @return {void}
+     */
+    var _trackBlogArchives = function () {
+        // The tracking is actually done through Google Tag Manager.
+    };
+
 
     /**
      * Register all tracking functions.
@@ -50,7 +58,8 @@
     var bootstrap = function () {
         var trackingCallbacks = [
             _trackJumbotronCTA,
-            _trackHeadingCTA
+            _trackHeadingCTA,
+            _trackBlogArchives
        ];
 
         for (var i = 0, nbCallbacks = trackingCallbacks.length; i < nbCallbacks; i++) {
