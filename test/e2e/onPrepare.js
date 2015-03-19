@@ -10,7 +10,7 @@ beforeEach(function () {
     'use strict';
 
     // Load the Web Tester:
-    var GoogleAnalyticsWebTester = require('./../lib/GoogleAnalyticsWebTester');
+    var GoogleAnalyticsWebTester = require('./../../lib/GoogleAnalyticsWebTester');
 
     // Initialize the Web Tester:
     GoogleAnalyticsWebTester.initialize({

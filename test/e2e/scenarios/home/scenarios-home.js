@@ -1,5 +1,5 @@
 /**!
- * @file Base E2E test scenarios for the Application Demo.
+ * @file Base E2E test scenarios for the Home page of the Application Demo.
  * @author Philippe Sawicki <http://github.com/philsawicki> 
  * @copyright Philippe Sawicki 2015
  * @license MIT
@@ -8,7 +8,7 @@
 'use strict';
 
 
-describe('Demo application for Google Analytics WebTester', function () {
+describe('Demo application for the Home page of the Google Analytics WebTester', function () {
     describe('The AngularJS Demo Application setup', function () {
 		browser.get('index.html');
 

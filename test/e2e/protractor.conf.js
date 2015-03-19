@@ -5,9 +5,17 @@ exports.config = {
     allScriptsTimeout: 11000,
 
     // Spec patterns are relative to the location of this config:
-    specs: [
-        '*.js'
-    ],
+    //specs: [
+    //    'scenarios/**/*.js'
+    //],
+
+    // When run without a command line parameter, all suites will run. If run with 
+    // --suite=smoke or --suite=smoke,full only the patterns matched by the specified 
+    // suites will run.
+    suites: {
+        home: 'scenarios/home/*.js',
+        blog: 'scenarios/blog/*.js'
+    },
     
     // Patterns to exclude:
     exclude: [],
@@ -40,9 +48,12 @@ exports.config = {
     //   --params.login.user 'Joe'
     params: {
         GoogleAnalyticsWebTester: {
-            usesGACalls: false, // Does the Application reference "ga()" directly?
-            usesGTMCalls: true, // Does the Application reference "ga()" through Google Tag Manager?
-            submitToGA: false   // Submit test data to Google Analytics?
+            // Does the Application reference "ga()" directly?
+            usesGACalls: false,
+            // Does the Application reference "ga()" through Google Tag Manager?
+            usesGTMCalls: true,
+            // Submit test data to Google Analytics?
+            submitToGA: false
         }
     },
     
