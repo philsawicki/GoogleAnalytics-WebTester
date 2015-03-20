@@ -15,7 +15,8 @@ module.exports = function (config) {
             //'app/components/**/*.js',
             //'app/view*/**/*.js',
 
-            'lib/**/*.js',
+            'lib/**/BrowserAPI.js',
+            'lib/**/GoogleAnalyticsWebTester.js',
             'test/unit/**/*.js'
         ],
 

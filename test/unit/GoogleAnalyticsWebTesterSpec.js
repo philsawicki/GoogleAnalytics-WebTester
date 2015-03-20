@@ -73,6 +73,68 @@ describe('GoogleAnalyticsWebTester Module', function () {
     });
 
 
+    describe('The "window namespace" of the Module', function () {
+        it('exposes the "initialize" method', function () {
+            expect( window.GoogleAnalyticsWebTester.initialize ).toBeDefined();
+        });
+
+        it('exposes the "loadConfigurationSettings" method', function () {
+            expect( window.GoogleAnalyticsWebTester.loadConfigurationSettings ).toBeDefined();
+        });
+
+        it('exposes the "registerBrowserDriverUtilities" method', function () {
+            expect( window.GoogleAnalyticsWebTester.registerBrowserDriverUtilities ).toBeDefined();
+        });
+
+        it('exposes the "registerGoogleAnalyticsEventDataInterceptor" method', function () {
+            expect( window.GoogleAnalyticsWebTester.registerGoogleAnalyticsEventDataInterceptor ).toBeDefined();
+        });
+
+        it('exposes the "registerGoogleAnalyticsEventDataInterceptorCleanup" method', function () {
+            expect( window.GoogleAnalyticsWebTester.registerGoogleAnalyticsEventDataInterceptorCleanup ).toBeDefined();
+        });
+
+        it('exposes the "usesGTM" method', function () {
+            expect( window.GoogleAnalyticsWebTester.usesGTM ).toBeDefined();
+        });
+
+        it('exposes the "usesGA" method', function () {
+            expect( window.GoogleAnalyticsWebTester.usesGA ).toBeDefined();
+        });
+    });
+
+    
+    describe('The proper "etiquette" of the Module', function () {
+        it('does not leak the "initialize" method to the "window"', function () {
+            expect( window.initialize ).not.toBeDefined();
+        });
+
+        it('does not leak the "loadConfigurationSettings" method to the "window"', function () {
+            expect( window.loadConfigurationSettings ).not.toBeDefined();
+        });
+
+        it('does not leak the "registerBrowserDriverUtilities" method to the "window"', function () {
+            expect( window.registerBrowserDriverUtilities ).not.toBeDefined();
+        });
+
+        it('does not leak the "registerGoogleAnalyticsEventDataInterceptor" method to the "window"', function () {
+            expect( window.registerGoogleAnalyticsEventDataInterceptor ).not.toBeDefined();
+        });
+
+        it('does not leak the "registerGoogleAnalyticsEventDataInterceptorCleanup" method to the "window"', function () {
+            expect( window.registerGoogleAnalyticsEventDataInterceptorCleanup ).not.toBeDefined();
+        });
+
+        it('does not leak the "usesGTM" method to the "window"', function () {
+            expect( window.usesGTM ).not.toBeDefined();
+        });
+
+        it('does not leak the "usesGA" method to the "window"', function () {
+            expect( window.usesGA ).not.toBeDefined();
+        });
+    });
+
+
     describe('The behavior of the "loadConfigurationSettings" method', function () {
         it('returns the default settings when called without parameter', function () {
             var settings = module.loadConfigurationSettings();
@@ -200,7 +262,7 @@ describe('GoogleAnalyticsWebTester Module', function () {
                     window.gaOriginal = jasmine.createSpy().and.callThrough();
 
                     window.ga();
-                    
+
                     expect( window.gaOriginal ).toHaveBeenCalled();
                 });
 
