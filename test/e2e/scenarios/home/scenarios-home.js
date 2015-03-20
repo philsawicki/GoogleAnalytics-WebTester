@@ -366,7 +366,7 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 	
 	// Since this cannot access the "params" attribute set in "protractor.conf.js", this will actually submit the
 	// test data to "ga()":
-    describe('Alternative method of tracking Google Analytics Event Data, straight from the browser', function () {
+    xdescribe('Alternative method of tracking Google Analytics Event Data, straight from the browser', function () {
         beforeEach(function () {
             browser.get('index.html#/');
         });
@@ -387,14 +387,17 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
             })
 			.then(function spySuccessfullyRegistered () {
 				// Click on the "Jumbotron" CTA:
-                element( by.css('#jumbotronCTA') ).click();
+                element( by.css('#jumbotronCTA') ).click()
+                //.then(function () {
+
 				
-				browser.driver.executeScript(function () {
-                    return window.gaLastEventData;
-                })
-				.then(function (gaLastEventData) {
-					expect(gaLastEventData).toEqual(['send', 'event', 'Button', 'Click', 'Jumbotron CTA']);
-				});
+					browser.driver.executeScript(function () {
+	                    return window.gaLastEventData;
+	                })
+					.then(function (gaLastEventData) {
+						expect(gaLastEventData).toEqual(['send', 'event', 'Button', 'Click', 'Jumbotron CTA']);
+					});
+                //});
 			})
 			.then(null, function errorCallback (error) {
 				fail('Error: ' + JSON.stringify(error));

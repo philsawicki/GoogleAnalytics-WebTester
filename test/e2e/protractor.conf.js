@@ -20,6 +20,11 @@ exports.config = {
     // Patterns to exclude:
     exclude: [],
 
+    // If true, Protractor will connect directly to the browser Drivers at the locations 
+    // specified by "chromeDriver" and "firefoxPath". Only Chrome and Firefox are supported 
+    // for direct connect.
+    directConnect: false,
+
     capabilities: {
         'browserName': 'chrome'
     },

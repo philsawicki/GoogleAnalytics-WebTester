@@ -8,13 +8,15 @@ describe('GoogleAnalyticsWebTester Module', function () {
     var defaultSettings = {
         usesGACalls: false,
         usesGTMCalls: true,
-        submitToGA: false
+        submitToGA: false,
+        disableClicks: false
     };
 
     var customSettings = {
         usesGACalls:!defaultSettings.usesGACalls,
         usesGTMCalls: !defaultSettings.usesGTMCalls,
-        submitToGA: !defaultSettings.submitToGA
+        submitToGA: !defaultSettings.submitToGA,
+        disableClicks: !defaultSettings.disableClicks
     };
 
 
@@ -148,6 +150,12 @@ describe('GoogleAnalyticsWebTester Module', function () {
 
 
     describe('The behavior of the "registerGoogleAnalyticsEventDataInterceptor" method', function () {
+        //beforeEach(function () {
+        //    module.initialize({
+        //        browserParams: defaultSettings,
+        //        browserDriver: {}
+        //    });
+        //});
         describe('Execution with methods not yet defined', function () {
             beforeEach(function () {
                 module.registerGoogleAnalyticsEventDataInterceptor(mockBrowserDriver, defaultSettings);
@@ -173,16 +181,27 @@ describe('GoogleAnalyticsWebTester Module', function () {
 
 
             describe('The "executeScriptCallback"', function () {
+                it('loads the default value of "submitToGA" if no parameter provided', function () {
+                    mockBrowserDriver.registerGoogleAnalyticsEventDataInterceptor();
+                    mockBrowserDriver._executeScriptCallback();
+                });
+
                 it('reads the given arguments', function () {
                     mockBrowserDriver.registerGoogleAnalyticsEventDataInterceptor();
-                    mockBrowserDriver._executeScriptCallback(true);
+                    mockBrowserDriver._executeScriptCallback({
+                        submitToGA: false
+                    });
                 });
 
                 it('overrides "window.ga" if it is defined', function () {
-                    mockBrowserDriver.registerGoogleAnalyticsEventDataInterceptor();
-                    mockBrowserDriver._executeScriptCallback(true);
+                    mockBrowserDriver.registerGoogleAnalyticsEventDataInterceptor(mockBrowserDriver, customSettings);
+                    mockBrowserDriver._executeScriptCallback(customSettings);
+
+                    window.gaOriginal = jasmine.createSpy().and.callThrough();
 
                     window.ga();
+                    
+                    expect( window.gaOriginal ).toHaveBeenCalled();
                 });
 
                 describe('The call to "ga()"', function () {
