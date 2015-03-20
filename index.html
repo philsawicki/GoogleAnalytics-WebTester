@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="A Protractor application to test and validate the proper Google Analytics Tracking implementation of a website. Compatible with Google Tag Manager." />
     <meta name="google-site-verification" content="ctAoEcOP_KOarL1L7ifRAxRMYKDZk-YK2LQcvcfLJEs" />
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Architects+Daughter'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
@@ -14,7 +15,7 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title>GoogleAnalytics-WebTester by Philippe Sawicki</title>
+    <title>Google Analytics Web Tester by Philippe Sawicki</title>
   </head>
 
   <body>
@@ -35,7 +36,7 @@
   
     <header>
       <div class="inner">
-        <h1>GoogleAnalytics-WebTester</h1>
+        <h1>Google Analytics Web Tester</h1>
         <h2>A testing tool to validate Google Analytics implementation on a website</h2>
         <a href="https://github.com/philsawicki/GoogleAnalytics-WebTester" class="button" id="githubSite"><small>View project on</small> GitHub</a>
       </div>
@@ -45,6 +46,7 @@
       <div class="inner clearfix">
         <section id="main-content">
           <p><a href="https://travis-ci.org/philsawicki/GoogleAnalytics-WebTester"><img src="https://travis-ci.org/philsawicki/GoogleAnalytics-WebTester.svg?branch=master" alt="Build Status"></a>
+<a href="https://coveralls.io/r/philsawicki/GoogleAnalytics-WebTester?branch=master"><img src="https://coveralls.io/repos/philsawicki/GoogleAnalytics-WebTester/badge.svg?branch=master" alt="Coverage Status" /></a>
 <a href="https://david-dm.org/philsawicki/GoogleAnalytics-WebTester"><img src="https://david-dm.org/philsawicki/GoogleAnalytics-WebTester.svg" alt="Dependency Status"></a>
 <a href="https://david-dm.org/philsawicki/GoogleAnalytics-WebTester#info=devDependencies"><img src="https://david-dm.org/philsawicki/GoogleAnalytics-WebTester/dev-status.svg" alt="devDependency Status"></a></p>
 
@@ -269,8 +271,24 @@ npm run protractor
       </div>
     </div>
     
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type" : "Person",
+        "name" : "Philippe Sawicki",
+        "jobTitle": "Full Stack Developer",
+        "url": "http://philippesawicki.com",
+        "sameAs" : [
+          "https://facebook.com/philippe.sawicki",
+          "https://twitter.com/fyll_s",
+          "https://plus.google.com/+PhilippeSawicki",
+          "https://linkedin.com/in/philippesawicki"
+        ]
+      }
+    </script>
+    
     <script type="text/javascript">
-      function ready(fn) {
+      function whenReady (fn) {
         if (document.readyState != 'loading') {
           fn();
         } else {
@@ -278,16 +296,20 @@ npm run protractor
         }
       }
       
-      ready(function () {
+      whenReady(function () {
         var downloadZipLink = document.getElementById('downloadZip');
-        downloadZipLink.addEventListener('click', function (event) {
-          ga('send', 'event', 'Button', 'Click', 'Download Zip File');
-        });
+        if (downloadZipLink) {
+          downloadZipLink.addEventListener('click', function (event) {
+            ga('send', 'event', 'Button', 'Click', 'Download Zip File');
+          });
+        }
         
         var viewOnGithub = document.getElementById('githubSite');
-        viewOnGithub.addEventListener('click', function (event) {
-          ga('send', 'event', 'Button', 'Click', 'View Project on Github');
-        });
+        if (viewOnGithub) {
+          viewOnGithub.addEventListener('click', function (event) {
+            ga('send', 'event', 'Button', 'Click', 'View Project on Github');
+          });
+        }
       });
     </script>
   </body>
