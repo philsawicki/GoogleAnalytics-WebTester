@@ -83,7 +83,7 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
             browser.driver.registerGoogleAnalyticsEventDataInterceptor();
         });
         
-        describe('The "EventBuffer" object', function () {
+        describe('The "EventBuffer" method', function () {
             it('should contain the list of all Event Data fired', function (done) {
                 // Click on the first "Archive" link of the Blog:
                 element.all( by.css('.js-ga-blog-archive-link') ).get(0).click();
@@ -115,26 +115,47 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
             });
         });
         
-        xdescribe('The "gaLastEvendData" object', function () {
+        describe('The "LastEvent" method', function () {
             it('should contain the last Event Data fired', function (done) {
-                // Click on the "Jumbotron" CTA:
-                element( by.css('#jumbotronCTA') ).click();
+                // Click on the first "Archive" link of the Blog:
+                element.all( by.css('.js-ga-blog-archive-link') ).get(0).click();
                 
-                // Click on the first "Heading" CTA:
-                element.all( by.css('.heading-cta') ).get(0).click();
-                
-                // Get the "gaLastEventData" object back from the browser:
+                // Get the "LastEvent" object back from the browser:
                 browser.driver.executeScript(function () {
-                    return window.gaLastEventData;
+                    return window.GAWebTester.getLastEvent();
                 })
                 .then(
-                    // Validate the content of the "gaLastEventData" object:
-                    function successCallback (gaLastEventData) {
-                        expect( gaLastEventData ).not.toEqual(['send', 'event', 'Button', 'Click', 'Jumbotron CTA']);
-                        expect( gaLastEventData ).toEqual(['send', 'event', 'Button', 'Click', 'Heading CTA']);
-                        expect( gaLastEventData ).not.toEqual(['send', 'event', 'Button', 'Click', 'Non-existing Label']);
+                    // Validate the content of the "LastEvent" object:
+                    function successCallback (LastEvent) {
+                        expect( LastEvent ).toBeDefined();
+                        expect( LastEvent ).not.toBeNull();
+
+                        expect( LastEvent[1] ).toBeDefined();
+                        expect( LastEvent[1] ).not.toBeNull();
+
+                        expect( LastEvent[1] ).not.toEqual({
+                            'hitType': 'event',
+                            'eventCategory': 'Button',
+                            'eventAction': 'Click',
+                            'eventLabel': 'Jumbotron CTA',
+                            'eventValue': null
+                        });
+                        expect( LastEvent[1] ).toEqual({
+                            'hitType': 'event',
+                            'eventCategory': 'Blog Archive',
+                            'eventAction': 'Click',
+                            'eventLabel': 'March 2014',
+                            'eventValue': null
+                        });
+                        expect( LastEvent[1] ).not.toEqual({
+                            'hitType': 'event',
+                            'eventCategory': 'Button',
+                            'eventAction': 'Click',
+                            'eventLabel': 'Non-existing Label',
+                            'eventValue': null
+                        });
                     },
-                    // If there was an error getting back the "gaLastEventData" object from the browser, fail the test:
+                    // If there was an error getting back the "LastEvent" object from the browser, fail the test:
                     function errorCallback (error) {
                         fail('Should not have received Error: ' + JSON.stringify(error));
                     }
@@ -143,7 +164,7 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
             });
         });
         
-        xit('should properly catch a failure to receive the data buffer', function (done) {
+        it('should properly catch a failure to receive the data buffer', function (done) {
             // Try to get an undefined object from the browser:
             browser.driver.executeScript(function () {
                 return nonExistingObject.nonExistingProperty;
@@ -163,25 +184,34 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
     });
 
 
-    xdescribe('The clicks on the Archive page links', function () {
-        beforeEach(function () {
-            browser.get('blog.html');
-        });
-
+    describe('The clicks on the Archive page links', function () {
         it('should fire a Google Analytics Event', function (done) {
-            // Click on the first "Heading" CTA:
-            element.all( by.css('.heading-cta') ).get(0).click();
+            // Click on the first "Archive" link of the Blog:
+            element.all( by.css('.js-ga-blog-archive-link') ).get(0).click();
 
-            // Get the "gaEventDataBuffer" object back from the browser:
+            // Get the "LastEvent" object back from the browser:
             browser.driver.executeScript(function () {
-                return window.gaEventDataBuffer;
+                return window.GAWebTester.getLastEvent();
             })
             .then(
-                // Validate the content of the "gaEventDataBuffer" object:
-                function successCallback (gaEventDataBuffer) {
-                    expect( gaEventDataBuffer ).toContain(['set', 'metric1', '1']);
+                // Validate the content of the "LastEvent" object:
+                function successCallback (LastEvent) {
+                    expect( LastEvent ).toBeDefined();
+                    expect( LastEvent ).not.toBeNull();
+
+                    expect( LastEvent[1] ).toBeDefined();
+                    expect( LastEvent[1] ).not.toBeNull();
+
+                    expect( LastEvent[1] ).toEqual({
+                        'hitType': 'event',
+                        'eventCategory': 'Blog Archive',
+                        'eventAction': 'Click',
+                        'eventLabel': 'March 2014',
+                        'eventValue': null
+                    });
+                    //expect( LastEvent ).toContain(['set', 'metric1', '1']);
                 },
-                // If there was an error getting back the "gaEventDataBuffer" object from the browser, fail the test:
+                // If there was an error getting back the "LastEvent" object from the browser, fail the test:
                 function errorCallback (error) {
                     fail('Should not have received Error: ' + JSON.stringify(error));
                 }
