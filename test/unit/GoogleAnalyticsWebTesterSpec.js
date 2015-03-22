@@ -259,11 +259,11 @@ describe('GoogleAnalyticsWebTester Module', function () {
                     mockBrowserDriver.registerGoogleAnalyticsEventDataInterceptor(mockBrowserDriver, customSettings);
                     mockBrowserDriver._executeScriptCallback(customSettings);
 
-                    window.gaOriginal = jasmine.createSpy().and.callThrough();
+                    window.GAWebTester.OriginalGA = jasmine.createSpy().and.callThrough();
 
                     window.ga();
 
-                    expect( window.gaOriginal ).toHaveBeenCalled();
+                    expect( window.GAWebTester.OriginalGA ).toHaveBeenCalled();
                 });
 
                 describe('The call to "ga()"', function () {
@@ -271,12 +271,11 @@ describe('GoogleAnalyticsWebTester Module', function () {
                         window.ga('value1', 'value2');
                     });
 
-                    it('sets the "window.gaEventDataBuffer" variable', function () {
+                    it('sets the "window.GAWebTester.EventBuffer" variable', function () {
                         var eventBuffer = [
-                            window.gaEventDataBuffer[1][0],
-                            window.gaEventDataBuffer[1][1]
+                            window.GAWebTester.getEventBuffer()[1][0],
+                            window.GAWebTester.getEventBuffer()[1][1]
                         ];
-                        //eventBuffer = window.GAWebTester.getEventBuffer();
 
                         expect( eventBuffer ).toEqual(['value1', 'value2']);
                     });

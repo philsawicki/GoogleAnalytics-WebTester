@@ -50,12 +50,12 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
                 // Click on the first "Archive" link of the Blog:
                 element.all( by.css('.js-ga-blog-archive-link') ).get(0).click();
                 
-                // Get the "gaEventDataBuffer" object back from the browser:
+                // Get the "EventBuffer" object back from the browser:
                 browser.driver.executeScript(function () {
-                    return window.gaEventDataBuffer;
+                    return window.GAWebTester.getEventBuffer();
                 })
                 .then(
-                    // Validate the content of the "gaEventDataBuffer" object:
+                    // Validate the content of the "EventBuffer" object:
                     function successCallback (gaEventDataBuffer) {
                         var gtmTrackerName = jasmine.GoogleAnalyticsWebTester.getGTMTrackerName(gaEventDataBuffer);
 
@@ -63,7 +63,7 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
                         expect( gtmTrackerName ).not.toBeNull();
                         expect( gtmTrackerName ).toContain( 'gtm' );
                     },
-                    // If there was an error getting back the "gaEventDataBuffer" object from the browser, fail the test:
+                    // If there was an error getting back the "EventBuffer" object from the browser, fail the test:
                     function errorCallback (error) {
                         fail('Should not have received Error: ' + JSON.stringify(error));
                     }
@@ -88,9 +88,9 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
                 // Click on the first "Archive" link of the Blog:
                 element.all( by.css('.js-ga-blog-archive-link') ).get(0).click();
                 
-                // Get the "gaEventDataBuffer" object back from the browser:
+                // Get the "EventBuffer" object back from the browser:
                 browser.driver.executeScript(function () {
-                    return window.gaEventDataBuffer;
+                    return window.GAWebTester.getEventBuffer();
                 })
                 .then(
                     // Validate the content of the "gaEventDataBuffer" object:

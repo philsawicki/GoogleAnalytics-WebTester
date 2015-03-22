@@ -88,9 +88,9 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				.then(done);
 			});
 			
-			it('should have "window.gaEventDataBuffer" defined', function (done) {
+			it('should have "window.GAWebTester.getEventBuffer()" defined', function (done) {
 				browser.driver.executeScript(function () {
-					return window.gaEventDataBuffer;
+					return window.GAWebTester.getEventBuffer();
 				})
 				.then(function successCallback (gaEventDataBuffer) {
 					expect(gaEventDataBuffer).toBeDefined();
@@ -103,9 +103,9 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				.then(done);
 			});
 			
-			it('should have "window.gaLastEventData" defined', function (done) {
+			it('should have "window.GAWebTester.getLastEvent()" defined', function (done) {
 				browser.driver.executeScript(function () {
-					return window.gaLastEventData;
+					return window.GAWebTester.getLastEvent();
 				})
 				.then(function successCallback (gaLastEventData) {
 					expect(gaLastEventData).toBeDefined();
@@ -174,7 +174,7 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
     });
 	
 	
-	describe('The "gaEventDataBuffer" object', function () {
+	describe('The "GAWebTester.EventBuffer" object', function () {
 		beforeEach(function () {
 			// Register the Google Analytics Event Data Interceptor:
 			browser.driver.registerGoogleAnalyticsEventDataInterceptor();
@@ -183,7 +183,7 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 		it('should be exposed globally', function (done) {
 			// Get the "gaEventDataBuffer" object back from the browser:
 			browser.driver.executeScript(function () {
-				return window.gaEventDataBuffer;
+				return window.GAWebTester.EventBuffer;
 			})
 			.then(
 				// Validate the content of the "gaEventDataBuffer" object:
@@ -218,18 +218,18 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				// Click on the first "Heading" CTA:
 				element.all( by.css('.heading-cta') ).get(0).click();
 				
-				// Get the "gaEventDataBuffer" object back from the browser:
+				// Get the "EventBuffer" object back from the browser:
 				browser.driver.executeScript(function () {
-					return window.gaEventDataBuffer;
+					return window.GAWebTester.EventBuffer;
 				})
 				.then(
-					// Validate the content of the "gaEventDataBuffer" object:
+					// Validate the content of the "EventBuffer" object:
 					function successCallback (gaEventDataBuffer) {
 						expect(gaEventDataBuffer).toContain(['send', 'event', 'Button', 'Click', 'Jumbotron CTA']);
 						expect(gaEventDataBuffer).toContain(['send', 'event', 'Button', 'Click', 'Heading CTA']);
 						expect(gaEventDataBuffer).not.toContain(['send', 'event', 'Button', 'Click', 'Non-existing Label']);
 					},
-					// If there was an error getting back the "gaEventDataBuffer" object from the browser, fail the test:
+					// If there was an error getting back the "EventBuffer" object from the browser, fail the test:
 					function errorCallback (error) {
 						fail('Should not have received Error: ' + JSON.stringify(error));
 					}
@@ -246,18 +246,18 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				// Click on the first "Heading" CTA:
 				element.all( by.css('.heading-cta') ).get(0).click();
 				
-				// Get the "gaLastEventData" object back from the browser:
+				// Get the "LastEvent" object back from the browser:
 				browser.driver.executeScript(function () {
-					return window.gaLastEventData;
+					return window.GAWebTester.getLastEvent();
 				})
 				.then(
-					// Validate the content of the "gaLastEventData" object:
+					// Validate the content of the "LastEvent" object:
 					function successCallback (gaLastEventData) {
 						expect(gaLastEventData).not.toEqual(['send', 'event', 'Button', 'Click', 'Jumbotron CTA']);
 						expect(gaLastEventData).toEqual(['send', 'event', 'Button', 'Click', 'Heading CTA']);
 						expect(gaLastEventData).not.toEqual(['send', 'event', 'Button', 'Click', 'Non-existing Label']);
 					},
-					// If there was an error getting back the "gaLastEventData" object from the browser, fail the test:
+					// If there was an error getting back the "LastEvent" object from the browser, fail the test:
 					function errorCallback (error) {
 						fail('Should not have received Error: ' + JSON.stringify(error));
 					}
@@ -291,16 +291,16 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			// Click on the "Jumbotron" CTA:
 			element( by.css('#jumbotronCTA') ).click();
 				
-			// Get the "gaLastEventData" object back from the browser:
+			// Get the "LastEvent" object back from the browser:
 			browser.driver.executeScript(function () {
-				return window.gaLastEventData;
+				return window.GAWebTester.getLastEvent();
 			})
 			.then(
-				// Validate the content of the "gaLastEventData" object:
+				// Validate the content of the "LastEvent" object:
 				function successCallback (gaLastEventData) {
 					expect(gaLastEventData).toEqual(['send', 'event', 'Button', 'Click', 'Jumbotron CTA']);
 				},
-				// If there was an error getting back the "gaLastEventData" object from the browser, fail the test:
+				// If there was an error getting back the "LastEvent" object from the browser, fail the test:
 				function errorCallback (error) {
 					fail('Should not have received Error: ' + JSON.stringify(error));
 				}
@@ -312,8 +312,8 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			// Click on the "Jumbotron" CTA:
 			element( by.css('#jumbotronCTA') ).click();
 				
-			// Get the "gaLastEventData" object back from the browser and validate its data:
-			browser.driver.executeScript(function () { return window.gaLastEventData; })
+			// Get the "LastEvent" object back from the browser and validate its data:
+			browser.driver.executeScript(function () { return window.GAWebTester.getLastEvent(); })
 			.then(function (gaLastEventData) {
 				expect(gaLastEventData).toEqual(['send', 'event', 'Button', 'Click', 'Jumbotron CTA']);
 				done();
@@ -324,16 +324,16 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			// Click on the first "Heading" CTA:
 			element.all( by.css('.heading-cta') ).get(0).click();
 				
-			// Get the "gaEventDataBuffer" object back from the browser:
+			// Get the "EventBuffer" object back from the browser:
 			browser.driver.executeScript(function () {
-				return window.gaEventDataBuffer;
+				return window.GAWebTester.EventBuffer;
 			})
 			.then(
-				// Validate the content of the "gaEventDataBuffer" object:
+				// Validate the content of the "EventBuffer" object:
 				function successCallback (gaEventDataBuffer) {
 					expect(gaEventDataBuffer).toContain(['send', 'event', 'Button', 'Click', 'Heading CTA']);
 				},
-				// If there was an error getting back the "gaEventDataBuffer" object from the browser, fail the test:
+				// If there was an error getting back the "EventBuffer" object from the browser, fail the test:
 				function errorCallback (error) {
 					fail('Should not have received Error: ' + JSON.stringify(error));
 				}
@@ -345,16 +345,16 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			// Click on the first "Heading" CTA:
 			element.all( by.css('.heading-cta') ).get(0).click();
 			
-			// Get the "gaEventDataBuffer" object back from the browser:
+			// Get the "EventBuffer" object back from the browser:
 			browser.driver.executeScript(function () {
-				return window.gaEventDataBuffer;
+				return window.GAWebTester.getEventBuffer();
 			})
 			.then(
-				// Validate the content of the "gaEventDataBuffer" object:
+				// Validate the content of the "EventBuffer" object:
 				function successCallback (gaEventDataBuffer) {
 					expect(gaEventDataBuffer).toContain(['set', 'metric1', '1']);
 				},
-				// If there was an error getting back the "gaEventDataBuffer" object from the browser, fail the test:
+				// If there was an error getting back the "EventBuffer" object from the browser, fail the test:
 				function errorCallback (error) {
 					fail('Should not have received Error: ' + JSON.stringify(error));
 				}
