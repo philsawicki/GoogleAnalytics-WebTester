@@ -10,9 +10,9 @@
 
 if (typeof jasmine.GoogleAnalyticsWebTester === 'undefined') {
     jasmine.GoogleAnalyticsWebTester = {
-        getGTMTrackerName: function (gaEventBuffer) {
-            if (gaEventBuffer.length > 0) {
-                var createEvent = gaEventBuffer[0];
+        getGTMTrackerName: function (EventBuffer) {
+            if (EventBuffer.length > 0) {
+                var createEvent = EventBuffer[0];
                 if (typeof createEvent !== 'undefined' && createEvent[0] === 'create') {
                     var trackerName = createEvent[2].name;
                     return trackerName;
@@ -31,7 +31,7 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
         });
 
         it('should automatically redirect to "/" when location hash/fragment is empty', function () {
-            expect(browser.getLocationAbsUrl()).toMatch('/');
+            expect( browser.getLocationAbsUrl() ).toMatch('/');
         });
     });
 
@@ -56,8 +56,8 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
                 })
                 .then(
                     // Validate the content of the "EventBuffer" object:
-                    function successCallback (gaEventDataBuffer) {
-                        var gtmTrackerName = jasmine.GoogleAnalyticsWebTester.getGTMTrackerName(gaEventDataBuffer);
+                    function successCallback (EventBuffer) {
+                        var gtmTrackerName = jasmine.GoogleAnalyticsWebTester.getGTMTrackerName(EventBuffer);
 
                         expect( gtmTrackerName ).toBeDefined();
                         expect( gtmTrackerName ).not.toBeNull();
@@ -83,7 +83,7 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
             browser.driver.registerGoogleAnalyticsEventDataInterceptor();
         });
         
-        describe('The "gaEventDataBuffer" object', function () {
+        describe('The "EventBuffer" object', function () {
             it('should contain the list of all Event Data fired', function (done) {
                 // Click on the first "Archive" link of the Blog:
                 element.all( by.css('.js-ga-blog-archive-link') ).get(0).click();
@@ -93,12 +93,12 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
                     return window.GAWebTester.getEventBuffer();
                 })
                 .then(
-                    // Validate the content of the "gaEventDataBuffer" object:
-                    function successCallback (gaEventDataBuffer) {
-                        var gtmTrackerName = jasmine.GoogleAnalyticsWebTester.getGTMTrackerName(gaEventDataBuffer);
+                    // Validate the content of the "EventBuffer" object:
+                    function successCallback (EventBuffer) {
+                        var gtmTrackerName = jasmine.GoogleAnalyticsWebTester.getGTMTrackerName(EventBuffer);
 
-                        expect(gtmTrackerName).toBeDefined();
-                        expect(gaEventDataBuffer).toContain([gtmTrackerName + '.send', {
+                        expect( gtmTrackerName ).toBeDefined();
+                        expect( EventBuffer ).toContain([gtmTrackerName + '.send', {
                             'hitType': 'event',
                             'eventCategory': 'Blog Archive',
                             'eventAction': 'Click',
@@ -106,7 +106,7 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
                             'eventValue': null
                         }]);
                     },
-                    // If there was an error getting back the "gaEventDataBuffer" object from the browser, fail the test:
+                    // If there was an error getting back the "EventsBuffer" object from the browser, fail the test:
                     function errorCallback (error) {
                         fail('Should not have received Error: ' + JSON.stringify(error));
                     }
@@ -130,9 +130,9 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
                 .then(
                     // Validate the content of the "gaLastEventData" object:
                     function successCallback (gaLastEventData) {
-                        expect(gaLastEventData).not.toEqual(['send', 'event', 'Button', 'Click', 'Jumbotron CTA']);
-                        expect(gaLastEventData).toEqual(['send', 'event', 'Button', 'Click', 'Heading CTA']);
-                        expect(gaLastEventData).not.toEqual(['send', 'event', 'Button', 'Click', 'Non-existing Label']);
+                        expect( gaLastEventData ).not.toEqual(['send', 'event', 'Button', 'Click', 'Jumbotron CTA']);
+                        expect( gaLastEventData ).toEqual(['send', 'event', 'Button', 'Click', 'Heading CTA']);
+                        expect( gaLastEventData ).not.toEqual(['send', 'event', 'Button', 'Click', 'Non-existing Label']);
                     },
                     // If there was an error getting back the "gaLastEventData" object from the browser, fail the test:
                     function errorCallback (error) {
@@ -155,7 +155,7 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
                 },
                 // The "error" callback should be called, as requesting an undefined object should throw an Error:
                 function errorCallback (error) {
-                    expect(error.message).toContain('nonExistingObject is not defined');
+                    expect( error.message ).toContain('nonExistingObject is not defined');
                 }
             )
             .then(done);
@@ -179,7 +179,7 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
             .then(
                 // Validate the content of the "gaEventDataBuffer" object:
                 function successCallback (gaEventDataBuffer) {
-                    expect(gaEventDataBuffer).toContain(['set', 'metric1', '1']);
+                    expect( gaEventDataBuffer ).toContain(['set', 'metric1', '1']);
                 },
                 // If there was an error getting back the "gaEventDataBuffer" object from the browser, fail the test:
                 function errorCallback (error) {

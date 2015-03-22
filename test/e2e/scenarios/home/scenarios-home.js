@@ -13,7 +13,7 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 		browser.get('index.html');
 
 		it('should automatically redirect to "/" when location hash/fragment is empty', function () {
-			expect(browser.getLocationAbsUrl()).toMatch('/');
+			expect( browser.getLocationAbsUrl() ).toMatch('/');
 		});
 	});
 
@@ -29,34 +29,21 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 					return window.ga;
 				})
 				.then(function successCallback (ga) {
-					expect(ga).toBeDefined();
-					expect(ga).not.toBeNull();
+					expect( ga ).toBeDefined();
+					expect( ga ).not.toBeNull();
 				})
 				.then(null, function errorCallback (error) {
 					fail('Error: ' + JSON.stringify(error));
 				})
 				.then(done);
 			});
-			
-			it('should have "window.gaEventDataBuffer" defined', function (done) {
+
+			it('should not have a global "GAWebTester" object', function (done) {
 				browser.driver.executeScript(function () {
-					return window.gaEventDataBuffer;
+					return window.GAWebTester;
 				})
-				.then(function successCallback (gaEventDataBuffer) {
-					expect(gaEventDataBuffer).toBeNull();
-				})
-				.then(null, function errorCallback (error) {
-					fail('Error: ' + JSON.stringify(error));
-				})
-				.then(done);
-			});
-			
-			it('should have "window.gaLastEventData" defined', function (done) {
-				browser.driver.executeScript(function () {
-					return window.gaLastEventData;
-				})
-				.then(function successCallback (gaLastEventData) {
-					expect(gaLastEventData).toBeNull();
+				.then(function successCallback (GAWebTester) {
+					expect( GAWebTester ).toBeNull();
 				})
 				.then(null, function errorCallback (error) {
 					fail('Error: ' + JSON.stringify(error));
@@ -79,8 +66,8 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 					return window.ga;
 				})
 				.then(function successCallback (ga) {
-					expect(ga).toBeDefined();
-					expect(ga).not.toBeNull();
+					expect( ga ).toBeDefined();
+					expect( ga ).not.toBeNull();
 				})
 				.then(null, function errorCallback (error) {
 					fail('Error: ' + JSON.stringify(error));
@@ -92,10 +79,10 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				browser.driver.executeScript(function () {
 					return window.GAWebTester.getEventBuffer();
 				})
-				.then(function successCallback (gaEventDataBuffer) {
-					expect(gaEventDataBuffer).toBeDefined();
-					expect(gaEventDataBuffer).not.toBeNull();
-					expect(gaEventDataBuffer).toEqual([]);
+				.then(function successCallback (EventBuffer) {
+					expect( EventBuffer ).toBeDefined();
+					expect( EventBuffer ).not.toBeNull();
+					expect( EventBuffer ).toEqual( [] );
 				})
 				.then(null, function errorCallback (error) {
 					fail('Error: ' + JSON.stringify(error));
@@ -107,10 +94,10 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				browser.driver.executeScript(function () {
 					return window.GAWebTester.getLastEvent();
 				})
-				.then(function successCallback (gaLastEventData) {
-					expect(gaLastEventData).toBeDefined();
-					expect(gaLastEventData).not.toBeNull();
-					expect(gaLastEventData).toEqual({});
+				.then(function successCallback (LastEvent) {
+					expect( LastEvent ).toBeDefined();
+					expect( LastEvent ).not.toBeNull();
+					expect( LastEvent ).toEqual( {} );
 				})
 				.then(null, function errorCallback (error) {
 					fail('Error: ' + JSON.stringify(error));
@@ -136,8 +123,8 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 					return window.ga;
 				})
 				.then(function successCallback (ga) {
-					expect(ga).toBeDefined();
-					expect(ga).not.toBeNull();
+					expect( ga ).toBeDefined();
+					expect( ga ).not.toBeNull();
 				})
 				.then(null, function errorCallback (error) {
 					fail('Error: ' + JSON.stringify(error));
@@ -145,25 +132,12 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				.then(done);
 			});
 			
-			it('should have "window.gaEventDataBuffer" be null', function (done) {
+			it('should have "window.GAWebTester" be null', function (done) {
 				browser.driver.executeScript(function () {
-					return window.gaEventDataBuffer;
+					return window.GAWebTester;
 				})
-				.then(function successCallback (gaEventDataBuffer) {
-					expect(gaEventDataBuffer).toBeNull();
-				})
-				.then(null, function errorCallback (error) {
-					fail('Error: ' + JSON.stringify(error));
-				})
-				.then(done);
-			});
-			
-			it('should have "window.gaLastEventData" be null', function (done) {
-				browser.driver.executeScript(function () {
-					return window.gaLastEventData;
-				})
-				.then(function successCallback (gaLastEventData) {
-					expect(gaLastEventData).toBeNull();
+				.then(function successCallback (GAWebTester) {
+					expect( GAWebTester ).toBeNull();
 				})
 				.then(null, function errorCallback (error) {
 					fail('Error: ' + JSON.stringify(error));
@@ -181,17 +155,17 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 		});
 		
 		it('should be exposed globally', function (done) {
-			// Get the "gaEventDataBuffer" object back from the browser:
+			// Get the "EventBuffer" object back from the browser:
 			browser.driver.executeScript(function () {
 				return window.GAWebTester.EventBuffer;
 			})
 			.then(
-				// Validate the content of the "gaEventDataBuffer" object:
-                function successCallback (gaEventDataBuffer) {
-					expect(gaEventDataBuffer).toBeDefined();
-					expect(gaEventDataBuffer).not.toBeNull();
+				// Validate the content of the "EventBuffer" object:
+                function successCallback (EventBuffer) {
+					expect( EventBuffer ).toBeDefined();
+					expect( EventBuffer ).not.toBeNull();
                 },
-				// There was an error getting back the "gaEventDataBuffer" object from the browser, fail the test:
+				// There was an error getting back the "EventBuffer" object from the browser, fail the test:
                 function errorCallback (error) {
 					fail('Should not have received Error: ' + JSON.stringify(error));
                 }
@@ -210,7 +184,7 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			browser.driver.registerGoogleAnalyticsEventDataInterceptor();
         });
 		
-		describe('The "gaEventDataBuffer" object', function () {
+		describe('The "EventBuffer" object', function () {
 			it('should contain the list of all Event Data fired', function (done) {
 				// Click on the "Jumbotron" CTA:
 				element( by.css('#jumbotronCTA') ).click();
@@ -224,10 +198,10 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				})
 				.then(
 					// Validate the content of the "EventBuffer" object:
-					function successCallback (gaEventDataBuffer) {
-						expect(gaEventDataBuffer).toContain(['send', 'event', 'Button', 'Click', 'Jumbotron CTA']);
-						expect(gaEventDataBuffer).toContain(['send', 'event', 'Button', 'Click', 'Heading CTA']);
-						expect(gaEventDataBuffer).not.toContain(['send', 'event', 'Button', 'Click', 'Non-existing Label']);
+					function successCallback (EventBuffer) {
+						expect( EventBuffer ).toContain( ['send', 'event', 'Button', 'Click', 'Jumbotron CTA'] );
+						expect( EventBuffer ).toContain( ['send', 'event', 'Button', 'Click', 'Heading CTA'] );
+						expect( EventBuffer ).not.toContain( ['send', 'event', 'Button', 'Click', 'Non-existing Label'] );
 					},
 					// If there was an error getting back the "EventBuffer" object from the browser, fail the test:
 					function errorCallback (error) {
@@ -238,7 +212,7 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			});
 		});
 		
-		describe('The "gaLastEvendData" object', function () {
+		describe('The "getLastEvent()" method', function () {
 			it('should contain the last Event Data fired', function (done) {
 				// Click on the "Jumbotron" CTA:
 				element( by.css('#jumbotronCTA') ).click();
@@ -252,10 +226,10 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				})
 				.then(
 					// Validate the content of the "LastEvent" object:
-					function successCallback (gaLastEventData) {
-						expect(gaLastEventData).not.toEqual(['send', 'event', 'Button', 'Click', 'Jumbotron CTA']);
-						expect(gaLastEventData).toEqual(['send', 'event', 'Button', 'Click', 'Heading CTA']);
-						expect(gaLastEventData).not.toEqual(['send', 'event', 'Button', 'Click', 'Non-existing Label']);
+					function successCallback (LastEvent) {
+						expect( LastEvent ).not.toEqual( ['send', 'event', 'Button', 'Click', 'Jumbotron CTA'] );
+						expect( LastEvent ).toEqual( ['send', 'event', 'Button', 'Click', 'Heading CTA'] );
+						expect( LastEvent ).not.toEqual( ['send', 'event', 'Button', 'Click', 'Non-existing Label'] );
 					},
 					// If there was an error getting back the "LastEvent" object from the browser, fail the test:
 					function errorCallback (error) {
@@ -278,7 +252,7 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
                 },
 				// The "error" callback should be called, as requesting an undefined object should throw an Error:
                 function errorCallback (error) {
-					expect(error.message).toContain('nonExistingObject is not defined');
+					expect( error.message ).toContain( 'nonExistingObject is not defined' );
                 }
             )
 			.then(done);
@@ -297,8 +271,8 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			})
 			.then(
 				// Validate the content of the "LastEvent" object:
-				function successCallback (gaLastEventData) {
-					expect(gaLastEventData).toEqual(['send', 'event', 'Button', 'Click', 'Jumbotron CTA']);
+				function successCallback (LastEvent) {
+					expect( LastEvent ).toEqual( ['send', 'event', 'Button', 'Click', 'Jumbotron CTA'] );
 				},
 				// If there was an error getting back the "LastEvent" object from the browser, fail the test:
 				function errorCallback (error) {
@@ -314,8 +288,8 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				
 			// Get the "LastEvent" object back from the browser and validate its data:
 			browser.driver.executeScript(function () { return window.GAWebTester.getLastEvent(); })
-			.then(function (gaLastEventData) {
-				expect(gaLastEventData).toEqual(['send', 'event', 'Button', 'Click', 'Jumbotron CTA']);
+			.then(function (LastEvent) {
+				expect( LastEvent ).toEqual( ['send', 'event', 'Button', 'Click', 'Jumbotron CTA'] );
 				done();
 			});
 		});
@@ -330,8 +304,8 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			})
 			.then(
 				// Validate the content of the "EventBuffer" object:
-				function successCallback (gaEventDataBuffer) {
-					expect(gaEventDataBuffer).toContain(['send', 'event', 'Button', 'Click', 'Heading CTA']);
+				function successCallback (EventBuffer) {
+					expect( EventBuffer ).toContain( ['send', 'event', 'Button', 'Click', 'Heading CTA'] );
 				},
 				// If there was an error getting back the "EventBuffer" object from the browser, fail the test:
 				function errorCallback (error) {
@@ -351,8 +325,8 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			})
 			.then(
 				// Validate the content of the "EventBuffer" object:
-				function successCallback (gaEventDataBuffer) {
-					expect(gaEventDataBuffer).toContain(['set', 'metric1', '1']);
+				function successCallback (EventBuffer) {
+					expect( EventBuffer ).toContain( ['set', 'metric1', '1'] );
 				},
 				// If there was an error getting back the "EventBuffer" object from the browser, fail the test:
 				function errorCallback (error) {
@@ -362,78 +336,4 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			.then(done);
 		});
 	});
-
-	
-	// Since this cannot access the "params" attribute set in "protractor.conf.js", this will actually submit the
-	// test data to "ga()":
-    xdescribe('Alternative method of tracking Google Analytics Event Data, straight from the browser', function () {
-        beforeEach(function () {
-            browser.get('index.html#/');
-        });
-
-        it('should fire an Event when clicking on the Jumbotron CTA', function (done) {
-            browser.driver.executeScript(function () {
-                window.gaOriginal = window.ga;
-                window.gaEventDataBuffer = [];
-				window.gaLastEventData = arguments;
-
-                window.ga = function () {
-					window.gaEventDataBuffer.push(arguments);
-					window.gaLastEventData = arguments;
-						
-					// Call the original "ga()" function with the supplied arguments:
-					window.gaOriginal.apply(null, arguments);
-				};
-            })
-			.then(function spySuccessfullyRegistered () {
-				// Click on the "Jumbotron" CTA:
-                element( by.css('#jumbotronCTA') ).click()
-                //.then(function () {
-
-				
-					browser.driver.executeScript(function () {
-	                    return window.gaLastEventData;
-	                })
-					.then(function (gaLastEventData) {
-						expect(gaLastEventData).toEqual(['send', 'event', 'Button', 'Click', 'Jumbotron CTA']);
-					});
-                //});
-			})
-			.then(null, function errorCallback (error) {
-				fail('Error: ' + JSON.stringify(error));
-			})
-			.then(done);
-        });
-
-        it('should fire an Event when clicking on the Heading CTA', function (done) {
-            browser.driver.executeScript(function () {
-                window.gaOriginal = window.ga;
-                window.gaEventDataBuffer = [];
-				window.gaLastEventData = arguments;
-
-                window.ga = function () {
-					window.gaEventDataBuffer.push(arguments);
-					window.gaLastEventData = arguments;
-						
-					// Call the original "ga()" function with the supplied arguments:
-					window.gaOriginal.apply(null, arguments);
-				};
-            })
-			.then(function spySuccessfullyRegistered () {
-				// Click on the first "Heading" CTA:
-                element.all( by.css('.heading-cta') ).get(0).click();
-				
-				browser.driver.executeScript(function () {
-                    return window.gaLastEventData;
-                })
-				.then(function (gaLastEventData) {
-					expect(gaLastEventData).toEqual(['send', 'event', 'Button', 'Click', 'Heading CTA']);
-				});
-			})
-			.then(null, function errorCallback (error) {
-				fail('Error: ' + JSON.stringify(error));
-			})
-			.then(done);
-        });
-    });
 });
