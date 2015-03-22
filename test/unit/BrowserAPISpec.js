@@ -62,6 +62,26 @@ describe('The Browser API', function () {
                     GTMTrackerName: null
                 });
             });
+
+            it('should return the value of the "EventBuffer"', function () {
+                window.GAWebTester.EventBuffer = ['1', '2', '3'];
+
+                expect( window.GAWebTester.getData() ).toEqual({
+                    EventBuffer: ['1', '2', '3'],
+                    LastEvent: {},
+                    GTMTrackerName: null
+                });
+            });
+
+            it('should return the value of the "LastEvent"', function () {
+                window.GAWebTester.LastEvent = { 'key': 'value' };
+
+                expect( window.GAWebTester.getData() ).toEqual({
+                    EventBuffer: [],
+                    LastEvent: { 'key': 'value' },
+                    GTMTrackerName: null
+                });
+            });
         });
 
         describe('The "getEventBuffer()" method', function () {

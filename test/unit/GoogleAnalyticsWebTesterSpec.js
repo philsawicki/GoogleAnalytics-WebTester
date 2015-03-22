@@ -276,6 +276,7 @@ describe('GoogleAnalyticsWebTester Module', function () {
                             window.gaEventDataBuffer[1][0],
                             window.gaEventDataBuffer[1][1]
                         ];
+                        //eventBuffer = window.GAWebTester.getEventBuffer();
 
                         expect( eventBuffer ).toEqual(['value1', 'value2']);
                     });
