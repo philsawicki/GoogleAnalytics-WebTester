@@ -99,5 +99,22 @@ describe('The Browser API', function () {
                 expect( window.GAWebTester.getLastEvent() ).toEqual({});
             });
         });
+
+        describe('The "getGTMTrackerName()" method', function () {
+            it('should return "null" when no Event recorded', function () {
+                expect( window.GAWebTester.getGTMTrackerName() ).toBeDefined();
+                expect( window.GAWebTester.getGTMTrackerName() ).toBeNull();
+            });
+
+            it('should return the Tracker Name when a "create" Event is recorded', function () {
+                window.GAWebTester.EventBuffer.push(['create', 'test', {
+                    'name': 'GTMTrackerName'
+                }]);
+
+                expect( window.GAWebTester.getGTMTrackerName() ).toBeDefined();
+                expect( window.GAWebTester.getGTMTrackerName() ).not.toBeNull();
+                expect( window.GAWebTester.getGTMTrackerName() ).toEqual('GTMTrackerName');
+            });
+        });
     });
 });
