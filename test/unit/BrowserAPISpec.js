@@ -25,6 +25,10 @@ describe('The Browser API', function () {
         it('exposes the "uninstallDataInterceptor" method', function () {
             expect( module.uninstallDataInterceptor ).toBeDefined();
         });
+
+        it('exposes the "disableClicks " method', function () {
+            expect( module.disableClickHandlers ).toBeDefined();
+        });
     });
 
 
@@ -36,12 +40,87 @@ describe('The Browser API', function () {
         it('exposes the "uninstallDataInterceptor" method', function () {
             expect( window.GoogleAnalyticsWebTesterBrowserAPI.uninstallDataInterceptor ).toBeDefined();
         });
+
+        it('exposes the "disableClickHandlers" method', function () {
+            expect( window.GoogleAnalyticsWebTesterBrowserAPI.disableClickHandlers ).toBeDefined();
+        });
     });
 
 
     describe('The proper "etiquette" of the Module', function () {
+        it('does not leak the "installDataInterceptor" method to the "window"', function () {
+            expect( window.installDataInterceptor ).not.toBeDefined();
+        });
+
         it('does not leak the "uninstallDataInterceptor" method to the "window"', function () {
             expect( window.uninstallDataInterceptor ).not.toBeDefined();
+        });
+        
+        it('does not leak the "disableClickHandlers" method to the "window"', function () {
+            expect( window.disableClickHandlers ).not.toBeDefined();
+        });
+    });
+
+
+    describe('The handling of the "click" handlers on the "document"', function () {
+        beforeEach(function () {
+            spyOn(document, 'addEventListener').and.callThrough();
+        });
+
+
+        it('does not disable the clicks on links by default', function () {
+            expect( document.addEventListener ).not.toHaveBeenCalled();
+
+
+            // Initialize the module, and disable all "click" Events on the "document":
+            module.installDataInterceptor();
+
+            // Create & Fire a "click" event on the "document":
+            var event = document.createEvent('Event');
+            event.initEvent('click', true, true);
+            document.dispatchEvent(event);
+
+
+            expect( document.addEventListener ).not.toHaveBeenCalled();
+            expect( window.GAWebTester.ClickHandlerCalled ).toBeFalsy();
+        });
+
+        it('does not disable the clicks on links when configured not to', function () {
+            expect( document.addEventListener ).not.toHaveBeenCalled();
+
+
+            // Initialize the module, and disable all "click" Events on the "document":
+            module.installDataInterceptor({
+                disableClicks: false
+            });
+
+            // Create & Fire a "click" event on the "document":
+            var event = document.createEvent('Event');
+            event.initEvent('click', true, true);
+            document.dispatchEvent(event);
+
+
+            expect( document.addEventListener ).not.toHaveBeenCalled();
+            expect( window.GAWebTester.ClickHandlerCalled ).toBeFalsy();
+        });
+
+        it('disables the clicks on links when configured to', function () {
+            expect( document.addEventListener ).not.toHaveBeenCalled();
+
+
+            // Initialize the module, and disable all "click" Events on the "document":
+            module.installDataInterceptor({
+                disableClicks: true
+            });
+
+            // Create & Fire a "click" event on the "document":
+            var event = document.createEvent('Event');
+            event.initEvent('click', true, true);
+            document.dispatchEvent(event);
+
+
+            expect( document.addEventListener ).toHaveBeenCalled();
+            expect( window.GAWebTester.ClickHandlerCalled ).toBeTruthy();
         });
     });
 
@@ -123,6 +202,27 @@ describe('The Browser API', function () {
                 expect( window.GAWebTester.getGTMTrackerName() ).not.toBeNull();
                 expect( window.GAWebTester.getGTMTrackerName() ).toEqual('GTMTrackerName');
             });
+        });
+    });
+
+    
+    describe('The "disableClickHandlers" method', function () {
+        beforeEach(function () {
+            module.installDataInterceptor();
+        });
+
+        afterEach(function () {
+            module.uninstallDataInterceptor();
+        });
+
+        it('calls "window.GAWebTester.disableClickHandlers"', function () {
+            window.GAWebTester.disableClickHandlers = jasmine.createSpy();
+
+            expect( window.GAWebTester.disableClickHandlers ).not.toHaveBeenCalled();
+
+            module.disableClickHandlers();
+
+            expect( window.GAWebTester.disableClickHandlers ).toHaveBeenCalled();
         });
     });
 });

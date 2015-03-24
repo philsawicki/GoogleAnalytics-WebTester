@@ -58,7 +58,9 @@ exports.config = {
             // Does the Application reference "ga()" through Google Tag Manager?
             usesGTMCalls: true,
             // Submit test data to Google Analytics?
-            submitToGA: false
+            submitToGA: false,
+            // Disable "onClick" events in the browser?
+            disableClicks: false
         }
     },
     

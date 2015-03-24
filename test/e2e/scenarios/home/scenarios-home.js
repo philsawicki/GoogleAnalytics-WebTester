@@ -182,6 +182,8 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			
 			// Register the Google Analytics Event Data Interceptor:
 			browser.driver.registerGoogleAnalyticsEventDataInterceptor();
+
+			browser.driver.disableClicks();
         });
 		
 		describe('The "EventBuffer" object', function () {
