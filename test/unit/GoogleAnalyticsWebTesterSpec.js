@@ -21,7 +21,7 @@ describe('GoogleAnalyticsWebTester Module', function () {
     };
 
     var customSettings = {
-        usesGACalls:!defaultSettings.usesGACalls,
+        usesGACalls: !defaultSettings.usesGACalls,
         usesGTMCalls: !defaultSettings.usesGTMCalls,
         submitToGA: !defaultSettings.submitToGA,
         disableClicks: !defaultSettings.disableClicks
@@ -121,7 +121,7 @@ describe('GoogleAnalyticsWebTester Module', function () {
         });
     });
 
-    
+
     describe('The proper "etiquette" of the Module', function () {
         it('does not leak the "initialize" method to the "window"', function () {
             expect( window.initialize ).not.toBeDefined();
@@ -362,7 +362,7 @@ describe('GoogleAnalyticsWebTester Module', function () {
             });
 
             it('calls the "browserDriver.executeScript" method', function () {
-                mockBrowserDriver.unregisterGoogleAnalyticsEventDataInterceptor ();
+                mockBrowserDriver.unregisterGoogleAnalyticsEventDataInterceptor();
 
                 expect( mockBrowserDriver.unregisterGoogleAnalyticsEventDataInterceptor ).toBeDefined();
             });
@@ -398,7 +398,7 @@ describe('GoogleAnalyticsWebTester Module', function () {
 
         it('disables the "click"s on the "document"', function () {
             mockBrowserDriver._executeScriptCallback = undefined;
-            
+
             mockBrowserDriver.disableClicks();
 
             expect( mockBrowserDriver._executeScriptCallback ).toBeDefined();
@@ -407,11 +407,11 @@ describe('GoogleAnalyticsWebTester Module', function () {
 
 
     describe('The behavior of the "usesGTM" method', function () {
-        xit('returns the default "options" value when "initialize()" called without parameters', function () {
-            module.initialize();
-
-            expect( module.usesGTM() ).toEqual( defaultSettings.usesGTMCalls );
-        });
+        //it('returns the default "options" value when "initialize()" called without parameters', function () {
+        //    module.initialize();
+        //
+        //    expect( module.usesGTM() ).toEqual( defaultSettings.usesGTMCalls );
+        //});
 
         it('returns the default "options" value given to "initialize(...)"', function () {
             module.initialize({
@@ -434,11 +434,11 @@ describe('GoogleAnalyticsWebTester Module', function () {
 
 
     describe('The behavior of the "usesGA" method', function () {
-        xit('returns the default "options" value when "initialize()" called without parameters', function () {
-            module.initialize();
-
-            expect( module.usesGA() ).toEqual( defaultSettings.usesGACalls );
-        });
+        //it('returns the default "options" value when "initialize()" called without parameters', function () {
+        //    module.initialize();
+        //
+        //    expect( module.usesGA() ).toEqual( defaultSettings.usesGACalls );
+        //});
 
         it('returns the default "options" value given to "initialize(...)"', function () {
             module.initialize({

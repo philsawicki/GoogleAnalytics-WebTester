@@ -26,8 +26,12 @@ describe('The Browser API', function () {
             expect( module.uninstallDataInterceptor ).toBeDefined();
         });
 
-        it('exposes the "disableClicks " method', function () {
+        it('exposes the "disableClicks" method', function () {
             expect( module.disableClickHandlers ).toBeDefined();
+        });
+
+        it('exposes the "enableClickHandlers" method', function () {
+            expect( module.enableClickHandlers ).toBeDefined();
         });
     });
 
@@ -44,6 +48,10 @@ describe('The Browser API', function () {
         it('exposes the "disableClickHandlers" method', function () {
             expect( window.GoogleAnalyticsWebTesterBrowserAPI.disableClickHandlers ).toBeDefined();
         });
+
+        it('exposes the "enableClickHandlers" method', function () {
+            expect( window.GoogleAnalyticsWebTesterBrowserAPI.enableClickHandlers ).toBeDefined();
+        });
     });
 
 
@@ -55,16 +63,24 @@ describe('The Browser API', function () {
         it('does not leak the "uninstallDataInterceptor" method to the "window"', function () {
             expect( window.uninstallDataInterceptor ).not.toBeDefined();
         });
-        
+
         it('does not leak the "disableClickHandlers" method to the "window"', function () {
             expect( window.disableClickHandlers ).not.toBeDefined();
+        });
+
+        it('does not leak the "enableClickHandlers" method to the "window"', function () {
+            expect( window.enableClickHandlers ).not.toBeDefined();
         });
     });
 
 
-    describe('The handling of the "click" handlers on the "document"', function () {
+    describe('The disabling of the "click" handlers on the "document"', function () {
         beforeEach(function () {
             spyOn(document, 'addEventListener').and.callThrough();
+        });
+
+        afterEach(function () {
+            module.enableClickHandlers();
         });
 
 
@@ -113,14 +129,54 @@ describe('The Browser API', function () {
                 disableClicks: true
             });
 
+            expect( window.GAWebTester.ClickHandlerCalled ).toBeFalsy();
+
             // Create & Fire a "click" event on the "document":
             var event = document.createEvent('Event');
             event.initEvent('click', true, true);
+            document.dispatchEvent(event);
+            document.dispatchEvent(event);
             document.dispatchEvent(event);
 
 
             expect( document.addEventListener ).toHaveBeenCalled();
             expect( window.GAWebTester.ClickHandlerCalled ).toBeTruthy();
+        });
+    });
+
+
+    describe('The (re-)enabling of the "click" handlers on the "document"', function () {
+        beforeEach(function () {
+            spyOn(document, 'addEventListener').and.callThrough();
+            spyOn(document, 'removeEventListener').and.callThrough();
+        });
+
+
+        it('does not disable the clicks on links by default', function () {
+            expect( document.addEventListener ).not.toHaveBeenCalled();
+            expect( document.removeEventListener ).not.toHaveBeenCalled();
+
+
+            // Initialize the module, and disable all "click" Events on the "document":
+            module.installDataInterceptor();
+            module.disableClickHandlers();
+            module.enableClickHandlers();
+
+            expect( window.GAWebTester.ClickHandlerCalled ).toBeFalsy();
+
+            // Create & Fire a "click" event on the "document":
+            var event = document.createEvent('Event');
+            event.initEvent('click', true, true);
+            document.dispatchEvent(event);
+            document.dispatchEvent(event);
+            document.dispatchEvent(event);
+
+
+            expect( document.addEventListener ).toHaveBeenCalled();
+            expect( document.addEventListener.calls.count() ).toEqual( 1 );
+            expect( document.removeEventListener ).toHaveBeenCalled();
+            expect( document.removeEventListener.calls.count() ).toEqual( 1 );
+            expect( window.GAWebTester.ClickHandlerCalled ).toBeFalsy();
         });
     });
 
@@ -205,7 +261,7 @@ describe('The Browser API', function () {
         });
     });
 
-    
+
     describe('The "disableClickHandlers" method', function () {
         beforeEach(function () {
             module.installDataInterceptor();
@@ -223,6 +279,27 @@ describe('The Browser API', function () {
             module.disableClickHandlers();
 
             expect( window.GAWebTester.disableClickHandlers ).toHaveBeenCalled();
+        });
+    });
+
+
+    describe('The "enableClickHandlers" method', function () {
+        beforeEach(function () {
+            module.installDataInterceptor();
+        });
+
+        afterEach(function () {
+            module.uninstallDataInterceptor();
+        });
+
+        it('calls "window.GAWebTester.enableClickHandlers"', function () {
+            window.GAWebTester.enableClickHandlers = jasmine.createSpy();
+
+            expect( window.GAWebTester.enableClickHandlers ).not.toHaveBeenCalled();
+
+            module.enableClickHandlers();
+
+            expect( window.GAWebTester.enableClickHandlers ).toHaveBeenCalled();
         });
     });
 });

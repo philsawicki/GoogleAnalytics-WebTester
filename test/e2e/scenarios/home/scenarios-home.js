@@ -10,10 +10,26 @@
 
 describe('Demo application for the Home page of the Google Analytics WebTester', function () {
     describe('The AngularJS Demo Application setup', function () {
-		browser.get('index.html');
+		beforeEach(function () {
+			browser.get('index.html');
+		});
 
 		it('should automatically redirect to "/" when location hash/fragment is empty', function () {
-			expect( browser.getLocationAbsUrl() ).toMatch('/');
+			expect( browser.getLocationAbsUrl() ).toMatch( '/' );
+		});
+
+		it('should redirect to the Blog when clicking on the Jumbotron CTA', function () {
+			// Click on the "Jumbotron" CTA:
+			element( by.css('#jumbotronCTA') ).click();
+
+			expect( browser.getLocationAbsUrl() ).toMatch( '/blog.html' );
+		});
+
+		it('should redirect to the Blog Archive when clicking on a Heading CTA', function () {
+			// Click on the first "Heading" CTA:
+			element.all( by.css('.heading-cta') ).get(0).click();
+
+			expect( browser.getLocationAbsUrl() ).toContain( '/blog.html?archive=2014-12' );
 		});
 	});
 

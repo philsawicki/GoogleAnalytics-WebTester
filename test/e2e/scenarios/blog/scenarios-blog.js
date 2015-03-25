@@ -185,6 +185,14 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
 
 
     describe('The clicks on the Archive page links', function () {
+        beforeEach(function () {
+            // Load the page to test:
+            browser.get('blog.html');
+            
+            // Register the Google Analytics Event Data Interceptor:
+            browser.driver.registerGoogleAnalyticsEventDataInterceptor();
+        });
+
         it('should fire a Google Analytics Event', function (done) {
             // Click on the first "Archive" link of the Blog:
             element.all( by.css('.js-ga-blog-archive-link') ).get(0).click();
@@ -217,6 +225,23 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
                 }
             )
             .then(done);
+        });
+    });
+
+    
+    describe('The Sticky Menu', function () {
+        beforeEach(function () {
+            // Load the page to test:
+            browser.get('blog.html');
+        });
+
+        describe('The link to the Homepage', function () {
+            it('redirects the browser to the "/index.html" page', function () {
+                // Click on the Nav Bar "Homepage" link:
+                element( by.css('#homepage-nav-link') ).click();
+
+                expect( browser.getLocationAbsUrl() ).toContain( '/index.html' );
+            });
         });
     });
 });

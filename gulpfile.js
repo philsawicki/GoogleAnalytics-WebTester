@@ -13,11 +13,20 @@ var gulp = require('gulp'),
     eslint = require('gulp-eslint');
 
 /**
+ * File paths:
+ */
+var paths = {
+	library: 'lib/**/*.js',
+	unitTest: 'test/unit/**/*.js'
+};
+
+
+/**
  * If there is a linting error, the "failOnError" will fail 
  * the task, making the process exit with an error code (1).
  */
 gulp.task('js-linting', function () {
-    return gulp.src(['lib/**/*.js'])
+    return gulp.src([paths.library, paths.unitTest])
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failOnError());
@@ -28,7 +37,7 @@ gulp.task('js-linting', function () {
  */
 gulp.task('watch', function() {
     // Lint the "/lib" and "/test/unit" files:
-    gulp.watch(['lib/**/*.js', 'test/unit/**/*.js'], ['js-linting']);
+    gulp.watch([paths.library, paths.unitTest], ['js-linting']);
 });
 
 

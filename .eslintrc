@@ -3,6 +3,20 @@
         "browser": true,
         "node": true
     },
+
+    "globals": {
+        "angular": false,
+        "describe": false,
+        "it": false,
+        "expect": false,
+        "beforeEach": false,
+        "afterEach": false,
+        "spyOn": false,
+        "jasmine": false,
+        "module": false,
+        "inject": false
+    },
+
     "rules": {
         "quotes": [2, "single", "avoid-escape"],
         "no-underscore-dangle": 0,
