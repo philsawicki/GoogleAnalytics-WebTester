@@ -13,8 +13,9 @@ exports.config = {
     // --suite=smoke or --suite=smoke,full only the patterns matched by the specified 
     // suites will run.
     suites: {
-        home: 'scenarios/home/*.js',
-        blog: 'scenarios/blog/*.js'
+        home:      'scenarios/home/*.js',
+        blog:      'scenarios/blog/*.js',
+        addToCart: 'scenarios/addToCart/*.js',
     },
     
     // Patterns to exclude:
@@ -32,19 +33,36 @@ exports.config = {
     baseUrl: 'http://localhost:8000/app/',
 
     // Test framework to use (may be one of "jasmine", "jasmine2", "cucumber", "mocha" or "custom"):
-    framework: 'jasmine2',
+    framework: 'jasmine',
 
     // Options to be passed to "minijasminenode" (https://github.com/juliemr/minijasminenode/tree/jasmine1):
     jasmineNodeOpts: {
-         // Display spec names:
-        isVerbose: false,
+         // Display Spec names:
+        isVerbose: true,
         // Print colors to the terminal:
         showColors: true,
+        // Print timestamps for failures:
+        showTiming: true,
         // Include stack traces in failures:
         includeStackTrace: true,
         // Default time to wait (in ms) before a test fails:
         defaultTimeoutInterval: 30000
     },
+
+    // Options to be passed to "jasmine2" (https://github.com/jasmine/jasmine-npm/blob/master/lib/jasmine.js):
+    /*jasmineNodeOpts: {
+        // Print colors to the terminal:
+        showColors: true,
+        // Default time to wait (in ms) before a test fails:
+        defaultTimeoutInterval: 30000
+        // Function called to print Jasmine results:
+        //print: function () {},
+        // If set, only execute Specs whose names match the pattern, which is
+        // internally compiled to a RegExp:
+        //grep: 'pattern',
+        // Inverts 'grep' matches:
+        //invertGrep: false
+    },*/
 
     // The params object will be passed directly to the Protractor instance,
     // and can be accessed from the tests. It is an arbitrary object and can

@@ -14,15 +14,15 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			browser.get('index.html');
 		});
 
-		it('should automatically redirect to "/" when location hash/fragment is empty', function () {
-			expect( browser.getLocationAbsUrl() ).toMatch( '/' );
+		it('should redirect to "/" when location hash/fragment is empty', function () {
+			expect( browser.getLocationAbsUrl() ).toContain( '/index.html' );
 		});
 
 		it('should redirect to the Blog when clicking on the Jumbotron CTA', function () {
 			// Click on the "Jumbotron" CTA:
 			element( by.css('#jumbotronCTA') ).click();
 
-			expect( browser.getLocationAbsUrl() ).toMatch( '/blog.html' );
+			expect( browser.getLocationAbsUrl() ).toContain( '/blog.html' );
 		});
 
 		it('should redirect to the Blog Archive when clicking on a Heading CTA', function () {
@@ -34,8 +34,8 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 	});
 
 	
-    describe('Library deployment', function () {
-		describe('Behavior of the page without "Google Analytics Event Data Interceptor"', function () {
+    describe('The Library deployment', function () {
+		describe('The page without "Google Analytics Event Data Interceptor"', function () {
 			beforeEach(function () {
 				browser.get('index.html#/');
 			});
@@ -69,7 +69,7 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 		});
 		
 		
-		describe('Registration of the "Google Analytics Event Data Interceptor"', function () {
+		describe('The registration of the "Google Analytics Event Data Interceptor"', function () {
 			beforeEach(function () {
 				browser.get('index.html#/');
 				
@@ -123,7 +123,7 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 		});
 		
 		
-		describe('Deregistration of the "Google Analytics Event Data Interceptor"', function () {
+		describe('The deregistration of the "Google Analytics Event Data Interceptor"', function () {
 			beforeEach(function () {
 				browser.get('index.html#/');
 				
@@ -278,8 +278,8 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 	});
 	
 	
-    describe('Google Analytics "click" tracking', function () {
-		it('should fire an Event when clicking on the Jumbotron CTA (expanded form)', function (done) {
+    describe('The Google Analytics "click" tracking', function () {
+		it('should fire an Event when clicking on the Jumbotron CTA (long form)', function (done) {
 			// Click on the "Jumbotron" CTA:
 			element( by.css('#jumbotronCTA') ).click();
 				
@@ -300,7 +300,7 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			.then(done);
 		});
 		
-		it('should fire an Event when clicking on the Jumbotron CTA (condensed-form)', function (done) {
+		it('should fire an Event when clicking on the Jumbotron CTA (short-form)', function (done) {
 			// Click on the "Jumbotron" CTA:
 			element( by.css('#jumbotronCTA') ).click();
 				

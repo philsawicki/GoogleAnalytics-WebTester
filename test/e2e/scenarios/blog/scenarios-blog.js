@@ -30,8 +30,8 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
             browser.get('blog.html');
         });
 
-        it('should automatically redirect to "/" when location hash/fragment is empty', function () {
-            expect( browser.getLocationAbsUrl() ).toMatch('/');
+        it('should redirect to "/" when location hash/fragment is empty', function () {
+            expect( browser.getLocationAbsUrl() ).toContain( '/blog.html' );
         });
     });
 
@@ -46,7 +46,7 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
         });
 
         describe('The "jasmine.GoogleAnalyticsWebTester.getGTMTrackerName" method', function () {
-            it('should return the GTM tracker name when a Google Analytics Event is fired', function (done) {
+            it('should return the GTM Tracker Name when a GA Event is fired', function (done) {
                 // Click on the first "Archive" link of the Blog:
                 element.all( by.css('.js-ga-blog-archive-link') ).get(0).click();
                 

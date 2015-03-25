@@ -52,21 +52,21 @@ It's fast, lightweight, easy to configure, and integrates beautifully with exist
 
 ### Sample Spec file
 ```javascript
-describe('Google Analytics "click" tracking', function () {
+describe('The Google Analytics "click" tracking', function () {
    it('should fire an Event when clicking on the Jumbotron CTA', function (done) {
       // Click on the "Jumbotron" CTA:
       element( by.css('#jumbotronCTA') ).click();
   
-      // Get the "gaLastEventData" object back from the browser:
+      // Get the "LastEvent" object back from the browser:
       browser.driver.executeScript(function () {
-         return window.gaLastEventData;
+         return window.GAWebTester.getLastEvent();
       })
       .then(
-         // Validate the content of the "gaLastEventData" object:
-         function successCallback (gaLastEventData) {
-            expect(gaLastEventData).toEqual(['send', 'event', 'Button', 'Click', 'Jumbotron CTA']);
+         // Validate the content of the "LastData" object:
+         function successCallback (LastData) {
+            expect( LastData ).toEqual( ['send', 'event', 'Button', 'Click', 'Jumbotron CTA'] );
          },
-         // If there was an error getting back the "gaLastEventData" object from the browser, fail the test:
+         // If there was an error getting back the "LastData" object from the browser, fail the test:
          function errorCallback (error) {
             fail('Should not have received Error: ' + JSON.stringify(error));
          }
@@ -78,17 +78,17 @@ describe('Google Analytics "click" tracking', function () {
 
 Or, if you find the syntax too verbose and you feel confident, you can always use the condensed version:
 ```javascript
-describe('Google Analytics "click" tracking', function () {
+describe('The Google Analytics "click" tracking', function () {
    it('should fire an Event when clicking on the Jumbotron CTA', function (done) {
       // Click on the "Jumbotron" CTA:
       element( by.css('#jumbotronCTA') ).click();
 
-      // Get the "gaLastEventData" object back from the browser and validate its data:
-      browser.driver.executeScript(function () { return window.gaLastEventData; })
-      .then(function (gaLastEventData) {
-         expect(gaLastEventData).toEqual(['send', 'event', 'Button', 'Click', 'Jumbotron CTA']);
-         done();
-      });
+      // Get the "LastEvent" object back from the browser and validate its data:
+      browser.driver.executeScript(function () { return window.GAWebTester.getLastEvent(); })
+      .then(function (LastEvent) {
+         expect( LastEvent ).toEqual( ['send', 'event', 'Button', 'Click', 'Jumbotron CTA'] );
+      })
+      .then(done);
    });
 });
 ```

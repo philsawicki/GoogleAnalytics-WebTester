@@ -16,7 +16,7 @@ var gulp = require('gulp'),
  * File paths:
  */
 var paths = {
-	library: 'lib/**/*.js',
+	library:  'lib/**/*.js',
 	unitTest: 'test/unit/**/*.js'
 };
 

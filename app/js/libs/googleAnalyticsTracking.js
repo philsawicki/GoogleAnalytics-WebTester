@@ -48,6 +48,29 @@
      */
     var _trackBlogArchives = function () {
         // The tracking is actually done through Google Tag Manager.
+        // [...]
+    };
+
+    /**
+     * Track the "Add To Cart" button clicks.
+     * @return {void}
+     */
+    var _trackAddToCartClicks = function () {
+        var addToCartButton = $('.js-ga-add-to-cart');
+        if (addToCartButton.length > 0) {
+            addToCartButton.on('click', function (event) {
+                var button = $(this);
+                var product = button.data('product');
+
+                // To keep this simple, the product data is serialized as a JSON "data-" attribute:
+                if (product) {
+                    ga('ec:addProduct', product);
+
+                    ga('ec:setAction', 'add');
+                    ga('send', 'event', 'Enhanced E-Commerce', 'Click', 'Add to Cart'); // Send data using an Event.
+                }
+            });
+        }
     };
 
 
@@ -59,7 +82,8 @@
         var trackingCallbacks = [
             _trackJumbotronCTA,
             _trackHeadingCTA,
-            _trackBlogArchives
+            _trackBlogArchives,
+            _trackAddToCartClicks
        ];
 
         for (var i = 0, nbCallbacks = trackingCallbacks.length; i < nbCallbacks; i++) {
