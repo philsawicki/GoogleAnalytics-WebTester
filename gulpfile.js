@@ -21,7 +21,8 @@ var gulp = require('gulp'),
     eslint = require('gulp-eslint'),
     htmlReplace = require('gulp-html-replace'),
     minifyCSS = require('gulp-minify-css'),
-    minifyHTML = require('gulp-minify-html');
+    minifyHTML = require('gulp-minify-html'),
+    uglify = require('gulp-uglify');
 
 
 /**
@@ -121,7 +122,7 @@ gulp.task('minify-js', function() {
 
     return jsStream
         .pipe(concat('scripts.js'))
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest('./dist/js/'));
 });
 

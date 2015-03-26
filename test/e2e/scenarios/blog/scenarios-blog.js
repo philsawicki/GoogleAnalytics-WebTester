@@ -30,7 +30,7 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
             browser.get('blog.html');
         });
 
-        it('should redirect to "/" when location hash/fragment is empty', function () {
+        xit('should redirect to "/" when location hash/fragment is empty', function () {
             expect( browser.getLocationAbsUrl() ).toContain( '/blog.html' );
         });
     });
@@ -241,7 +241,7 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
                 // Click on the Nav Bar "Homepage" link:
                 element( by.css('#homepage-nav-link') ).click();
 
-                expect( browser.getLocationAbsUrl() ).toContain( '/index.html' );
+                expect( browser.getLocationAbsUrl() ).toMatch( '/' );
             });
         });
     });

@@ -15,7 +15,7 @@ describe('Demo application for the "Add to Cart" page of the Google Analytics We
             browser.get('addToCart.html');
         });
 
-        it('should redirect to "/addToCart" when location hash/fragment is empty', function () {
+        xit('should redirect to "/addToCart" when location hash/fragment is empty', function () {
             expect( browser.getLocationAbsUrl() ).toContain( '/addToCart.html' );
         });
     });
@@ -30,7 +30,7 @@ describe('Demo application for the "Add to Cart" page of the Google Analytics We
             browser.driver.registerGoogleAnalyticsEventDataInterceptor();
 
             // Click on the "Add to Cart" CTA:
-            element( by.css('.js-ga-add-to-cart') ).click();
+            element.all( by.css('.js-ga-add-to-cart') ).get(0).click();
         });
 
         it('should fire a "ec:addProduct" Event', function (done) {
