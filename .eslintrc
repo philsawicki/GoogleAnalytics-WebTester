@@ -12,6 +12,10 @@
         "beforeEach": false,
         "afterEach": false,
         "spyOn": false,
+        "by": false,
+        "fail": false,
+        "element": false,
+        "browser": false,
         "jasmine": false,
         "module": false,
         "inject": false

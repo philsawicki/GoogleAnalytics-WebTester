@@ -17,7 +17,15 @@ var gulp = require('gulp'),
  */
 var paths = {
 	library:  'lib/**/*.js',
-	unitTest: 'test/unit/**/*.js'
+	unitTest: 'test/unit/**/*.js',
+    e2eTest:  'test/e2e/scenarios/**/*.js'
+};
+
+/**
+ * Composite configuration values:
+ */
+var config = {
+    filesToLint: [paths.library, paths.unitTest, paths.e2eTest]
 };
 
 
@@ -26,7 +34,7 @@ var paths = {
  * the task, making the process exit with an error code (1).
  */
 gulp.task('js-linting', function () {
-    return gulp.src([paths.library, paths.unitTest])
+    return gulp.src(config.filesToLint)
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failOnError());
@@ -36,8 +44,8 @@ gulp.task('js-linting', function () {
  * Run the tasks when a file changes.
  */
 gulp.task('watch', function() {
-    // Lint the "/lib" and "/test/unit" files:
-    gulp.watch([paths.library, paths.unitTest], ['js-linting']);
+    // Lint JavaScript files:
+    gulp.watch(config.filesToLint, ['js-linting']);
 });
 
 

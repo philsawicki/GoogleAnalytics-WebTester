@@ -53,6 +53,14 @@ It's fast, lightweight, easy to configure, and integrates beautifully with exist
 ### Sample Spec file
 ```javascript
 describe('The Google Analytics "click" tracking', function () {
+   beforeEach(function () {
+      // Load the page to test:
+      browser.get('index.html');
+
+      // Register the Google Analytics Event Data Interceptor:
+      browser.driver.registerGoogleAnalyticsEventDataInterceptor();
+   });
+
    it('should fire an Event when clicking on the Jumbotron CTA', function (done) {
       // Click on the "Jumbotron" CTA:
       element( by.css('#jumbotronCTA') ).click();
@@ -79,6 +87,14 @@ describe('The Google Analytics "click" tracking', function () {
 Or, if you find the syntax too verbose and you feel confident, you can always use the condensed version:
 ```javascript
 describe('The Google Analytics "click" tracking', function () {
+   beforeEach(function () {
+      // Load the page to test:
+      browser.get('index.html');
+
+      // Register the Google Analytics Event Data Interceptor:
+      browser.driver.registerGoogleAnalyticsEventDataInterceptor();
+   });
+
    it('should fire an Event when clicking on the Jumbotron CTA', function (done) {
       // Click on the "Jumbotron" CTA:
       element( by.css('#jumbotronCTA') ).click();

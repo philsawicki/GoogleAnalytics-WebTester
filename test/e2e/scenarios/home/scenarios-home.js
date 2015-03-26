@@ -1,6 +1,6 @@
 /**!
  * @file Base E2E test scenarios for the Home page of the Application Demo.
- * @author Philippe Sawicki <http://github.com/philsawicki> 
+ * @author Philippe Sawicki <http://github.com/philsawicki>
  * @copyright Philippe Sawicki 2015
  * @license MIT
  */
@@ -33,7 +33,7 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 		});
 	});
 
-	
+
     describe('The Library deployment', function () {
 		describe('The page without "Google Analytics Event Data Interceptor"', function () {
 			beforeEach(function () {
@@ -67,12 +67,12 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				.then(done);
 			});
 		});
-		
-		
+
+
 		describe('The registration of the "Google Analytics Event Data Interceptor"', function () {
 			beforeEach(function () {
 				browser.get('index.html#/');
-				
+
 				// Register the Google Analytics Event Data Interceptor:
 				browser.driver.registerGoogleAnalyticsEventDataInterceptor();
 			});
@@ -90,7 +90,7 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				})
 				.then(done);
 			});
-			
+
 			it('should have "window.GAWebTester.getEventBuffer()" defined', function (done) {
 				browser.driver.executeScript(function () {
 					return window.GAWebTester.getEventBuffer();
@@ -105,7 +105,7 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				})
 				.then(done);
 			});
-			
+
 			it('should have "window.GAWebTester.getLastEvent()" defined', function (done) {
 				browser.driver.executeScript(function () {
 					return window.GAWebTester.getLastEvent();
@@ -121,15 +121,15 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				.then(done);
 			});
 		});
-		
-		
+
+
 		describe('The deregistration of the "Google Analytics Event Data Interceptor"', function () {
 			beforeEach(function () {
 				browser.get('index.html#/');
-				
+
 				// Register the Google Analytics Event Data Interceptor:
 				browser.driver.registerGoogleAnalyticsEventDataInterceptor();
-				
+
 				// Unregister the Google Analytics Event Data Interceptor:
 				browser.driver.unregisterGoogleAnalyticsEventDataInterceptor();
 			});
@@ -147,7 +147,7 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				})
 				.then(done);
 			});
-			
+
 			it('should have "window.GAWebTester" be null', function (done) {
 				browser.driver.executeScript(function () {
 					return window.GAWebTester;
@@ -162,14 +162,14 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			});
 		});
     });
-	
-	
+
+
 	describe('The "GAWebTester.EventBuffer" object', function () {
 		beforeEach(function () {
 			// Register the Google Analytics Event Data Interceptor:
 			browser.driver.registerGoogleAnalyticsEventDataInterceptor();
 		});
-		
+
 		it('should be exposed globally', function (done) {
 			// Get the "EventBuffer" object back from the browser:
 			browser.driver.executeScript(function () {
@@ -189,27 +189,27 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			.then(done);
 		});
 	});
-	
-	
+
+
 	describe('The wiring up of the Google Analytics Event Data interceptor', function () {
 		beforeEach(function () {
 			// Load the page to test:
             browser.get('index.html#/');
-			
+
 			// Register the Google Analytics Event Data Interceptor:
 			browser.driver.registerGoogleAnalyticsEventDataInterceptor();
 
 			browser.driver.disableClicks();
         });
-		
+
 		describe('The "EventBuffer" object', function () {
 			it('should contain the list of all Event Data fired', function (done) {
 				// Click on the "Jumbotron" CTA:
 				element( by.css('#jumbotronCTA') ).click();
-				
+
 				// Click on the first "Heading" CTA:
 				element.all( by.css('.heading-cta') ).get(0).click();
-				
+
 				// Get the "EventBuffer" object back from the browser:
 				browser.driver.executeScript(function () {
 					return window.GAWebTester.EventBuffer;
@@ -229,15 +229,15 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				.then(done);
 			});
 		});
-		
+
 		describe('The "getLastEvent()" method', function () {
 			it('should contain the last Event Data fired', function (done) {
 				// Click on the "Jumbotron" CTA:
 				element( by.css('#jumbotronCTA') ).click();
-				
+
 				// Click on the first "Heading" CTA:
 				element.all( by.css('.heading-cta') ).get(0).click();
-				
+
 				// Get the "LastEvent" object back from the browser:
 				browser.driver.executeScript(function () {
 					return window.GAWebTester.getLastEvent();
@@ -257,10 +257,11 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				.then(done);
 			});
 		});
-		
+
 		it('should properly catch a failure to receive the data buffer', function (done) {
 			// Try to get an undefined object from the browser:
 			browser.driver.executeScript(function () {
+				/* eslint no-undef:0 */ // Disable ESLint linting rul about undefined variable/Object.
 				return nonExistingObject.nonExistingProperty;
 			})
 			.then(
@@ -276,13 +277,13 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			.then(done);
 		});
 	});
-	
-	
+
+
     describe('The Google Analytics "click" tracking', function () {
 		it('should fire an Event when clicking on the Jumbotron CTA (long form)', function (done) {
 			// Click on the "Jumbotron" CTA:
 			element( by.css('#jumbotronCTA') ).click();
-				
+
 			// Get the "LastEvent" object back from the browser:
 			browser.driver.executeScript(function () {
 				return window.GAWebTester.getLastEvent();
@@ -299,11 +300,11 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			)
 			.then(done);
 		});
-		
+
 		it('should fire an Event when clicking on the Jumbotron CTA (short-form)', function (done) {
 			// Click on the "Jumbotron" CTA:
 			element( by.css('#jumbotronCTA') ).click();
-				
+
 			// Get the "LastEvent" object back from the browser and validate its data:
 			browser.driver.executeScript(function () { return window.GAWebTester.getLastEvent(); })
 			.then(function (LastEvent) {
@@ -311,11 +312,11 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				done();
 			});
 		});
-		
+
 		it('should fire an Event when clicking on the Heading CTA', function (done) {
 			// Click on the first "Heading" CTA:
 			element.all( by.css('.heading-cta') ).get(0).click();
-				
+
 			// Get the "EventBuffer" object back from the browser:
 			browser.driver.executeScript(function () {
 				return window.GAWebTester.EventBuffer;
@@ -332,11 +333,11 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			)
 			.then(done);
 		});
-		
+
 		it('should fire a Metric when clicking on the Heading CTA', function (done) {
 			// Click on the first "Heading" CTA:
 			element.all( by.css('.heading-cta') ).get(0).click();
-			
+
 			// Get the "EventBuffer" object back from the browser:
 			browser.driver.executeScript(function () {
 				return window.GAWebTester.getEventBuffer();

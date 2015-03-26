@@ -1,6 +1,6 @@
 /**!
  * @file Base E2E test scenarios for the Blog page of the Application Demo.
- * @author Philippe Sawicki <http://github.com/philsawicki> 
+ * @author Philippe Sawicki <http://github.com/philsawicki>
  * @copyright Philippe Sawicki 2015
  * @license MIT
  */
@@ -40,7 +40,7 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
         beforeEach(function () {
             // Load the page to test:
             browser.get('blog.html');
-            
+
             // Register the Google Analytics Event Data Interceptor:
             browser.driver.registerGoogleAnalyticsEventDataInterceptor();
         });
@@ -49,7 +49,7 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
             it('should return the GTM Tracker Name when a GA Event is fired', function (done) {
                 // Click on the first "Archive" link of the Blog:
                 element.all( by.css('.js-ga-blog-archive-link') ).get(0).click();
-                
+
                 // Get the "EventBuffer" object back from the browser:
                 browser.driver.executeScript(function () {
                     return window.GAWebTester.getEventBuffer();
@@ -78,16 +78,16 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
         beforeEach(function () {
             // Load the page to test:
             browser.get('blog.html');
-            
+
             // Register the Google Analytics Event Data Interceptor:
             browser.driver.registerGoogleAnalyticsEventDataInterceptor();
         });
-        
+
         describe('The "EventBuffer" method', function () {
             it('should contain the list of all Event Data fired', function (done) {
                 // Click on the first "Archive" link of the Blog:
                 element.all( by.css('.js-ga-blog-archive-link') ).get(0).click();
-                
+
                 // Get the "EventBuffer" object back from the browser:
                 browser.driver.executeScript(function () {
                     return window.GAWebTester.getEventBuffer();
@@ -114,12 +114,12 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
                 .then(done);
             });
         });
-        
+
         describe('The "LastEvent" method', function () {
             it('should contain the last Event Data fired', function (done) {
                 // Click on the first "Archive" link of the Blog:
                 element.all( by.css('.js-ga-blog-archive-link') ).get(0).click();
-                
+
                 // Get the "LastEvent" object back from the browser:
                 browser.driver.executeScript(function () {
                     return window.GAWebTester.getLastEvent();
@@ -163,10 +163,11 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
                 .then(done);
             });
         });
-        
+
         it('should properly catch a failure to receive the data buffer', function (done) {
             // Try to get an undefined object from the browser:
             browser.driver.executeScript(function () {
+                /* eslint no-undef:0 */ // Disable ESLint linting rul about undefined variable/Object.
                 return nonExistingObject.nonExistingProperty;
             })
             .then(
@@ -188,7 +189,7 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
         beforeEach(function () {
             // Load the page to test:
             browser.get('blog.html');
-            
+
             // Register the Google Analytics Event Data Interceptor:
             browser.driver.registerGoogleAnalyticsEventDataInterceptor();
         });
@@ -228,7 +229,7 @@ describe('Demo application for the Blog page of the Google Analytics WebTester',
         });
     });
 
-    
+
     describe('The Sticky Menu', function () {
         beforeEach(function () {
             // Load the page to test:

@@ -25,7 +25,7 @@ describe('Demo application for the "Add to Cart" page of the Google Analytics We
         beforeEach(function () {
             // Load the page to test:
             browser.get('addToCart.html');
-            
+
             // Register the Google Analytics Event Data Interceptor:
             browser.driver.registerGoogleAnalyticsEventDataInterceptor();
 
