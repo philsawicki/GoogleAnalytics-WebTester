@@ -15,8 +15,8 @@ describe('Demo application for the "Add to Cart" page of the Google Analytics We
             browser.get('addToCart.html');
         });
 
-        xit('should redirect to "/addToCart" when location hash/fragment is empty', function () {
-            expect( browser.getLocationAbsUrl() ).toContain( '/addToCart.html' );
+        it('should redirect to "/addToCart" when location hash/fragment is empty', function () {
+            expect( browser.getCurrentUrl() ).toContain( '/addToCart.html' );
         });
     });
 

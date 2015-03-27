@@ -18,18 +18,18 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 			expect( browser.getLocationAbsUrl() ).toMatch( '/' );
 		});
 
-		xit('should redirect to the Blog when clicking on the Jumbotron CTA', function () {
+		it('should redirect to the Blog when clicking on the Jumbotron CTA', function () {
 			// Click on the "Jumbotron" CTA:
 			element( by.css('#jumbotronCTA') ).click();
 
-			expect( browser.getLocationAbsUrl() ).toContain( '/blog.html' );
+			expect( browser.getCurrentUrl() ).toContain( '/blog.html' );
 		});
 
-		xit('should redirect to the Blog Archive when clicking on a Heading CTA', function () {
+		it('should redirect to the Blog Archive when clicking on a Heading CTA', function () {
 			// Click on the first "Heading" CTA:
 			element.all( by.css('.heading-cta') ).get(0).click();
 
-			expect( browser.getLocationAbsUrl() ).toContain( '/blog.html?archive=2014-12' );
+			expect( browser.getCurrentUrl() ).toContain( '/blog.html?archive=2014-12' );
 		});
 	});
 

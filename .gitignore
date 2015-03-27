@@ -9,3 +9,4 @@ npm-debug.log
 GoogleAnalytics-WebTester.sublime-project
 GoogleAnalytics-WebTester.sublime-workspace
 build/
+tmp/

@@ -30,7 +30,7 @@ exports.config = {
         'browserName': 'chrome'
     },
 
-    baseUrl: 'http://localhost:8000/app/',
+    baseUrl: 'http://localhost:8000/dist/',
 
     // Test framework to use (may be one of "jasmine", "jasmine2", "cucumber", "mocha" or "custom"):
     framework: 'jasmine',

@@ -16,12 +16,13 @@ var es = require('event-stream'),
  * Gulp & Gulp plugins:
  */
 var gulp = require('gulp'),
+    templateCache = require('gulp-angular-templatecache'),
     concat = require('gulp-concat'),
-    replace = require('gulp-replace'),
     eslint = require('gulp-eslint'),
     htmlReplace = require('gulp-html-replace'),
     minifyCSS = require('gulp-minify-css'),
     minifyHTML = require('gulp-minify-html'),
+    replace = require('gulp-replace'),
     uglify = require('gulp-uglify');
 
 
@@ -29,19 +30,31 @@ var gulp = require('gulp'),
  * File paths:
  */
 var paths = {
-	library:  'lib/**/*.js',
-	unitTest: 'test/unit/**/*.js',
-    e2eTest:  'test/e2e/scenarios/**/*.js'
+    angularViews: 'app/views/**/*.html',
+	library:      'lib/**/*.js',
+	unitTest:     'test/unit/**/*.js',
+    e2eTest:      'test/e2e/scenarios/**/*.js'
 };
 
 /**
  * Composite configuration values:
  */
 var config = {
-    filesToLint: [paths.library, paths.unitTest, paths.e2eTest]
+    angularViews: [paths.angularViews],
+    filesToLint:  [paths.library, paths.unitTest, paths.e2eTest]
 };
 
 
+
+/**
+ * Package up the Angular Views into a single initial download:
+ */
+gulp.task('package-partials', function() {
+    return gulp.src(config.angularViews)
+        .pipe(minifyHTML({ empty: true, quotes: true }))
+        .pipe(templateCache('templates.js', { root: 'views/', module: 'myApp' }))
+        .pipe(gulp.dest('./tmp'));
+});
 
 /**
  * If there is a linting error, the "failOnError" will fail 
@@ -62,20 +75,20 @@ gulp.task('minify-css', function () {
     var stylesheets = [
         'bower_components/html5-boilerplate/css/normalize.css',
         'bower_components/html5-boilerplate/css/main.css',
-        'app/css/theme-simplex/bootstrap.css',
+        'app/css/bootswatch-simplex.css',
         'app/css/bootswatch.min.css',
         'app/css/app.css',
         'app/css/addToCart.css'
     ];
 
-    var bootstrapBaseCSS = gulp.src('app/bower_components/bootstrap/dist/css/bootstrap.min.css')
-            .pipe(replace(/url\((')?\.\.\/fonts\//g, 'url($1fonts/')),
+    var //bootstrapBaseCSS = gulp.src('app/bower_components/bootstrap/dist/css/bootstrap.min.css')
+        //    .pipe(replace(/url\((')?\.\.\/fonts\//g, 'url($1fonts/')),
         //bootstrapThemeCSS = gulp.src('app/bower_components/bootstrap/dist/css/bootstrap-theme.min.css'),
         applicationCSS = gulp.src(stylesheets),
-        combinedStream = cs.create(),
         fontFiles = gulp.src('./app/bower_components/bootstrap/fonts/*', { base: './app/bower_components/bootstrap/' });
 
-    combinedStream.append(bootstrapBaseCSS);
+    var combinedStream = cs.create();
+    //combinedStream.append(bootstrapBaseCSS);
     //combinedStream.append(bootstrapThemeCSS);
     combinedStream.append(applicationCSS);
 
@@ -93,65 +106,43 @@ gulp.task('minify-css', function () {
 /**
  * Minify JS.
  */
-gulp.task('minify-js', function() {
+gulp.task('minify-js', ['package-partials'], function() {
     // Library references (order-dependent):
     var libs = [
+        'app/bower_components/jquery/dist/jquery.js',
         'app/js/bootstrap.min.js',
         'app/js/bootswatch.js',
         'app/bower_components/angular/angular.js',
         'app/bower_components/angular-route/angular-route.js',
         'app/js/app.js',
         'app/js/controllers/HomePageController.js',
-        'app/js/libs/googleAnalyticsTracking.js'
-        //'./app/bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js',
-        //'./app/bower_components/jquery/dist/jquery.js',
-        //'./app/bower_components/angular/angular.js',
-        //'./app/bower_components/angular-route/angular-route.js',
-        //'./app/bower_components/bootstrap/dist/js/bootstrap.min.js',
-        //'./app/bower_components/globalize/lib/globalize.js',
-        //'./app/bower_components/globalize/lib/cultures/globalize.culture.en-GB.js',
-        //'./app/bower_components/d3/d3.min.js',
-        //'./app/bower_components/jquery-mockjax/jquery.mockjax.js'
-        
-        //'./app/js/**/*.js',
-        //'./tmp/templates.js'
+        'app/js/libs/googleAnalyticsTracking.js',
+        'tmp/templates.js'
     ];
 
-    var jsStream = cs.create();
-    jsStream.append(gulp.src(libs));
-
-    return jsStream
+    return gulp.src(libs)
         .pipe(concat('scripts.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('./dist/js/'));
+        .pipe(gulp.dest('dist/js/'));
 });
 
 /**
  * Copy index.html, replacing "<script>" and "<link>" tags to reference production URLs.
  */
-gulp.task('minify-html', function () {
-    // Minify HTML for the "async" JS loader:
-    //gulp.src('./app/index-async.html')
-    //    .pipe(htmlReplace({
-    //        css: 'css/css.css',
-    //        js: 'js/scripts.js'
-    //    }))
-    //    .pipe(minifyHTML({ conditionals: true, empty: true, quotes: true })) // There is an issue with IE conditionals being removed with "comments: true".
-    //    .pipe(gulp.dest('./dist/'));
-
+gulp.task('minify-html', ['package-partials'], function () {
     // Copy Modernizr to "/dist" folder:
     gulp.src('app/bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js')
         .pipe(gulp.dest('dist/js'));
 
     // Minify HTML for the "sync" JS loader:
-    return gulp.src('./app/*.html')
+    return gulp.src('app/*.html')
         .pipe(htmlReplace({
             css: 'css/css.css',
             js: 'js/scripts.js',
             modernizr: 'js/modernizr-2.6.2.min.js'
         }))
         .pipe(minifyHTML({ conditionals: true, empty: true, quotes: true })) // There is an issue with IE conditionals being removed with "comments: true".
-        .pipe(gulp.dest('./dist/'));
+        .pipe(gulp.dest('dist/'));
 });
 
 
@@ -159,9 +150,12 @@ gulp.task('minify-html', function () {
 /**
  * Run the tasks when a file changes.
  */
-gulp.task('watch', function() {
+gulp.task('watch', function () {
     // Lint JavaScript files:
     gulp.watch(config.filesToLint, ['js-linting']);
+
+    // TemplateCache the Angular Views:
+    gulp.watch(config.angularViews, ['package-partials']);
 
     // Concat & Minify CSS files:
     gulp.watch(['app/css/**/*.css'], ['minify-css']);
