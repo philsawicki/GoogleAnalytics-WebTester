@@ -37,6 +37,7 @@ describe('GoogleAnalyticsWebTester Module', function () {
         spyOn(module, 'registerGoogleAnalyticsEventDataInterceptor').and.callThrough();
         spyOn(module, 'registerGoogleAnalyticsEventDataInterceptorCleanup').and.callThrough();
         spyOn(module, 'registerDisableClicksMethod').and.callThrough();
+        spyOn(module, 'registerEnableClicksMethod').and.callThrough();
 
         // Mock for Protractor's "browser.driver":
         mockBrowserDriver = {};
@@ -47,6 +48,7 @@ describe('GoogleAnalyticsWebTester Module', function () {
         mockBrowserDriver.registerGoogleAnalyticsEventDataInterceptor = undefined;
         mockBrowserDriver.unregisterGoogleAnalyticsEventDataInterceptor = undefined;
         mockBrowserDriver.disableClicks = undefined;
+        mockBrowserDriver.enableClicks = undefined;
 
         spyOn(mockBrowserDriver, 'executeScript').and.callThrough();
     });
@@ -75,6 +77,10 @@ describe('GoogleAnalyticsWebTester Module', function () {
 
         it('exposes the "registerDisableClicksMethod" method', function () {
             expect( module.registerDisableClicksMethod ).toBeDefined();
+        });
+
+        it('exposes the "registerEnableClicksMethod" method', function () {
+            expect( module.registerEnableClicksMethod ).toBeDefined();
         });
 
         it('exposes the "usesGTM" method', function () {
@@ -112,6 +118,10 @@ describe('GoogleAnalyticsWebTester Module', function () {
             expect( window.GoogleAnalyticsWebTester.registerDisableClicksMethod ).toBeDefined();
         });
 
+        it('exposes the "registerEnableClicksMethod" method', function () {
+            expect( window.GoogleAnalyticsWebTester.registerEnableClicksMethod ).toBeDefined();
+        });
+
         it('exposes the "usesGTM" method', function () {
             expect( window.GoogleAnalyticsWebTester.usesGTM ).toBeDefined();
         });
@@ -145,6 +155,10 @@ describe('GoogleAnalyticsWebTester Module', function () {
 
         it('does not leak the "registerDisableClicksMethod" method to the "window"', function () {
             expect( window.registerDisableClicksMethod ).not.toBeDefined();
+        });
+
+        it('does not leak the "registerEnableClicksMethod" method to the "window"', function () {
+            expect( window.registerEnableClicksMethod ).not.toBeDefined();
         });
 
         it('does not leak the "usesGTM" method to the "window"', function () {
@@ -400,6 +414,21 @@ describe('GoogleAnalyticsWebTester Module', function () {
             mockBrowserDriver._executeScriptCallback = undefined;
 
             mockBrowserDriver.disableClicks();
+
+            expect( mockBrowserDriver._executeScriptCallback ).toBeDefined();
+        });
+    });
+
+
+    describe('The behavior of the "registerEnableClicksMethod" method', function () {
+        beforeEach(function () {
+            module.registerEnableClicksMethod(mockBrowserDriver, defaultSettings);
+        });
+
+        it('disables the "click"s on the "document"', function () {
+            mockBrowserDriver._executeScriptCallback = undefined;
+
+            mockBrowserDriver.enableClicks();
 
             expect( mockBrowserDriver._executeScriptCallback ).toBeDefined();
         });
