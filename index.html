@@ -5,17 +5,68 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="A Protractor application to test and validate the proper Google Analytics Tracking implementation of a website. Compatible with Google Tag Manager." />
+    <meta name="author" content="Philippe Sawicki" />
+
     <meta name="google-site-verification" content="ctAoEcOP_KOarL1L7ifRAxRMYKDZk-YK2LQcvcfLJEs" />
-    <link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Architects+Daughter'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Google Analytics Web Tester by Philippe Sawicki</title>
+
+    <!--<link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Architects+Daughter'>-->
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300">
+    <link rel="stylesheet" type="text/css" href="http://philsawicki.github.io/GoogleAnalytics-WebTester/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="http://philsawicki.github.io/GoogleAnalytics-WebTester/stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="http://philsawicki.github.io/GoogleAnalytics-WebTester/stylesheets/print.css" media="print">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/monokai_sublime.min.css">
+
+
+    <style type="text/css">
+      pre {
+        padding: 0;
+        border: 0;
+        margin-bottom: 5px;
+        background: transparent;
+      }
+      pre code {
+        margin-bottom: 5px;
+      }
+
+
+      .slideshow-container {
+        /*margin: 50px auto;*/
+        width: 690px;
+        height: 521px;
+        overflow: hidden;
+        /*border: 10px solid;
+        border-top-color: #856036;
+        border-left-color: #5d4426;
+        border-bottom-color: #856036;
+        border-right-color: #5d4426;*/
+        position: relative;
+      }
+
+      @keyframes round {
+        25% { opacity: 1; }
+        40% { opacity: 0; }
+      } 
+      @-webkit-keyframes round {
+        25% { opacity: 1; }
+        40% { opacity: 0; }
+      }
+
+      .photo {
+        position: absolute;
+        -webkit-animation: round 15s infinite;
+                animation: round 15s infinite;
+        opacity: 0;
+      }
+      .photo:nth-child(3) { animation-delay:  0s; -webkit-animation-delay:  0s; }
+      .photo:nth-child(2) { animation-delay:  5s; -webkit-animation-delay:  5s; }
+      .photo:nth-child(1) { animation-delay: 10s; -webkit-animation-delay: 10s; }
+    </style>
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <title>Google Analytics Web Tester by Philippe Sawicki</title>
   </head>
 
   <body>
@@ -38,20 +89,21 @@
       <div class="inner">
         <h1>Google Analytics Web Tester</h1>
         <h2>A testing tool to validate Google Analytics implementation on a website</h2>
-        <a href="https://github.com/philsawicki/GoogleAnalytics-WebTester" class="button" id="githubSite"><small>View project on</small> GitHub</a>
+        <a href="https://github.com/philsawicki/GoogleAnalytics-WebTester" class="button" id="githubSite" title="View Google Analytics Website Checker project on Github"><small>View project on</small> GitHub</a>
       </div>
     </header>
 
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <p><a href="https://travis-ci.org/philsawicki/GoogleAnalytics-WebTester"><img src="https://travis-ci.org/philsawicki/GoogleAnalytics-WebTester.svg?branch=master" alt="Build Status"></a>
-<a href="https://coveralls.io/r/philsawicki/GoogleAnalytics-WebTester?branch=master"><img src="https://coveralls.io/repos/philsawicki/GoogleAnalytics-WebTester/badge.svg?branch=master" alt="Coverage Status" /></a>
-<a href="https://david-dm.org/philsawicki/GoogleAnalytics-WebTester"><img src="https://david-dm.org/philsawicki/GoogleAnalytics-WebTester.svg" alt="Dependency Status"></a>
-<a href="https://david-dm.org/philsawicki/GoogleAnalytics-WebTester#info=devDependencies"><img src="https://david-dm.org/philsawicki/GoogleAnalytics-WebTester/dev-status.svg" alt="devDependency Status"></a></p>
+          <p>
+            <a href="https://travis-ci.org/philsawicki/GoogleAnalytics-WebTester"><img src="https://travis-ci.org/philsawicki/GoogleAnalytics-WebTester.svg?branch=master" alt="Build Status"></a>
+            <a href="https://coveralls.io/r/philsawicki/GoogleAnalytics-WebTester?branch=master"><img src="https://coveralls.io/repos/philsawicki/GoogleAnalytics-WebTester/badge.svg?branch=master" alt="Coverage Status" /></a>
+            <a href="https://david-dm.org/philsawicki/GoogleAnalytics-WebTester"><img src="https://david-dm.org/philsawicki/GoogleAnalytics-WebTester.svg" alt="Dependency Status"></a>
+            <a href="https://david-dm.org/philsawicki/GoogleAnalytics-WebTester#info=devDependencies"><img src="https://david-dm.org/philsawicki/GoogleAnalytics-WebTester/dev-status.svg" alt="devDependency Status"></a>
+          </p>
 
-<h1>
-<a id="google-analytics-web-tester" class="anchor" href="#google-analytics-web-tester" aria-hidden="true"><span class="octicon octicon-link"></span></a>Google Analytics Web Tester</h1>
+<h2><a id="google-analytics-web-tester" class="anchor" href="#google-analytics-web-tester" aria-hidden="true"><span class="octicon octicon-link"></span></a>Google Analytics Web Tester</h2>
 
 <blockquote>
 <p>Live, continuous audit of Google Analytics implementations</p>
@@ -70,13 +122,13 @@
 <p>Whether using the Google Analytics snippet directly (<code>ga()</code>) or Google Tag Manager, all tracking interactions can be recorded the exact same way:</p>
 
 <ul>
-<li>Pageviews</li>
-<li>Custom Events</li>
-<li>Custom Metrics / Dimensions</li>
-<li>Enhanced E-Commerce</li>
-<li>Social Interactions</li>
-<li>Timings</li>
-<li>etc.</li>
+  <li><strong>Pageviews</li>
+  <li>Custom Events</li>
+  <li>Custom Metrics / Dimensions</li>
+  <li>Enhanced E-Commerce</li>
+  <li>Social Interactions</li>
+  <li>Timings</li>
+  <li>etc.</strong></li>
 </ul>
 
 <p>Just set the URL of your website, write a couple of specs and run the app, or set it to run after each build/deployment.</p>
@@ -86,8 +138,16 @@
 <h2>
 <a id="preview" class="anchor" href="#preview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preview</h2>
 
-<p>Here's what the demo Application looks like:
-<img src="https://raw.githubusercontent.com/philsawicki/GoogleAnalytics-WebTester/screenshots/Google%20Analytics%20Web%20Tester%20Demo%20Application%20Screenshot.png" alt="Google Analytics Web Tester Demo Application" title="Google Analytics Web Tester Demo Application"></p>
+<p>The Demo Application contains a few pages that illustrate the most common uses cases for a website, with Event tracking on the Homepage and the Blog, and Enhanced E-Commerce tracking on a <em>Featured Products</em> slideshow. It features pages using direct <code>ga()</code> calls and others using Google Tag Manager in order to demonstrate both cases.</p>
+
+<p>Here's what it looks like:
+<div class="slideshow-container">
+  <img src="http://i.imgur.com/cpGonzw.png" alt="Google Analytics Web Tester Demo Application" title="Google Analytics Web Tester Demo Application" class="photo">
+  <img src="http://i.imgur.com/ngiHYoE.png" alt="Google Analytics Web Tester Demo Application" title="Google Analytics Web Tester Demo Application" class="photo">
+  <img src="http://i.imgur.com/dkaaUrz.png" alt="Google Analytics Web Tester Demo Application" title="Google Analytics Web Tester Demo Application" class="photo">
+</div>
+
+</p>
 
 <h2>
 <a id="how-does-it-work" class="anchor" href="#how-does-it-work" aria-hidden="true"><span class="octicon octicon-link"></span></a>How does it work?</h2>
@@ -99,44 +159,60 @@
 <h3>
 <a id="sample-spec-file" class="anchor" href="#sample-spec-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sample Spec file</h3>
 
-<div class="highlight highlight-javascript"><pre>describe(<span class="pl-s1"><span class="pl-pds">'</span>Google Analytics "click" tracking<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> () {
-   it(<span class="pl-s1"><span class="pl-pds">'</span>should fire an Event when clicking on the Jumbotron CTA<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">done</span>) {
-      <span class="pl-c">// Click on the "Jumbotron" CTA:</span>
-      element( by.css(<span class="pl-s1"><span class="pl-pds">'</span>#jumbotronCTA<span class="pl-pds">'</span></span>) ).<span class="pl-s3">click</span>();
+<pre><code class="javascript">describe('Google Analytics "click" tracking', function () {
+   beforeEach(function () {
+      // Load the page to test:
+      browser.get('index.html');
 
-      <span class="pl-c">// Get the "gaLastEventData" object back from the browser:</span>
-      browser.driver.executeScript(<span class="pl-st">function</span> () {
-         <span class="pl-k">return</span> <span class="pl-s3">window</span>.gaLastEventData;
+      // Register the Google Analytics Event Data Interceptor:
+      browser.driver.registerGoogleAnalyticsEventDataInterceptor();
+   });
+
+   it('should fire an Event when clicking on the Jumbotron CTA', function (done) {
+      // Click on the "Jumbotron" CTA:
+      element( by.css('#jumbotronCTA') ).click();
+
+      // Get the "LastEvent" object back from the browser:
+      browser.driver.executeScript(function () {
+         return window.GAWebTester.getLastEvent();
       })
       .then(
-         <span class="pl-c">// Validate the content of the "gaLastEventData" object:</span>
-         <span class="pl-st">function</span> <span class="pl-en">successCallback</span> (<span class="pl-vpf">gaLastEventData</span>) {
-            expect(gaLastEventData).toEqual([<span class="pl-s1"><span class="pl-pds">'</span>send<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>event<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>Button<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>Click<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>Jumbotron CTA<span class="pl-pds">'</span></span>]);
+         // Validate the content of the "LastEvent" object:
+         function successCallback (LastEvent) {
+            expect( LastEvent ).toEqual( ['send', 'event', 'Button', 'Click', 'Jumbotron CTA'] );
          },
-         <span class="pl-c">// If there was an error getting back the "gaLastEventData" object from the browser, fail the test:</span>
-         <span class="pl-st">function</span> <span class="pl-en">errorCallback</span> (<span class="pl-vpf">error</span>) {
-            fail(<span class="pl-s1"><span class="pl-pds">'</span>Should not have received Error: <span class="pl-pds">'</span></span> <span class="pl-k">+</span> JSON.stringify(error));
+         // If there was an error getting back the "LastEvent" object from the browser, fail the test:
+         function errorCallback (error) {
+            fail('Should not have received Error: ' + JSON.stringify(error));
          }
       )
       .then(done);
    });
-});</pre></div>
+});</code></pre>
 
 <p>Or, if you find the syntax too verbose and you feel confident, you can always use the condensed version:</p>
 
-<div class="highlight highlight-javascript"><pre>describe(<span class="pl-s1"><span class="pl-pds">'</span>Google Analytics "click" tracking<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> () {
-   it(<span class="pl-s1"><span class="pl-pds">'</span>should fire an Event when clicking on the Jumbotron CTA<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">done</span>) {
-      <span class="pl-c">// Click on the "Jumbotron" CTA:</span>
-      element( by.css(<span class="pl-s1"><span class="pl-pds">'</span>#jumbotronCTA<span class="pl-pds">'</span></span>) ).<span class="pl-s3">click</span>();
+<pre><code class="javascript">describe('Google Analytics "click" tracking', function () {
+   beforeEach(function () {
+      // Load the page to test:
+      browser.get('index.html');
 
-      <span class="pl-c">// Get the "gaLastEventData" object back from the browser and validate its data:</span>
-      browser.driver.executeScript(<span class="pl-st">function</span> () { <span class="pl-k">return</span> <span class="pl-s3">window</span>.gaLastEventData; })
-      .then(<span class="pl-st">function</span> (<span class="pl-vpf">gaLastEventData</span>) {
-         expect(gaLastEventData).toEqual([<span class="pl-s1"><span class="pl-pds">'</span>send<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>event<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>Button<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>Click<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>Jumbotron CTA<span class="pl-pds">'</span></span>]);
+      // Register the Google Analytics Event Data Interceptor:
+      browser.driver.registerGoogleAnalyticsEventDataInterceptor();
+   });
+
+   it('should fire an Event when clicking on the Jumbotron CTA', function (done) {
+      // Click on the "Jumbotron" CTA:
+      element( by.css('#jumbotronCTA') ).click();
+
+      // Get the "LastEvent" object back from the browser and validate its data:
+      browser.driver.executeScript(function () { return window.GAWebTester.getLastEvent(); })
+      .then(function (LastEvent) {
+         expect( LastEvent ).toEqual( ['send', 'event', 'Button', 'Click', 'Jumbotron CTA'] );
          done();
       });
    });
-});</pre></div>
+});</code></pre>
 
 <h3>
 <a id="getting-the-google-analytics-event-data" class="anchor" href="#getting-the-google-analytics-event-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting the Google Analytics Event data</h3>
@@ -148,21 +224,21 @@
 
 <p>Let's say your standard <code>ga()</code> call looks like this when clicking on the <em>Jumbotron CTA</em> of the demo application (will be the same if Event Tracking is set through GTM*):</p>
 
-<div class="highlight highlight-javascript"><pre>ga(<span class="pl-s1"><span class="pl-pds">'</span>send<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>event<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>Button<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>Click<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>Jumbotron CTA<span class="pl-pds">'</span></span>);
-    │       │        │         │        └──<span class="pl-k">&gt;</span> <span class="pl-c1">5</span>. Event Label
-    │       │        │         └───────────<span class="pl-k">&gt;</span> <span class="pl-c1">4</span>. Event Action
-    │       │        └─────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">3</span>. Event Category
-    │       └──────────────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">2</span>. (Standard Google Analytics parameter)
-    └──────────────────────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">1</span>. (Standard Google Analytics parameter)</pre></div>
+<pre><code class="javascript">ga('send', 'event', 'Button', 'Click', 'Jumbotron CTA');
+    │       │        │         │        └──> 5. Event Label
+    │       │        │         └───────────> 4. Event Action
+    │       │        └─────────────────────> 3. Event Category
+    │       └──────────────────────────────> 2. (Standard Google Analytics parameter)
+    └──────────────────────────────────────> 1. (Standard Google Analytics parameter)</code></pre>
 
 <p>Then, after the <code>ga()</code> is executed, the value of <code>window.gaLastEventData</code> will be:</p>
 
-<div class="highlight highlight-javascript"><pre>  [<span class="pl-s1"><span class="pl-pds">'</span>send<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>event<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>Button<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>Click<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>Jumbotron CTA<span class="pl-pds">'</span></span>]
-    │       │        │         │        └──<span class="pl-k">&gt;</span> <span class="pl-c1">5</span>. Event Label
-    │       │        │         └───────────<span class="pl-k">&gt;</span> <span class="pl-c1">4</span>. Event Action
-    │       │        └─────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">3</span>. Event Category
-    │       └──────────────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">2</span>. (Standard Google Analytics parameter)
-    └──────────────────────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">1</span>. (Standard Google Analytics parameter)</pre></div>
+<pre><code class="javascript">  ['send', 'event', 'Button', 'Click', 'Jumbotron CTA']
+    │       │        │         │        └──> 5. Event Label
+    │       │        │         └───────────> 4. Event Action
+    │       │        └─────────────────────> 3. Event Category
+    │       └──────────────────────────────> 2. (Standard Google Analytics parameter)
+    └──────────────────────────────────────> 1. (Standard Google Analytics parameter)</code></pre>
 
 <p>You then just need to use the Jasmine-provided matchers to make sure that the actual value of <code>window.gaLastEventData</code> is the same as the expected one.</p>
 
@@ -176,75 +252,76 @@
 <h5>
 <a id="pageviews" class="anchor" href="#pageviews" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pageviews:</h5>
 
-<div class="highlight highlight-javascript"><pre>  [<span class="pl-s1"><span class="pl-pds">'</span>send<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>pageview<span class="pl-pds">'</span></span>]
-    │       └──────────────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">2</span>. (Standard Google Analytics parameter)
-    └──────────────────────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">1</span>. (Standard Google Analytics parameter)</pre></div>
+<pre><code class="javascript">  ['send', 'pageview']
+    │       └──────────────────────────────> 2. (Standard Google Analytics parameter)
+    └──────────────────────────────────────> 1. (Standard Google Analytics parameter)</code></pre>
 
 <h5>
 <a id="custom-metrics--dimensions" class="anchor" href="#custom-metrics--dimensions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Custom Metrics / Dimensions:</h5>
 
-<div class="highlight highlight-javascript"><pre>  [<span class="pl-s1"><span class="pl-pds">'</span>set<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>metric1<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>123<span class="pl-pds">'</span></span>]
-    │      │          └────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">3</span>. Metric Value
-    │      └───────────────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">2</span>. Metric Index
-    └──────────────────────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">1</span>. (Standard Google Analytics parameter)
-
-  [<span class="pl-s1"><span class="pl-pds">'</span>set<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>dimension1<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>Visitor<span class="pl-pds">'</span></span>]
-    │      │             └─────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">3</span>. Dimension Value
-    │      └───────────────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">2</span>. Dimension Index
-    └──────────────────────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">1</span>. (Standard Google Analytics parameter)</pre></div>
+<pre><code class="javascript">  ['set', 'metric1', '123']
+    │      │          └────────────────────> 3. Metric Value
+    │      └───────────────────────────────> 2. Metric Index
+    └──────────────────────────────────────> 1. (Standard Google Analytics parameter)
+  
+  ['set', 'dimension1', 'Visitor']
+    │      │             └─────────────────> 3. Dimension Value
+    │      └───────────────────────────────> 2. Dimension Index
+    └──────────────────────────────────────> 1. (Standard Google Analytics parameter)</code></pre>
 
 <h5>
 <a id="enhanced-e-commerce" class="anchor" href="#enhanced-e-commerce" aria-hidden="true"><span class="octicon octicon-link"></span></a>Enhanced E-Commerce:</h5>
 
-<div class="highlight highlight-javascript"><pre>  [<span class="pl-s1"><span class="pl-pds">'</span>ec:addProduct<span class="pl-pds">'</span></span>, { ─────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">1</span>. (Standard Google Analytics parameters)
-     <span class="pl-s1"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>P12345<span class="pl-pds">'</span></span>, ──────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">2</span>. Product ID
-     <span class="pl-s1"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>Android Warhol T-Shirt<span class="pl-pds">'</span></span>, ────<span class="pl-k">&gt;</span> <span class="pl-c1">3</span>. Product Name
-     <span class="pl-s1"><span class="pl-pds">'</span>category<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>Apparel<span class="pl-pds">'</span></span>, ───────────────<span class="pl-k">&gt;</span> <span class="pl-c1">4</span>. Product Category
-     <span class="pl-s1"><span class="pl-pds">'</span>brand<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>Google<span class="pl-pds">'</span></span>, ───────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">5</span>. Product Brand
-     <span class="pl-s1"><span class="pl-pds">'</span>variant<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>black<span class="pl-pds">'</span></span>, ──────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">6</span>. Product Variant
-     <span class="pl-s1"><span class="pl-pds">'</span>price<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>29.20<span class="pl-pds">'</span></span>, ────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">7</span>. Product Price
-     <span class="pl-s1"><span class="pl-pds">'</span>quantity<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>   ──────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">8</span>. Product quantity
+<pre><code class="javascript">  ['ec:addProduct', { ─────────────────────> 1. (Standard Google Analytics parameters)
+     'id': 'P12345', ──────────────────────> 2. Product ID
+     'name': 'Android Warhol T-Shirt', ────> 3. Product Name
+     'category': 'Apparel', ───────────────> 4. Product Category
+     'brand': 'Google', ───────────────────> 5. Product Brand
+     'variant': 'black', ──────────────────> 6. Product Variant
+     'price': '29.20', ────────────────────> 7. Product Price
+     'quantity': 1   ──────────────────────> 8. Product quantity
   }]
-
-  [<span class="pl-s1"><span class="pl-pds">'</span>ec:setAction<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>checkout<span class="pl-pds">'</span></span>, { ──────────<span class="pl-k">&gt;</span> <span class="pl-c1">1</span><span class="pl-k">&amp;</span><span class="pl-c1">2</span>. (Standard Google Analytics parameters)
-     <span class="pl-s1"><span class="pl-pds">'</span>step<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>, ───────────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">3</span>. Checkout Step
-     <span class="pl-s1"><span class="pl-pds">'</span>option<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>MasterCard<span class="pl-pds">'</span></span> ───────────────<span class="pl-k">&gt;</span> <span class="pl-c1">4</span>. Checkout <span class="pl-s3">Option</span>
-  }]</pre></div>
+  
+  ['ec:setAction', 'checkout', { ──────────> 1&2. (Standard Google Analytics parameters)
+     'step': 1, ───────────────────────────> 3. Checkout Step
+     'option': 'MasterCard' ───────────────> 4. Checkout Option
+  }]</code></pre>
 
 <h5>
 <a id="social-interactions" class="anchor" href="#social-interactions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Social Interactions:</h5>
 
-<div class="highlight highlight-javascript"><pre>  [<span class="pl-s1"><span class="pl-pds">'</span>send<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>social<span class="pl-pds">'</span></span>, { ────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">1</span><span class="pl-k">&amp;</span><span class="pl-c1">2</span>. (Standard Google Analytics parameters)
-     <span class="pl-s1"><span class="pl-pds">'</span>socialNetwork<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>Facebook<span class="pl-pds">'</span></span>, ─────────<span class="pl-k">&gt;</span> <span class="pl-c1">3</span>. Social Interaction Network
-     <span class="pl-s1"><span class="pl-pds">'</span>socialAction<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>Like<span class="pl-pds">'</span></span>, ──────────────<span class="pl-k">&gt;</span> <span class="pl-c1">4</span>. Social Interaction Action
-     <span class="pl-s1"><span class="pl-pds">'</span>socialTarget<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>http://test.com<span class="pl-pds">'</span></span> ────<span class="pl-k">&gt;</span> <span class="pl-c1">5</span>. Social Interaction Target (URL)
-  }]</pre></div>
+<pre><code class="javascript">  ['send', 'social', { ────────────────────> 1&2. (Standard Google Analytics parameters)
+     'socialNetwork': 'Facebook', ─────────> 3. Social Interaction Network
+     'socialAction': 'Like', ──────────────> 4. Social Interaction Action
+     'socialTarget': 'http://test.com' ────> 5. Social Interaction Target (URL)
+  }]</code></pre>
 
 <h5>
 <a id="timings" class="anchor" href="#timings" aria-hidden="true"><span class="octicon octicon-link"></span></a>Timings:</h5>
 
-<div class="highlight highlight-javascript"><pre>  [<span class="pl-s1"><span class="pl-pds">'</span>send<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>timing<span class="pl-pds">'</span></span>, { ────────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">1</span><span class="pl-k">&amp;</span><span class="pl-c1">2</span>. (Standard Google Analytics parameters)
-     <span class="pl-s1"><span class="pl-pds">'</span>timingCategory<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>External Libs<span class="pl-pds">'</span></span>, ───<span class="pl-k">&gt;</span> <span class="pl-c1">3</span>. Timing Category
-     <span class="pl-s1"><span class="pl-pds">'</span>timingVar<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>Load Time<span class="pl-pds">'</span></span>, ────────────<span class="pl-k">&gt;</span> <span class="pl-c1">4</span>. Timing Variable
-     <span class="pl-s1"><span class="pl-pds">'</span>timingValue<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-c1">123</span>, ──────────────────<span class="pl-k">&gt;</span> <span class="pl-c1">5</span>. Timing Value (<span class="pl-k">in</span> ms)
-     <span class="pl-s1"><span class="pl-pds">'</span>timingLabel<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>jQuery<span class="pl-pds">'</span></span> ──────────────<span class="pl-k">&gt;</span> <span class="pl-c1">6</span>. Timing Label
-  }]</pre></div>
+<pre><code class="javascript">  ['send', 'timing', { ────────────────────> 1&2. (Standard Google Analytics parameters)
+     'timingCategory': 'External Libs', ───> 3. Timing Category
+     'timingVar': 'Load Time', ────────────> 4. Timing Variable
+     'timingValue': 123, ──────────────────> 5. Timing Value (in ms)
+     'timingLabel': 'jQuery' ──────────────> 6. Timing Label
+  }]</code></pre>
 
 <h2>
 <a id="installing-the-library" class="anchor" href="#installing-the-library" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing the Library</h2>
 
 <p>To get started, simply clone this repository and install the dependencies:</p>
 
-<pre><code>git clone https://github.com/philsawicki/GoogleAnalytics-WebTester.git
+<pre><code class="bash">git clone https://github.com/philsawicki/GoogleAnalytics-WebTester.git
+cd GoogleAnalytics-WebTester
 npm install
 </code></pre>
 
 <h2>
 <a id="running-the-demo-application" class="anchor" href="#running-the-demo-application" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running the Demo Application</h2>
 
-<p>The project comes preconfigured with a simple web server. If you want, you can check the demo by opening up a browser and heading over to <code>http://localhost:8000/app/index.html#/</code>.</p>
+<p>The project comes preconfigured with a simple web server. If you want, you can check the demo by opening up a browser and heading over to <code>http://localhost:8000/dist/index.html#/</code>.</p>
 
-<pre><code>npm start
+<pre><code class="bash">npm start
 npm run protractor
 </code></pre>
 
@@ -253,20 +330,20 @@ npm run protractor
 <h2>
 <a id="contact" class="anchor" href="#contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contact</h2>
 
-<p>For more information, please check out <a href="http://philippesawicki.com" title="Philippe Sawicki - Fullstack Developer and Digital Analyst">http://philippesawicki.com</a></p>
+<p>For more information, please check out <a href="http://philippesawicki.com" title="Philippe Sawicki - Fullstack Developer and Digital Analyst" rel="me">http://philippesawicki.com</a></p>
         </section>
 
         <aside id="sidebar">
-          <a href="https://github.com/philsawicki/GoogleAnalytics-WebTester/zipball/master" class="button" id="downloadZip">
+          <a href="https://github.com/philsawicki/GoogleAnalytics-WebTester/zipball/master" class="button" id="downloadZip" title="Download Google Analytics Web Tester">
             <small>Download</small>
             .zip file
           </a>
-          <a href="https://github.com/philsawicki/GoogleAnalytics-WebTester/tarball/master" class="button">
+          <a href="https://github.com/philsawicki/GoogleAnalytics-WebTester/tarball/master" class="button" id="downloadTarGz" title="Download Google Analytics Web Tester">
             <small>Download</small>
             .tar.gz file
           </a>
 
-          <p class="repo-owner"><a href="https://github.com/philsawicki/GoogleAnalytics-WebTester"></a> is maintained by <a href="https://github.com/philsawicki">Philippe Sawicki</a>.</p>
+          <p class="repo-owner"><a href="https://github.com/philsawicki/GoogleAnalytics-WebTester" title="Google Analytics Website Checker">Google Analytics Website Tester</a> is maintained by <a href="https://github.com/philsawicki" title="Philippe Sawicki">Philippe Sawicki</a>.</p>
         </aside>
       </div>
     </div>
@@ -274,11 +351,11 @@ npm run protractor
     <script type="application/ld+json">
       {
         "@context": "http://schema.org",
-        "@type" : "Person",
-        "name" : "Philippe Sawicki",
+        "@type": "Person",
+        "name": "Philippe Sawicki",
         "jobTitle": "Full Stack Developer",
         "url": "http://philippesawicki.com",
-        "sameAs" : [
+        "sameAs": [
           "https://facebook.com/philippe.sawicki",
           "https://twitter.com/fyll_s",
           "https://plus.google.com/+PhilippeSawicki",
@@ -286,8 +363,14 @@ npm run protractor
         ]
       }
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/languages/javascript.min.js"></script>
     
     <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+
+
       function whenReady (fn) {
         if (document.readyState != 'loading') {
           fn();
@@ -295,7 +378,7 @@ npm run protractor
           document.addEventListener('DOMContentLoaded', fn);
         }
       }
-      
+
       whenReady(function () {
         var downloadZipLink = document.getElementById('downloadZip');
         if (downloadZipLink) {
@@ -303,7 +386,14 @@ npm run protractor
             ga('send', 'event', 'Button', 'Click', 'Download Zip File');
           });
         }
-        
+
+        var downloadTarGzLink = document.getElementById('downloadTarGz');
+        if (downloadTarGzLink) {
+          downloadTarGzLink.addEventListener('click', function (event) {
+            ga('send', 'event', 'Button', 'Click', 'Download Tar.gz File');
+          });
+        }
+
         var viewOnGithub = document.getElementById('githubSite');
         if (viewOnGithub) {
           viewOnGithub.addEventListener('click', function (event) {
