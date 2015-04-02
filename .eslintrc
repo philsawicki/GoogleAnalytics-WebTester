@@ -24,8 +24,11 @@
     },
 
     "rules": {
+        "eqeqeq": [2, "allow-null"],
         "quotes": [2, "single", "avoid-escape"],
         "no-underscore-dangle": 0,
-        "no-unused-vars": 0
+        "no-unused-vars": 0,
+        "valid-jsdoc": 2,
+        "valid-typeof": 2
     }
 }

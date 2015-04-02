@@ -2,7 +2,7 @@ exports.config = {
     // The timeout in milliseconds for each script run on the browser. This should
     // be longer than the maximum time the application needs to stabilize between
     // tasks.
-    allScriptsTimeout: 11000,
+    allScriptsTimeout: 11 * 1000,
 
     // Spec patterns are relative to the location of this config:
     //specs: [
@@ -46,7 +46,7 @@ exports.config = {
         // Include stack traces in failures:
         includeStackTrace: true,
         // Default time to wait (in ms) before a test fails:
-        defaultTimeoutInterval: 30000
+        defaultTimeoutInterval: 30 * 1000
     },
 
     // Options to be passed to "jasmine2" (https://github.com/jasmine/jasmine-npm/blob/master/lib/jasmine.js):
