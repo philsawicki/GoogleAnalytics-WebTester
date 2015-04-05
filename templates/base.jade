@@ -1,0 +1,45 @@
+doctype html
+html
+	// Render "Variables" Block:
+	block variables
+
+	head
+		// Include "_head" Partial:
+		include _head
+
+		- var currentPageTitle = pageTitle + (siteTitle ? ' - ' + siteTitle : '');
+		title #{currentPageTitle}
+
+		// Render "head_scripts" Block:
+		block head_scripts
+
+	body.Site
+		// Include "_analytics" Partial:
+		include _analytics
+
+		aside.Site-sidebar#sidebar
+			include _nav-header
+			include _nav
+
+		main.Site-main
+			include _header
+			div.Content
+				div.u-lg-hidden
+					// Render "_titles" Partial:
+					include _titles
+				// Render "content" Block:
+				block content
+				// Render "tech" Block:
+				block tech
+
+		//script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+		//script(src="https://ga-dev-tools.appspot.com/public/javascript/bundle.js")
+
+		// Render "foot_scripts" Block:
+		block foot_scripts
+			//script(src="bundle.js")
+
+		// Include "_footer" Partial:
+		include _footer
+		// Include "_footer-scripts" Partial:
+		include _footer-scripts

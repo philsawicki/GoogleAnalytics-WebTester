@@ -1,0 +1,128 @@
+extends base
+
+block variables
+	- var pageTitle = "How does it work?"
+	- var pageDescription = "Page description"
+	- var pageSubtitle = "Page Subtitle"
+	- var pageName = "How does it work"
+	- var pageStatus = ""
+
+block content
+	h1 How does it work?
+
+	p The library uses the <a href="http://angular.github.io/protractor/#/" target="_blank">Protractor</a> test runner and <a href="http://jasmine.github.io/" target="_blank">Jasmine</a>'s BDD notation to execute End-to-End (E2) tests in real browsers (Chrome, Firefox, Safari, IE, PhantomJS, etc.).
+
+	p It's fast, lightweight, easy to configure, and integrates beautifully with existing build systems, providing nice integration reports with Jenkins, Travis CI and many others.
+
+
+
+
+	h2 Installing the Library
+
+	p To get started, simply clone this repository and install the dependencies:
+
+	pre
+		code
+			|git clone https://github.com/philsawicki/GoogleAnalytics-WebTester.git
+			|cd GoogleAnalytics-WebTester
+			|npm install
+
+
+
+	h2 Running the Demo Application
+
+	p The project comes preconfigured with a simple web server. If you want, you can check the demo by opening up a browser and heading over to <code>http://localhost:8000/app/index.html#/</code>.
+
+	pre
+		code.
+			npm start
+			npm run protractor
+
+	p The tests should now run, and the calls to Google Analytics' <code>ga()</code> method should be intercepted and logged to the console.
+
+
+
+
+	h2 Sample Spec file
+
+	p Testing a website can be done using Protractor specification files. As an example, here is how the a Custom Event can be tracked, when clicking on a CTA button:
+
+	pre
+		code.
+			describe('The Google Analytics "click" tracking', function () {
+			   beforeEach(function () {
+			      // Load the page to test:
+			      browser.get('index.html');
+			
+			      // Register the Google Analytics Event Data Interceptor:
+			      browser.driver.registerGoogleAnalyticsEventDataInterceptor();
+			   });
+			 
+			   it('should fire an Event when clicking on the Jumbotron CTA', function (done) {
+			      // Click on the "Jumbotron" CTA:
+			      element( by.css('#jumbotronCTA') ).click();
+			 
+			      // Get the "LastEvent" object back from the browser:
+			      browser.driver.executeScript(function () {
+			         return window.GAWebTester.getLastEvent();
+			      })
+			      .then(
+			         // Validate the content of the "LastData" object:
+			         function successCallback (LastData) {
+			            expect( LastData ).toEqual( ['send', 'event', 'Button', 'Click', 'Jumbotron CTA'] );
+			         },
+			         // If there was an error getting back the "LastData" object from the browser, fail the test:
+			         function errorCallback (error) {
+			            fail('Should not have received Error: ' + JSON.stringify(error));
+			         }
+			      )
+			      .then(done);
+			   });
+			});
+
+
+
+	h2 Getting the Google Analytics Event data
+
+	h3 Base mechanics
+
+	p How do you know which Event structure to expect in order to write your tests?
+
+	p Let's say your standard <code>ga()</code> call looks like this when clicking on the Jumbotron CTA of the demo application (will be the same if Event Tracking is set through GTM <span style="color: red;">*</span>):
+
+	pre
+		code.
+			ga('send', 'event', 'Button', 'Click', 'Jumbotron CTA');
+			    │       │        │         │        └──> 5. Event Label
+			    │       │        │         └───────────> 4. Event Action
+			    │       │        └─────────────────────> 3. Event Category
+			    │       └──────────────────────────────> 2. (Standard Google Analytics parameter)
+			    └──────────────────────────────────────> 1. (Standard Google Analytics parameter)
+
+	p Then, after the <code>ga()</code> is executed, the value of <code>window.GAWebTester.getLastEvent()</code> will be:
+
+	pre
+		code.
+			  ['send', 'event', 'Button', 'Click', 'Jumbotron CTA']
+			    │       │        │         │        └──> 5. Event Label
+			    │       │        │         └───────────> 4. Event Action
+			    │       │        └─────────────────────> 3. Event Category
+			    │       └──────────────────────────────> 2. (Standard Google Analytics parameter)
+			    └──────────────────────────────────────> 1. (Standard Google Analytics parameter)
+
+	p <span style="color: red;">*</span>: If using Event tracking through Google Tag Manager (GTM), then the Container will generate some JavaScript exactly matching the pattern of the <code>ga()</code> call above. Just add the send and event values to the Array.
+
+
+
+	h3 Getting more samples
+
+	p More Spec file samples are available for the following Google Analytics features:
+
+	ul
+		li: a(href="examples-pageviews.html") Pageviews
+		li: a(href="examples-events.html") Custom Events
+		li: a(href="examples-custom-metrics.html") Custom Metrics
+		li: a(href="examples-custom-dimensions.html") Custom Dimensions
+		li: a(href="examples-enhanced-ecommerce.html") Enhanced E-Commerce
+		li: a(href="examples-social-interactions.html") Social Interactions
+		li: a(href="examples-user-timings.html") User Timings

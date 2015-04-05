@@ -1,0 +1,40 @@
+nav.Nav
+	
+	section.Nav-section
+		h1.Nav-category Project
+		ol
+			if pageName === "How does it work"
+				li: a.Nav-link.Nav-link--selected(href="how-does-it-work.html") How does it work?
+			else
+				li: a.Nav-link(href="how-does-it-work.html") How does it work?
+			li: a.Nav-link#githubSite(href="https://github.com/philsawicki/GoogleAnalytics-WebTester", title="View Google Analytics Website Checker project on Github") View on GitHub
+			li: a.Nav-link#downloadZip(href="https://github.com/philsawicki/GoogleAnalytics-WebTester/zipball/master", title="Download Google Analytics Web Tester") Download <span class="Nav-status">Free</span>
+			//li: a.Nav-link#downloadTarGz(href="https://github.com/philsawicki/GoogleAnalytics-WebTester/tarball/master", title="Download Google Analytics Web Tester") Download .tar.gz <span class="Nav-status">Free</span>
+	
+	section.Nav-section
+		h1.Nav-category Code Samples
+		ol
+			- for navItem in [{"name":"Pageviews","link":"examples-pageviews.html"},{"name":"Events","link":"examples-events.html"},{"name":"Custom Metrics","link":"examples-custom-metrics.html"},{"name":"Custom Dimensions","link":"examples-custom-dimensions.html"},{"name":"Enhanced E-Commerce","link":"examples-enhanced-ecommerce.html","status":"New"},{"name":"Social Interactions","link":"examples-social-interactions.html"},{"name":"User Timings","link":"examples-user-timings.html"}]
+				li
+					if pageName === navItem.name
+						if typeof navItem.status === 'undefined'
+							a.Nav-link.Nav-link--selected(href="#{navItem.link}") #{navItem.name}
+						else
+							a.Nav-link.Nav-link--selected(href="#{navItem.link}") #{navItem.name}
+								span.Nav-status #{navItem.status}
+					else
+						if typeof navItem.status === 'undefined'
+							a.Nav-link(href="#{navItem.link}") #{navItem.name}
+						else
+							a.Nav-link(href="#{navItem.link}") #{navItem.name}
+								span.Nav-status #{navItem.status}
+
+	section.Nav-section
+		h1.Nav-category Resources
+		ol
+			li: a.Nav-link(href="index.html#about") About this Site
+			li: a.Nav-link(href="index.html#help") Help & Feedback
+			if pageName === "Contact"
+				li: a.Nav-link.Nav-link--selected(href="contact.html") Contact
+			else
+				li: a.Nav-link(href="contact.html") Contact

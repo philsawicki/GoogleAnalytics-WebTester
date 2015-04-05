@@ -1,0 +1,20 @@
+extends base
+
+block variables
+	- var pageTitle = "Custom Metrics"
+	- var pageDescription = "Page description"
+	- var pageSubtitle = "Page Subtitle"
+	- var pageName = "Custom Metrics"
+	- var pageStatus = ""
+
+block content
+	h1 Tracking Custom Metrics
+
+	p To validate tracking of Custom Metrics, use the following Array in your Jasmine expectations:
+
+	pre
+		code.
+			['set', 'metric1', '123']
+			  │      │          └────────────────────> 3. Metric Value
+			  │      └───────────────────────────────> 2. Metric Index
+			  └──────────────────────────────────────> 1. (Standard Google Analytics parameter)

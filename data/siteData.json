@@ -1,0 +1,21 @@
+{
+	"metaAuthor": "Philippe Sawicki",
+	"metaCopyright": "Philippe Sawicki 2014-2015",
+
+	"siteTitle": "Google Analytics Web Tester",
+
+
+	"structuredData": {
+		"@context" : "http://schema.org",
+		"@type" : "Person",
+		"name": "Philippe Sawicki",
+		"title": "Full Stack Developer",
+		"url": "http://philippesawicki.com",
+		"sameAs": [
+			"https://facebook.com/philippe.sawicki",
+			"https://twitter.com/fyll_s",
+			"https://plus.google.com/+PhilippeSawicki",
+			"https://linkedin.com/in/philippesawicki"
+        ]
+	}
+}

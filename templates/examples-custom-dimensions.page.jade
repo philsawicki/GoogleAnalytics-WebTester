@@ -1,0 +1,20 @@
+extends base
+
+block variables
+	- var pageTitle = "Custom Dimensions"
+	- var pageDescription = "Page description"
+	- var pageSubtitle = "Page Subtitle"
+	- var pageName = "Custom Dimensions"
+	- var pageStatus = ""
+
+block content
+	h2 Tracking Custom Dimensions
+
+	p To validate tracking of Custom Dimensions, use the following Array in your Jasmine expectations:
+
+	pre
+		code.
+			['set', 'dimension1', 'Visitor']
+			  │      │             └─────────────────> 3. Dimension Value
+			  │      └───────────────────────────────> 2. Dimension Index
+			  └──────────────────────────────────────> 1. (Standard Google Analytics parameter)

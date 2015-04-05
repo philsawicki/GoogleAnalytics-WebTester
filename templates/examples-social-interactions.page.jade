@@ -1,0 +1,21 @@
+extends base
+
+block variables
+	- var pageTitle = "Social Interactions"
+	- var pageDescription = "Page description"
+	- var pageSubtitle = "Page Subtitle"
+	- var pageName = "Social Interactions"
+	- var pageStatus = ""
+
+block content
+	h1 Tracking Social Interactions
+
+	p To validate tracking of Social Interactions, use the following Array in your Jasmine expectations:
+
+	pre
+		code
+			|['send', 'social', { ────────────────────> 1&2. (Standard Google Analytics parameters)
+			|    'socialNetwork': 'Facebook', ─────────> 3. Social Interaction Network
+			|    'socialAction': 'Like', ──────────────> 4. Social Interaction Action
+			|    'socialTarget': 'http://test.com' ────> 5. Social Interaction Target (URL)
+			|}]

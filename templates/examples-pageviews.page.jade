@@ -1,0 +1,19 @@
+extends base
+
+block variables
+	- var pageTitle = "Pageviews"
+	- var pageDescription = "Page description"
+	- var pageSubtitle = "Page Subtitle"
+	- var pageName = "Pageviews"
+	- var pageStatus = ""
+
+block content
+	h1 Tracking Pageviews
+
+	p To validate tracking of Pageviews, use the following Array in your Jasmine expectations:
+
+	pre
+		code.
+			['send', 'pageview']
+			  │       └──────────────────────────────> 2. (Standard Google Analytics parameter)
+			  └──────────────────────────────────────> 1. (Standard Google Analytics parameter)

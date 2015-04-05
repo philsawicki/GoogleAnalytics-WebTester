@@ -1,0 +1,30 @@
+extends base
+
+block variables
+	- var pageTitle = "Enhanced E-Commerce"
+	- var pageDescription = "Page description"
+	- var pageSubtitle = "Page Subtitle"
+	- var pageName = "Enhanced E-Commerce"
+	- var pageStatus = ""
+
+block content
+	h1 Tracking Enhanced E-Commerce
+
+	p To validate tracking of Enhanced E-Commerce actions, use the following Array in your Jasmine expectations:
+
+	pre
+		code
+			|['ec:addProduct', { ─────────────────────> 1. (Standard Google Analytics parameters)
+			|    'id': 'P12345', ──────────────────────> 2. Product ID
+			|    'name': 'Android Warhol T-Shirt', ────> 3. Product Name
+			|    'category': 'Apparel', ───────────────> 4. Product Category
+			|    'brand': 'Google', ───────────────────> 5. Product Brand
+			|    'variant': 'black', ──────────────────> 6. Product Variant
+			|    'price': '29.20', ────────────────────> 7. Product Price
+			|    'quantity': 1   ──────────────────────> 8. Product quantity
+			|}]
+			| 
+			|['ec:setAction', 'checkout', { ──────────> 1&2. (Standard Google Analytics parameters)
+			|    'step': 1, ───────────────────────────> 3. Checkout Step
+			|    'option': 'MasterCard' ───────────────> 4. Checkout Option
+			|}]

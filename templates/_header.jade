@@ -1,0 +1,20 @@
+header.Header#header
+	div.Header-menu
+		span.Header-menu
+			svg.Icon(viewBox="0 0 16 16")
+				use(xlink:href="public/images/icons.svg#icon-menu")
+
+		// Include "_logo" partial:
+		include _logo
+
+		div.Header-user#header-user
+			svg.Icon(viewBox="0 0 16 16")
+				use(xlink:href="public/images/icons.svg#icon-user")
+
+		div.u-hidden.u-lg-block
+			// Include "_titles" partial:
+			include _titles
+
+		aside.Header-auth#header-auth
+			div.Header-embedApi#embed-api-auth-container
+			a.Header-logout(href="https://accounts.google.com/logout") Logout
