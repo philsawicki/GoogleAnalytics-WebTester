@@ -2,7 +2,7 @@ extends base
 
 block variables
 	- var pageTitle = "User Timings"
-	- var pageDescription = "Implementation detail about Google Analytics User Timings for GA Web Tester."
+	- var pageDescription = "Implementation guide including code samples to validate tracking of Google Analytics User Timings using Google Analytics Web Tester."
 	- var pageSubtitle = ""
 	- var pageHeader = "Tracking User Timings"
 	- var pageName = "User Timings"
@@ -13,7 +13,7 @@ block content
 	p To validate tracking of User Timings, use the following Array in your Jasmine expectations:
 
 	pre
-		code
+		code(class="javascript")
 			|['send', 'timing', { ────────────────────> 1&2. (Standard Google Analytics parameters)
 			|    'timingCategory': 'External Libs', ───> 3. Timing Category
 			|    'timingVar': 'Load Time', ────────────> 4. Timing Variable
@@ -24,7 +24,7 @@ block content
 	p Using direct <code>ga()</code> calls, checking proper tracking of Metrics could be done in the following manner:
 
 	pre
-		code.
+		code(class="javascript").
 			describe('The Google Analytics "User Timing" tracking', function () {
 			   beforeEach(function () {
 			      // Load the page to test:

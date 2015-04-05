@@ -1,21 +1,28 @@
 meta(charset="utf-8")
 meta(http-equiv="X-UA-Compatible", content="IE=edge")
 
-link(rel="stylesheet", href="//fonts.googleapis.com/css?family=Open+Sans:600,400,300")
-link(rel="stylesheet", href="public/css/main.css")
-//link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/monokai_sublime.min.css")
-
 meta(name="viewport", content="width=device-width, initial-scale=1")
 meta(name="description", content="#{pageDescription}")
 meta(name="author", content="#{metaAuthor}")
 meta(name="copyright", content="#{metaCopyright}")
 
+link(rel="canonical", href="#{siteUrl + pageUrl}")
+
+
+// Include the "_minimalCSS" Partial:
+//include _minimalCSS
+
+link(rel="stylesheet", href="//fonts.googleapis.com/css?family=Open+Sans:600,400,300")
+link(rel="stylesheet", href="public/css/main.css")
+//link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/monokai_sublime.min.css")
+
+
 // Facebook: (image: 1200x630)
 meta(property="og:site_name", content="Google Analytics Web Tester")
-meta(property="og:title", content="#{pageTitle}")
+meta(property="og:title", content="#{pageHeader}")
 meta(property="og:type", content="article")
 meta(property="og:image", content="")
-//meta(property="og:url", content="#{siteUrl + pageUrl}")
+meta(property="og:url", content="#{siteUrl + pageUrl}")
 meta(property="og:description", content="#{pageDescription}")
 meta(property="article:author", content="https://facebook.com/philippe.sawicki")
 

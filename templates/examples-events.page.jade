@@ -2,7 +2,7 @@ extends base
 
 block variables
 	- var pageTitle = "Custom Events"
-	- var pageDescription = "Implementation detail about Google Analytics Custom Events for GA Web Tester."
+	- var pageDescription = "Implementation guide including code samples to validate tracking of Google Analytics Custom Events using Google Analytics Web Tester."
 	- var pageSubtitle = ""
 	- var pageHeader = "Tracking Custom Events"
 	- var pageName = "Events"
@@ -13,7 +13,7 @@ block content
 	p To validate tracking of Custom Events, use the following Array in your Jasmine expectations:
 
 	pre
-		code.
+		code(class="javascript").
 			['send', 'event', 'Button', 'Click', 'Jumbotron CTA']
 			  │       │        │         │        └──> 5. Event Label
 			  │       │        │         └───────────> 4. Event Action
@@ -24,7 +24,7 @@ block content
 	p Using direct <code>ga()</code> calls, checking proper tracking of Events could be done in the following manner:
 
 	pre
-		code.
+		code(class="javascript").
 			describe('The Google Analytics "click" tracking', function () {
 			   beforeEach(function () {
 			      // Load the page to test:

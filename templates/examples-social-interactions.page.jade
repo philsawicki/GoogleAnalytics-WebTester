@@ -2,7 +2,7 @@ extends base
 
 block variables
 	- var pageTitle = "Social Interactions"
-	- var pageDescription = "Implementation detail about Google Analytics Social Interactions for GA Web Tester."
+	- var pageDescription = "Implementation guide including code samples to validate tracking of Google Analytics Social Interactions using Google Analytics Web Tester."
 	- var pageSubtitle = ""
 	- var pageHeader = "Tracking Social Interactions"
 	- var pageName = "Social Interactions"
@@ -13,7 +13,7 @@ block content
 	p To validate tracking of Social Interactions, use the following Array in your Jasmine expectations:
 
 	pre
-		code
+		code(class="javascript")
 			|['send', 'social', { ────────────────────> 1&2. (Standard Google Analytics parameters)
 			|    'socialNetwork': 'Facebook', ─────────> 3. Social Interaction Network
 			|    'socialAction': 'Like', ──────────────> 4. Social Interaction Action
@@ -23,7 +23,7 @@ block content
 	p Using direct <code>ga()</code> calls, checking proper tracking of Social Interactions could be done in the following manner:
 
 	pre
-		code.
+		code(class="javascript").
 			describe('The Google Analytics "Social Interactions" tracking', function () {
 			   beforeEach(function () {
 			      // Load the page to test:

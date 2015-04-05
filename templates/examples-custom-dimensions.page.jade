@@ -2,7 +2,7 @@ extends base
 
 block variables
 	- var pageTitle = "Custom Dimensions"
-	- var pageDescription = "Implementation detail about Google Analytics Custom Dimensions for GA Web Tester."
+	- var pageDescription = "Implementation guide including code samples to validate tracking of Google Analytics Custom Dimensions using Google Analytics Web Tester."
 	- var pageSubtitle = ""
 	- var pageHeader = "Tracking Custom Dimensions"
 	- var pageName = "Custom Dimensions"
@@ -13,7 +13,7 @@ block content
 	p To validate tracking of Custom Dimensions, use the following Array in your Jasmine expectations:
 
 	pre
-		code.
+		code(class="javascript").
 			['set', 'dimension1', 'Visitor']
 			  │      │             └─────────────────> 3. Dimension Value
 			  │      └───────────────────────────────> 2. Dimension Index
@@ -22,7 +22,7 @@ block content
 	p Using direct <code>ga()</code> calls, checking proper tracking of Metrics could be done in the following manner:
 
 	pre
-		code.
+		code(class="javascript").
 			describe('The Google Analytics "Dimension" tracking', function () {
 			   beforeEach(function () {
 			      // Load the page to test:

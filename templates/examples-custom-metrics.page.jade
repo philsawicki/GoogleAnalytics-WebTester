@@ -2,7 +2,7 @@ extends base
 
 block variables
 	- var pageTitle = "Custom Metrics"
-	- var pageDescription = "Implementation detail about Google Analytics Custom Metrics for GA Web Tester."
+	- var pageDescription = "Implementation guide including code samples to validate tracking of Google Analytics Custom Metrics using Google Analytics Web Tester."
 	- var pageSubtitle = ""
 	- var pageHeader = "Tracking Custom Metrics"
 	- var pageName = "Custom Metrics"
@@ -13,7 +13,7 @@ block content
 	p To validate tracking of Custom Metrics, use the following Array in your Jasmine expectations:
 
 	pre
-		code.
+		code(class="javascript").
 			['set', 'metric1', '123']
 			  │      │          └────────────────────> 3. Metric Value
 			  │      └───────────────────────────────> 2. Metric Index
@@ -22,7 +22,7 @@ block content
 	p Using direct <code>ga()</code> calls, checking proper tracking of Metrics could be done in the following manner:
 
 	pre
-		code.
+		code(class="javascript").
 			describe('The Google Analytics "Metric" tracking', function () {
 			   beforeEach(function () {
 			      // Load the page to test:
@@ -32,7 +32,7 @@ block content
 			      browser.driver.registerGoogleAnalyticsEventDataInterceptor();
 			   });
 			 
-			   it('should fire an Metric when clicking on the Jumbotron CTA', function (done) {
+			   it('should fire a Metric when clicking on the Jumbotron CTA', function (done) {
 			      // Click on the "Jumbotron" CTA:
 			      element( by.css('#jumbotronCTA') ).click();
 			 

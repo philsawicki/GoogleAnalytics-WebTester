@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:600,400,300"><link rel="stylesheet" href="public/css/main.css"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Implementation detail about Google Analytics Social Interactions for GA Web Tester."><meta name="author" content="Philippe Sawicki"><meta name="copyright" content="Philippe Sawicki 2014-2015"><meta property="og:site_name" content="Google Analytics Web Tester"><meta property="og:title" content="Social Interactions"><meta property="og:type" content="article"><meta property="og:image"><meta property="og:description" content="Implementation detail about Google Analytics Social Interactions for GA Web Tester."><meta property="article:author" content="https://facebook.com/philippe.sawicki"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@fyll_s"><meta name="twitter:creator" content="@fyll_s"><meta name="twitter:title" content="Tracking Social Interactions"><meta name="twitter:description" content="Implementation detail about Google Analytics Social Interactions for GA Web Tester."><meta name="twitter:image:src"><title>Social Interactions - Google Analytics Web Tester</title></head><body class="Site"><script type="text/javascript">
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Implementation guide including code samples to validate tracking of Google Analytics Social Interactions using Google Analytics Web Tester."><meta name="author" content="Philippe Sawicki"><meta name="copyright" content="Philippe Sawicki 2014-2015"><link rel="canonical" href="https://philsawicki.github.io/GoogleAnalytics-WebTester/examples-social-interactions.html"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:600,400,300"><link rel="stylesheet" href="public/css/main.css"><meta property="og:site_name" content="Google Analytics Web Tester"><meta property="og:title" content="Tracking Social Interactions"><meta property="og:type" content="article"><meta property="og:image"><meta property="og:url" content="https://philsawicki.github.io/GoogleAnalytics-WebTester/examples-social-interactions.html"><meta property="og:description" content="Implementation guide including code samples to validate tracking of Google Analytics Social Interactions using Google Analytics Web Tester."><meta property="article:author" content="https://facebook.com/philippe.sawicki"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@fyll_s"><meta name="twitter:creator" content="@fyll_s"><meta name="twitter:title" content="Tracking Social Interactions"><meta name="twitter:description" content="Implementation guide including code samples to validate tracking of Google Analytics Social Interactions using Google Analytics Web Tester."><meta name="twitter:image:src"><title>Social Interactions - Google Analytics Web Tester</title></head><body class="Site"><script type="text/javascript">
       if (location.hostname === 'localhost') {
       	(function (w) {
       		w.ga = function () {};
@@ -16,11 +16,11 @@
       });
       ga('require', 'displayfeatures');
       ga('send', 'pageview');
-    </script><aside id="sidebar" class="Site-sidebar"><header class="NavHeader"><a href="index.html" class="NavHeader-homeLink"><svg viewbox="0 0 16 16" class="Icon"><use xlink:href="public/images/icons.svg#icon-home"></use></svg><h1 class="NavHeader-title">Home</h1></a><span id="sidebar-close" class="NavHeader-controls"><svg viewbox="0 0 16 16" class="Icon"><use xlink:href="public/images/icons.svg#icon-left-arrow"></use></svg></span></header><nav class="Nav"><section class="Nav-section"><h1 class="Nav-category">Project</h1><ol><li><a href="how-does-it-work.html" class="Nav-link">How does it work?</a></li><li><a id="githubSite" href="https://github.com/philsawicki/GoogleAnalytics-WebTester" title="View Google Analytics Website Checker project on Github" class="Nav-link">View on GitHub</a></li><li><a id="downloadZip" href="https://github.com/philsawicki/GoogleAnalytics-WebTester/zipball/master" title="Download Google Analytics Web Tester" class="Nav-link">Download <span class="Nav-status">Free</span></a></li></ol></section><section class="Nav-section"><h1 class="Nav-category">Code Samples</h1><ol><li><a href="examples-pageviews.html" class="Nav-link">Pageviews</a></li><li><a href="examples-events.html" class="Nav-link">Events</a></li><li><a href="examples-custom-metrics.html" class="Nav-link">Custom Metrics</a></li><li><a href="examples-custom-dimensions.html" class="Nav-link">Custom Dimensions</a></li><li><a href="examples-enhanced-ecommerce.html" class="Nav-link">Enhanced E-Commerce<span class="Nav-status">New</span></a></li><li><a href="examples-social-interactions.html" class="Nav-link Nav-link--selected">Social Interactions</a></li><li><a href="examples-user-timings.html" class="Nav-link">User Timings</a></li></ol></section><section class="Nav-section"><h1 class="Nav-category">Resources</h1><ol><li><a href="index.html#about" class="Nav-link">About this Site</a></li><li><a href="index.html#help" class="Nav-link">Help & Feedback</a></li><li><a href="contact.html" class="Nav-link">Contact</a></li></ol></section></nav></aside><main class="Site-main"><header id="header" class="Header"><div class="Header-block"><span id="header-menu" class="Header-menu"><svg viewbox="0 0 16 16" class="Icon"><use xlink:href="public/images/icons.svg#icon-menu"></use></svg></span><div title="Google Analytics Demos and Tools" class="Logo"><div class="Logo-full"><svg viewbox="0 0 622 63.08"><use xlink:href="public/images/icons.svg#ga-developer-logo"></use></svg></div><div class="Logo-partial"><svg viewbox="0 0 95 16"><use xlink:href="public/images/icons.svg#google-analytics-text"></use></svg></div></div><div id="header-user" class="Header-user"><svg viewbox="0 0 16 16" class="Icon"><use xlink:href="public/images/icons.svg#icon-user"></use></svg></div><div class="u-hidden u-lg-block"><div class="Titles Titles--hero"><h1 class="Titles-main">Tracking Social Interactions</h1></div></div><aside id="header-auth" class="Header-auth"><div id="embed-api-auth-container" class="Header-embedApi"></div><a href="https://accounts.google.com/logout" class="Header-logout">Logout</a></aside></div></header><div class="Content"><div class="u-lg-hidden"><div class="Titles Titles--hero"><h1 class="Titles-main">Tracking Social Interactions</h1></div></div><p>To validate tracking of Social Interactions, use the following Array in your Jasmine expectations:</p><pre><code>['send', 'social', { ────────────────────> 1&2. (Standard Google Analytics parameters)
+    </script><aside id="sidebar" class="Site-sidebar"><header class="NavHeader"><a href="index.html" class="NavHeader-homeLink"><svg viewbox="0 0 16 16" class="Icon"><use xlink:href="public/images/icons.svg#icon-home"></use></svg><h1 class="NavHeader-title">Home</h1></a><span id="sidebar-close" class="NavHeader-controls"><svg viewbox="0 0 16 16" class="Icon"><use xlink:href="public/images/icons.svg#icon-left-arrow"></use></svg></span></header><nav class="Nav"><section class="Nav-section"><h1 class="Nav-category">Project</h1><ol><li><a href="how-does-it-work.html" class="Nav-link">How does it work?</a></li><li><a id="githubSite" href="https://github.com/philsawicki/GoogleAnalytics-WebTester" title="View Google Analytics Website Checker project on Github" class="Nav-link">View on GitHub</a></li><li><a id="downloadZip" href="https://github.com/philsawicki/GoogleAnalytics-WebTester/zipball/master" title="Download Google Analytics Web Tester" class="Nav-link">Download <span class="Nav-status">Free</span></a></li></ol></section><section class="Nav-section"><h1 class="Nav-category">Code Samples</h1><ol><li><a href="examples-pageviews.html" class="Nav-link">Pageviews</a></li><li><a href="examples-events.html" class="Nav-link">Events</a></li><li><a href="examples-custom-metrics.html" class="Nav-link">Custom Metrics</a></li><li><a href="examples-custom-dimensions.html" class="Nav-link">Custom Dimensions</a></li><li><a href="examples-enhanced-ecommerce.html" class="Nav-link">Enhanced E-Commerce<span class="Nav-status">New</span></a></li><li><a href="examples-social-interactions.html" class="Nav-link Nav-link--selected">Social Interactions</a></li><li><a href="examples-user-timings.html" class="Nav-link">User Timings</a></li></ol></section><section class="Nav-section"><h1 class="Nav-category">Resources</h1><ol><li><a href="index.html#about" class="Nav-link">About this Site</a></li><li><a href="index.html#help" class="Nav-link">Help & Feedback</a></li><li><a href="contact.html" class="Nav-link">Contact</a></li></ol></section></nav></aside><main class="Site-main"><header id="header" class="Header"><div class="Header-block"><span id="header-menu" class="Header-menu"><svg viewbox="0 0 16 16" class="Icon"><use xlink:href="public/images/icons.svg#icon-menu"></use></svg></span><div title="Google Analytics Demos and Tools" class="Logo"><div class="Logo-full"><svg viewbox="0 0 622 63.08"><use xlink:href="public/images/icons.svg#ga-developer-logo"></use></svg></div><div class="Logo-partial"><svg viewbox="0 0 95 16"><use xlink:href="public/images/icons.svg#google-analytics-text"></use></svg></div></div><div id="header-user" class="Header-user"><svg viewbox="0 0 16 16" class="Icon"><use xlink:href="public/images/icons.svg#icon-user"></use></svg></div><div class="u-hidden u-lg-block"><div class="Titles Titles--hero"><h1 class="Titles-main">Tracking Social Interactions</h1></div></div><aside id="header-auth" class="Header-auth"><div id="embed-api-auth-container" class="Header-embedApi"></div><a href="https://accounts.google.com/logout" class="Header-logout">Logout</a></aside></div></header><div class="Content"><div class="u-lg-hidden"><div class="Titles Titles--hero"><h1 class="Titles-main">Tracking Social Interactions</h1></div></div><p>To validate tracking of Social Interactions, use the following Array in your Jasmine expectations:</p><pre><code class="javascript">['send', 'social', { ────────────────────> 1&2. (Standard Google Analytics parameters)
    'socialNetwork': 'Facebook', ─────────> 3. Social Interaction Network
    'socialAction': 'Like', ──────────────> 4. Social Interaction Action
    'socialTarget': 'http://test.com' ────> 5. Social Interaction Target (URL)
-}]</code></pre><p>Using direct <code>ga()</code> calls, checking proper tracking of Social Interactions could be done in the following manner:</p><pre><code>describe('The Google Analytics "Social Interactions" tracking', function () {
+}]</code></pre><p>Using direct <code>ga()</code> calls, checking proper tracking of Social Interactions could be done in the following manner:</p><pre><code class="javascript">describe('The Google Analytics "Social Interactions" tracking', function () {
    beforeEach(function () {
       // Load the page to test:
       browser.get('index.html');
@@ -53,21 +53,8 @@
       )
       .then(done);
    });
-});</code></pre></div></main><script type="application/ld+json">{"@context":"http://schema.org","@type":"Person","name":"Philippe Sawicki","title":"Full Stack Developer","url":"http://philippesawicki.com","sameAs":["https://facebook.com/philippe.sawicki","https://twitter.com/fyll_s","https://plus.google.com/+PhilippeSawicki","https://linkedin.com/in/philippesawicki"]}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script><script type="text/javascript">
-      if (hljs) {
-      	hljs.initHighlightingOnLoad();
-      }
-      
-      
-      function whenReady (fn) {
-      	if (document.readyState != 'loading') {
-      		fn();
-      	} else {
-      		document.addEventListener('DOMContentLoaded', fn);
-      	}
-      }
-      
-      whenReady(function () {
+});</code></pre></div></main><script type="application/ld+json">{"@context":"http://schema.org","@type":"Person","name":"Philippe Sawicki","title":"Full Stack Developer","url":"http://philippesawicki.com","sameAs":["https://facebook.com/philippe.sawicki","https://twitter.com/fyll_s","https://plus.google.com/+PhilippeSawicki","https://linkedin.com/in/philippesawicki"]}</script><script type="text/javascript">
+      function bindGoogleAnalyticsTracking () {
       	var downloadZipLink = document.getElementById('downloadZip');
       	if (downloadZipLink) {
       		downloadZipLink.addEventListener('click', function (event) {
@@ -88,5 +75,98 @@
       			ga('send', 'event', 'Button', 'Click', 'View Project on Github');
       		});
       	}
+      };
+      
+      
+      function menuHandler () {
+      	(function () {
+      		return {
+      			init: function () {
+      				this.addOpenHandler();
+      			},
+      			addOpenHandler: function () {
+      				$(document).on('touchend.sidebar click.sidebar', '#header-menu', function (event) {
+      					event.preventDefault();
+      
+      					$(document).off('.sidebar');
+      					this.open();
+      					this.addCloseHandler();
+      				}.bind(this));
+      			},
+      			addCloseHandler: function () {
+      				$(document).on('touchend.sidebar click.sidebar', function (event) {
+      					var $target = $(event.target);
+      
+      					// Close of the user clicked the close icon or clicked
+      					// outside of the sidebar.
+      					if ($target.closest('#sidebar-close').length || !$target.closest('#sidebar').length) {
+      						event.preventDefault();
+      						$(document).off('.sidebar');
+      						this.close();
+      						this.addOpenHandler();
+      					}
+      				}.bind(this));
+      			},
+      			open: function () {
+      				$(document.body).addClass('is-expanded');
+      			},
+      			close: function () {
+      				$(document.body).removeClass('is-expanded');
+      			}
+      		};
+      	})().init();
+      }
+      
+      
+      
+      
+      
+      var Loader = function () { };
+      Loader.prototype = {
+      	require: function (scripts, callback) {
+      		this.nbLoadedScripts   = 0;
+      		this.nbRequiredScripts = scripts.length;
+      		this.callback          = callback;
+      
+      		for (var i = 0, nbScripts = scripts.length; i < nbScripts; i++) {
+      			this.writeScript(scripts[i]);
+      		}
+      	},
+      	loaded: function (evt) {
+      		this.nbLoadedScripts++;
+      
+      		if (this.nbLoadedScripts === this.nbRequiredScripts && typeof this.callback === 'function') {
+      			this.callback.call();
+      		}
+      	},
+      	writeScript: function (src) {
+      		var self = this;
+      		var s = document.createElement('script');
+      		s.type = 'text/javascript';
+      		s.async = true;
+      		s.src = src;
+      		s.addEventListener('load', function (e) {
+      			self.loaded(e);
+      		}, false);
+      		var head = document.getElementsByTagName('head')[0];
+      		head.appendChild(s);
+      	}
+      };
+      
+      var HighlightJSLoader = new Loader();
+      HighlightJSLoader.require([
+      	'//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js'
+      ], function () {
+      	if (typeof hljs !== 'undefined') {
+      		hljs.initHighlighting();
+      	}
+      });
+      
+      var jQueryLoader = new Loader();
+      jQueryLoader.require([
+      	'//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'
+      ], function () {
+      	menuHandler();
+      	bindGoogleAnalyticsTracking();
       });
     </script></body></html>

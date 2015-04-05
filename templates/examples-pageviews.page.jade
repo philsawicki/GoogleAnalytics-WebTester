@@ -2,7 +2,7 @@ extends base
 
 block variables
 	- var pageTitle = "Pageviews"
-	- var pageDescription = "Implementation detail about Google Analytics Pageviews for GA Web Tester."
+	- var pageDescription = "Implementation guide including code samples to validate tracking of Google Analytics Pageviews using Google Analytics Web Tester."
 	- var pageSubtitle = ""
 	- var pageHeader = "Tracking Pageviews"
 	- var pageName = "Pageviews"
@@ -13,7 +13,7 @@ block content
 	p To validate tracking of Pageviews, use the following Array in your Jasmine expectations:
 
 	pre
-		code.
+		code(class="javascript").
 			['send', 'pageview']
 			  │       └──────────────────────────────> 2. (Standard Google Analytics parameter)
 			  └──────────────────────────────────────> 1. (Standard Google Analytics parameter)
@@ -21,7 +21,7 @@ block content
 	p Using direct <code>ga()</code> calls, checking proper tracking of Pageviews could be done in the following manner:
 
 	pre
-		code.
+		code(class="javascript").
 			describe('The Google Analytics "Pageview" tracking', function () {
 			   beforeEach(function () {
 			      // Load the page to test:
@@ -31,7 +31,7 @@ block content
 			      browser.driver.registerGoogleAnalyticsEventDataInterceptor();
 			   });
 			 
-			   it('should fire an Pageview event', function (done) {
+			   it('should fire a Pageview event', function (done) {
 			      // Get the "LastEvent" object back from the browser:
 			      browser.driver.executeScript(function () {
 			         return window.GAWebTester.getLastEvent();

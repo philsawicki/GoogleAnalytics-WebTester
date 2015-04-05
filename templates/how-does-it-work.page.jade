@@ -2,7 +2,7 @@ extends base
 
 block variables
 	- var pageTitle = "How does it work?"
-	- var pageDescription = "Installation instructions and usage guide for Google Analytics Web Tester."
+	- var pageDescription = "Installation instructions and usage guide for Google Analytics Web Tester. Includes code samples to validate proper Analytics tracking of a website."
 	- var pageSubtitle = "How-to Guide"
 	- var pageHeader = "How does it work?"
 	- var pageName = "How does it work"
@@ -22,7 +22,7 @@ block content
 	p To get started, simply clone this repository and install the dependencies:
 
 	pre
-		code
+		code(class="bash")
 			|git clone https://github.com/philsawicki/GoogleAnalytics-WebTester.git
 			|cd GoogleAnalytics-WebTester
 			|npm install
@@ -48,7 +48,7 @@ block content
 	p Testing a website can be done using Protractor specification files. As an example, here is how the a Custom Event can be tracked, when clicking on a CTA button:
 
 	pre
-		code.
+		code(class="javascript").
 			describe('The Google Analytics "click" tracking', function () {
 			   beforeEach(function () {
 			      // Load the page to test:
@@ -91,7 +91,7 @@ block content
 	p Let's say your standard <code>ga()</code> call looks like this when clicking on the Jumbotron CTA of the demo application (will be the same if Event Tracking is set through GTM <span style="color: red;">*</span>):
 
 	pre
-		code.
+		code(class="javascript").
 			ga('send', 'event', 'Button', 'Click', 'Jumbotron CTA');
 			    │       │        │         │        └──> 5. Event Label
 			    │       │        │         └───────────> 4. Event Action
@@ -102,7 +102,7 @@ block content
 	p Then, after the <code>ga()</code> is executed, the value of <code>window.GAWebTester.getLastEvent()</code> will be:
 
 	pre
-		code.
+		code(class="javascript").
 			  ['send', 'event', 'Button', 'Click', 'Jumbotron CTA']
 			    │       │        │         │        └──> 5. Event Label
 			    │       │        │         └───────────> 4. Event Action
