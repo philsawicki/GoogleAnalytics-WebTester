@@ -1,11 +1,13 @@
 // scripts
 
 script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js")
-script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/languages/javascript.min.js")
+//script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/languages/javascript.min.js")
 
 //   * GA Tracking Code
 script(type="text/javascript").
-	hljs.initHighlightingOnLoad();
+	if (hljs) {
+		hljs.initHighlightingOnLoad();
+	}
 
 
 	function whenReady (fn) {

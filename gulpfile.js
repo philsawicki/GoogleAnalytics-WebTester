@@ -1,10 +1,11 @@
-var gulp    = require('gulp'),
-    jade    = require('gulp-jade'),
-    data    = require('gulp-data')
-    rename  = require('gulp-rename'),
-    sitemap = require('gulp-sitemap'),
-    path    = require('path'),
-    fs      = require('fs');
+var gulp       = require('gulp'),
+    jade       = require('gulp-jade'),
+    data       = require('gulp-data'),
+    minifyHTML = require('gulp-minify-html'),
+    rename     = require('gulp-rename'),
+    sitemap    = require('gulp-sitemap'),
+    path       = require('path'),
+    fs         = require('fs');
 
 
 gulp.task('jade', function () {
@@ -22,6 +23,7 @@ gulp.task('jade', function () {
         //.pipe(sitemap({
         //    siteUrl: 'https://philsawicki.github.io/GoogleAnalytics-WebTester'
         //}))
+        .pipe(minifyHTML({ quotes: true, conditionals: true }))
         .pipe(gulp.dest('./'));
 });
 

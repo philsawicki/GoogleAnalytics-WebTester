@@ -1,25 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <!-- Render "Variables" Block:-->
-  <head>
-    <!-- Include "_head" Partial:-->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:600,400,300">
-    <link rel="stylesheet" href="public/css/main.css">
-    <!--link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/monokai_sublime.min.css")-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Page description">
-    <meta name="author" content="Philippe Sawicki">
-    <meta name="copyright" content="Philippe Sawicki 2014-2015">
-    <title>Custom Events</title>
-    <!-- Render "head_scripts" Block:-->
-  </head>
-  <body class="Site">
-    <!-- Include "_analytics" Partial:-->
-    <!-- Google Analytics Tracking-->
-    <!--   * GA Tracking Code-->
-    <script type="text/javascript">
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:600,400,300"><link rel="stylesheet" href="public/css/main.css"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Implementation detail about Google Analytics Custom Events for GA Web Tester."><meta name="author" content="Philippe Sawicki"><meta name="copyright" content="Philippe Sawicki 2014-2015"><meta property="og:site_name" content="Google Analytics Web Tester"><meta property="og:title" content="Custom Events"><meta property="og:type" content="article"><meta property="og:image"><meta property="og:description" content="Implementation detail about Google Analytics Custom Events for GA Web Tester."><meta property="article:author" content="https://facebook.com/philippe.sawicki"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@fyll_s"><meta name="twitter:creator" content="@fyll_s"><meta name="twitter:title" content="Tracking Custom Events"><meta name="twitter:description" content="Implementation detail about Google Analytics Custom Events for GA Web Tester."><meta name="twitter:image:src"><title>Custom Events - Google Analytics Web Tester</title></head><body class="Site"><script type="text/javascript">
       if (location.hostname === 'localhost') {
       	(function (w) {
       		w.ga = function () {};
@@ -37,113 +16,13 @@
       });
       ga('require', 'displayfeatures');
       ga('send', 'pageview');
-    </script>
-    <aside id="sidebar" class="Site-sidebar">
-      <header class="NavHeader"><a href="index.html" class="NavHeader-homeLink">
-          <svg viewBox="0 0 16 16" class="Icon">
-            <use xlink:href="public/images/icons.svg#icon-home"></use>
-          </svg>
-          <h1 class="NavHeader-title">Home</h1></a><span id="sidebar-close" class="NavHeader-controls">
-          <svg viewBox="0 0 16 16" class="Icon">
-            <use xlink:href="public/images/icons.svg#icon-left-arrow"></use>
-          </svg></span></header>
-      <nav class="Nav">
-        <section class="Nav-section">
-          <h1 class="Nav-category">Project</h1>
-          <ol>
-            <li><a href="how-does-it-work.html" class="Nav-link">How does it work?</a></li>
-            <li><a id="githubSite" href="https://github.com/philsawicki/GoogleAnalytics-WebTester" title="View Google Analytics Website Checker project on Github" class="Nav-link">View on GitHub</a></li>
-            <li><a id="downloadZip" href="https://github.com/philsawicki/GoogleAnalytics-WebTester/zipball/master" title="Download Google Analytics Web Tester" class="Nav-link">Download <span class="Nav-status">Free</span></a></li>
-            <!--li: a.Nav-link#downloadTarGz(href="https://github.com/philsawicki/GoogleAnalytics-WebTester/tarball/master", title="Download Google Analytics Web Tester") Download .tar.gz <span class="Nav-status">Free</span>-->
-          </ol>
-        </section>
-        <section class="Nav-section">
-          <h1 class="Nav-category">Code Samples</h1>
-          <ol>
-            <li><a href="examples-pageviews.html" class="Nav-link">Pageviews</a>
-            </li>
-            <li><a href="examples-events.html" class="Nav-link Nav-link--selected">Events</a>
-            </li>
-            <li><a href="examples-custom-metrics.html" class="Nav-link">Custom Metrics</a>
-            </li>
-            <li><a href="examples-custom-dimensions.html" class="Nav-link">Custom Dimensions</a>
-            </li>
-            <li><a href="examples-enhanced-ecommerce.html" class="Nav-link">Enhanced E-Commerce<span class="Nav-status">New</span></a>
-            </li>
-            <li><a href="examples-social-interactions.html" class="Nav-link">Social Interactions</a>
-            </li>
-            <li><a href="examples-user-timings.html" class="Nav-link">User Timings</a>
-            </li>
-          </ol>
-        </section>
-        <section class="Nav-section">
-          <h1 class="Nav-category">Resources</h1>
-          <ol>
-            <li><a href="index.html#about" class="Nav-link">About this Site</a></li>
-            <li><a href="index.html#help" class="Nav-link">Help & Feedback</a></li>
-            <li><a href="contact.html" class="Nav-link">Contact</a></li>
-          </ol>
-        </section>
-      </nav>
-    </aside>
-    <main class="Site-main">
-      <header id="header" class="Header">
-        <div class="Header-menu"><span class="Header-menu">
-            <svg viewBox="0 0 16 16" class="Icon">
-              <use xlink:href="public/images/icons.svg#icon-menu"></use>
-            </svg></span>
-          <!-- Include "_logo" partial:-->
-          <div title="Google Analytics Demos and Tools" class="Logo">
-            <div class="Logo-full">
-              <svg viewBox="0 0 622 63.08">
-                <use xlink:href="public/images/icons.svg#ga-developer-logo"></use>
-              </svg>
-            </div>
-            <div class="Logo-partial">
-              <svg viewBox="0 0 95 16">
-                <use xlink:href="public/images/icons.svg#google-analytics-text"></use>
-              </svg>
-            </div>
-          </div>
-          <div id="header-user" class="Header-user">
-            <svg viewBox="0 0 16 16" class="Icon">
-              <use xlink:href="public/images/icons.svg#icon-user"></use>
-            </svg>
-          </div>
-          <div class="u-hidden u-lg-block">
-            <!-- Include "_titles" partial:-->
-            <div class="Titles Titles--hero">
-              <h1 class="Titles-main">[[title]]</h1>
-              <div class="Titles-sub">pageSubtitle</div>
-              <!--	a.Titles-action(href="[[project-external]]") Launch [[project.type]]-->
-            </div>
-          </div>
-          <aside id="header-auth" class="Header-auth">
-            <div id="embed-api-auth-container" class="Header-embedApi"></div><a href="https://accounts.google.com/logout" class="Header-logout">Logout</a>
-          </aside>
-        </div>
-      </header>
-      <div class="Content">
-        <div class="u-lg-hidden">
-          <!-- Render "_titles" Partial:-->
-          <div class="Titles Titles--hero">
-            <h1 class="Titles-main">[[title]]</h1>
-            <div class="Titles-sub">pageSubtitle</div>
-            <!--	a.Titles-action(href="[[project-external]]") Launch [[project.type]]-->
-          </div>
-        </div>
-        <!-- Render "content" Block:-->
-        <h1>Tracking Custom Events</h1>
-        <p>To validate tracking of Custom Events, use the following Array in your Jasmine expectations:</p>
-        <pre><code>['send', 'event', 'Button', 'Click', 'Jumbotron CTA']
+    </script><aside id="sidebar" class="Site-sidebar"><header class="NavHeader"><a href="index.html" class="NavHeader-homeLink"><svg viewbox="0 0 16 16" class="Icon"><use xlink:href="public/images/icons.svg#icon-home"></use></svg><h1 class="NavHeader-title">Home</h1></a><span id="sidebar-close" class="NavHeader-controls"><svg viewbox="0 0 16 16" class="Icon"><use xlink:href="public/images/icons.svg#icon-left-arrow"></use></svg></span></header><nav class="Nav"><section class="Nav-section"><h1 class="Nav-category">Project</h1><ol><li><a href="how-does-it-work.html" class="Nav-link">How does it work?</a></li><li><a id="githubSite" href="https://github.com/philsawicki/GoogleAnalytics-WebTester" title="View Google Analytics Website Checker project on Github" class="Nav-link">View on GitHub</a></li><li><a id="downloadZip" href="https://github.com/philsawicki/GoogleAnalytics-WebTester/zipball/master" title="Download Google Analytics Web Tester" class="Nav-link">Download <span class="Nav-status">Free</span></a></li></ol></section><section class="Nav-section"><h1 class="Nav-category">Code Samples</h1><ol><li><a href="examples-pageviews.html" class="Nav-link">Pageviews</a></li><li><a href="examples-events.html" class="Nav-link Nav-link--selected">Events</a></li><li><a href="examples-custom-metrics.html" class="Nav-link">Custom Metrics</a></li><li><a href="examples-custom-dimensions.html" class="Nav-link">Custom Dimensions</a></li><li><a href="examples-enhanced-ecommerce.html" class="Nav-link">Enhanced E-Commerce<span class="Nav-status">New</span></a></li><li><a href="examples-social-interactions.html" class="Nav-link">Social Interactions</a></li><li><a href="examples-user-timings.html" class="Nav-link">User Timings</a></li></ol></section><section class="Nav-section"><h1 class="Nav-category">Resources</h1><ol><li><a href="index.html#about" class="Nav-link">About this Site</a></li><li><a href="index.html#help" class="Nav-link">Help & Feedback</a></li><li><a href="contact.html" class="Nav-link">Contact</a></li></ol></section></nav></aside><main class="Site-main"><header id="header" class="Header"><div class="Header-block"><span id="header-menu" class="Header-menu"><svg viewbox="0 0 16 16" class="Icon"><use xlink:href="public/images/icons.svg#icon-menu"></use></svg></span><div title="Google Analytics Demos and Tools" class="Logo"><div class="Logo-full"><svg viewbox="0 0 622 63.08"><use xlink:href="public/images/icons.svg#ga-developer-logo"></use></svg></div><div class="Logo-partial"><svg viewbox="0 0 95 16"><use xlink:href="public/images/icons.svg#google-analytics-text"></use></svg></div></div><div id="header-user" class="Header-user"><svg viewbox="0 0 16 16" class="Icon"><use xlink:href="public/images/icons.svg#icon-user"></use></svg></div><div class="u-hidden u-lg-block"><div class="Titles Titles--hero"><h1 class="Titles-main">Tracking Custom Events</h1></div></div><aside id="header-auth" class="Header-auth"><div id="embed-api-auth-container" class="Header-embedApi"></div><a href="https://accounts.google.com/logout" class="Header-logout">Logout</a></aside></div></header><div class="Content"><div class="u-lg-hidden"><div class="Titles Titles--hero"><h1 class="Titles-main">Tracking Custom Events</h1></div></div><p>To validate tracking of Custom Events, use the following Array in your Jasmine expectations:</p><pre><code>['send', 'event', 'Button', 'Click', 'Jumbotron CTA']
   │       │        │         │        └──> 5. Event Label
   │       │        │         └───────────> 4. Event Action
   │       │        └─────────────────────> 3. Event Category
   │       └──────────────────────────────> 2. (Standard Google Analytics parameter)
   └──────────────────────────────────────> 1. (Standard Google Analytics parameter)
-</code></pre>
-        <p>Using direct <code>ga()</code> calls, checking proper tracking of Events could be done in the following manner:</p>
-        <pre><code>describe('The Google Analytics "click" tracking', function () {
+</code></pre><p>Using direct <code>ga()</code> calls, checking proper tracking of Events could be done in the following manner:</p><pre><code>describe('The Google Analytics "click" tracking', function () {
    beforeEach(function () {
       // Load the page to test:
       browser.get('index.html');
@@ -172,25 +51,10 @@
       )
       .then(done);
    });
-});</code></pre>
-        <!-- Render "tech" Block:-->
-      </div>
-    </main>
-    <!--script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")-->
-    <!--script(src="https://ga-dev-tools.appspot.com/public/javascript/bundle.js")-->
-    <!-- Render "foot_scripts" Block:-->
-    <!--script(src="bundle.js")-->
-    <!-- Include "_footer" Partial:-->
-    <!-- Footer-->
-    <!--   * Scripts-->
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"Person","name":"Philippe Sawicki","title":"Full Stack Developer","url":"http://philippesawicki.com","sameAs":["https://facebook.com/philippe.sawicki","https://twitter.com/fyll_s","https://plus.google.com/+PhilippeSawicki","https://linkedin.com/in/philippesawicki"]}</script>
-    <!-- Include "_footer-scripts" Partial:-->
-    <!-- scripts-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/languages/javascript.min.js"></script>
-    <!--   * GA Tracking Code-->
-    <script type="text/javascript">
-      hljs.initHighlightingOnLoad();
+});</code></pre></div></main><script type="application/ld+json">{"@context":"http://schema.org","@type":"Person","name":"Philippe Sawicki","title":"Full Stack Developer","url":"http://philippesawicki.com","sameAs":["https://facebook.com/philippe.sawicki","https://twitter.com/fyll_s","https://plus.google.com/+PhilippeSawicki","https://linkedin.com/in/philippesawicki"]}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script><script type="text/javascript">
+      if (hljs) {
+      	hljs.initHighlightingOnLoad();
+      }
       
       
       function whenReady (fn) {
@@ -223,6 +87,4 @@
       		});
       	}
       });
-    </script>
-  </body>
-</html>
+    </script></body></html>

@@ -3,7 +3,7 @@
 	"metaCopyright": "Philippe Sawicki 2014-2015",
 
 	"siteTitle": "Google Analytics Web Tester",
-
+	"siteUrl": "https://philsawicki.github.io/GoogleAnalytics-WebTester/",
 
 	"structuredData": {
 		"@context" : "http://schema.org",

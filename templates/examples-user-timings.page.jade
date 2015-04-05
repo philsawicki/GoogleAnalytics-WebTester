@@ -2,14 +2,14 @@ extends base
 
 block variables
 	- var pageTitle = "User Timings"
-	- var pageDescription = "Page description"
-	- var pageSubtitle = "Page Subtitle"
+	- var pageDescription = "Implementation detail about Google Analytics User Timings for GA Web Tester."
+	- var pageSubtitle = ""
+	- var pageHeader = "Tracking User Timings"
 	- var pageName = "User Timings"
 	- var pageStatus = ""
+	- var pageUrl = "examples-user-timings.html"
 
 block content
-	h1 Tracking User Timings
-
 	p To validate tracking of User Timings, use the following Array in your Jasmine expectations:
 
 	pre
@@ -20,3 +20,40 @@ block content
 			|    'timingValue': 123, ──────────────────> 5. Timing Value (in ms)
 			|    'timingLabel': 'jQuery' ──────────────> 6. Timing Label
 			|}]
+
+	p Using direct <code>ga()</code> calls, checking proper tracking of Metrics could be done in the following manner:
+
+	pre
+		code.
+			describe('The Google Analytics "User Timing" tracking', function () {
+			   beforeEach(function () {
+			      // Load the page to test:
+			      browser.get('index.html');
+			
+			      // Register the Google Analytics Event Data Interceptor:
+			      browser.driver.registerGoogleAnalyticsEventDataInterceptor();
+			   });
+			 
+			   it('should fire a User Timing when loading the jQuery library', function (done) {
+			      // Get the "LastEvent" object back from the browser:
+			      browser.driver.executeScript(function () {
+			         return window.GAWebTester.getLastEvent();
+			      })
+			      .then(
+			         // Validate the content of the "LastData" object:
+			         function successCallback (LastData) {
+			            expect( LastData ).toEqual( ['send', 'timing', {
+			               'timingCategory': 'External Libs',
+			               'timingVar': 'Load Time',
+			               'timingValue': 123,
+			               'timingLabel': 'jQuery'
+			            }] );
+			         },
+			         // If there was an error getting back the "LastData" object from the browser, fail the test:
+			         function errorCallback (error) {
+			            fail('Should not have received Error: ' + JSON.stringify(error));
+			         }
+			      )
+			      .then(done);
+			   });
+			});

@@ -4,12 +4,13 @@
     "gulp": "^3.8.11",
     "gulp-data": "^1.2.0",
     "gulp-jade": "^1.0.0",
+    "gulp-minify-html": "^1.0.2",
     "gulp-rename": "^1.2.2",
     "gulp-sitemap": "^2.0.2",
     "http-server": "^0.8.0"
   },
   "scripts": {
     "prestart": "npm install",
-    "start": "http-server ./ -p 8000 -a localhost"
+    "start": "http-server ./ -p 8000 -a localhost -c-1"
   }
 }
