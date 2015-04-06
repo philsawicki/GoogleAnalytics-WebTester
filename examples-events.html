@@ -52,119 +52,23 @@
       .then(done);
    });
 });</code></pre></div></main><script type="application/ld+json">{"@context":"http://schema.org","@type":"Person","name":"Philippe Sawicki","title":"Full Stack Developer","url":"http://philippesawicki.com","sameAs":["https://facebook.com/philippe.sawicki","https://twitter.com/fyll_s","https://plus.google.com/+PhilippeSawicki","https://linkedin.com/in/philippesawicki"]}</script><script type="text/javascript">
-      function bindGoogleAnalyticsTracking () {
-      	var downloadZipLink = document.getElementById('downloadZip');
-      	if (downloadZipLink) {
-      		downloadZipLink.addEventListener('click', function (event) {
-      			ga('send', 'event', 'Button', 'Click', 'Download Zip File');
-      		});
+      function asyncLoad (src, callback) {
+      	var s = document.createElement('script');
+      	s.type = 'text/javascript';
+      	s.async = true;
+      	s.src = src;
+      	if (typeof callback === 'function') {
+      		s.addEventListener('load', callback, false);
       	}
       
-      	var downloadTarGzLink = document.getElementById('downloadTarGz');
-      	if (downloadTarGzLink) {
-      		downloadTarGzLink.addEventListener('click', function (event) {
-      			ga('send', 'event', 'Button', 'Click', 'Download Tar.gz File');
-      		});
-      	}
-      
-      	var viewOnGithub = document.getElementById('githubSite');
-      	if (viewOnGithub) {
-      		viewOnGithub.addEventListener('click', function (event) {
-      			ga('send', 'event', 'Button', 'Click', 'View Project on Github');
-      		});
-      	}
-      };
-      
-      
-      function menuHandler () {
-      	(function () {
-      		return {
-      			init: function () {
-      				this.addOpenHandler();
-      			},
-      			addOpenHandler: function () {
-      				$(document).on('touchend.sidebar click.sidebar', '#header-menu', function (event) {
-      					event.preventDefault();
-      
-      					$(document).off('.sidebar');
-      					this.open();
-      					this.addCloseHandler();
-      				}.bind(this));
-      			},
-      			addCloseHandler: function () {
-      				$(document).on('touchend.sidebar click.sidebar', function (event) {
-      					var $target = $(event.target);
-      
-      					// Close of the user clicked the close icon or clicked
-      					// outside of the sidebar.
-      					if ($target.closest('#sidebar-close').length || !$target.closest('#sidebar').length) {
-      						event.preventDefault();
-      						$(document).off('.sidebar');
-      						this.close();
-      						this.addOpenHandler();
-      					}
-      				}.bind(this));
-      			},
-      			open: function () {
-      				$(document.body).addClass('is-expanded');
-      			},
-      			close: function () {
-      				$(document.body).removeClass('is-expanded');
-      			}
-      		};
-      	})().init();
+      	var h = document.getElementsByTagName('head')[0];
+      	h.appendChild(s);
       }
-      
-      
-      
-      
-      
-      var Loader = function () { };
-      Loader.prototype = {
-      	require: function (scripts, callback) {
-      		this.nbLoadedScripts   = 0;
-      		this.nbRequiredScripts = scripts.length;
-      		this.callback          = callback;
-      
-      		for (var i = 0, nbScripts = scripts.length; i < nbScripts; i++) {
-      			this.writeScript(scripts[i]);
-      		}
-      	},
-      	loaded: function (evt) {
-      		this.nbLoadedScripts++;
-      
-      		if (this.nbLoadedScripts === this.nbRequiredScripts && typeof this.callback === 'function') {
-      			this.callback.call();
-      		}
-      	},
-      	writeScript: function (src) {
-      		var self = this;
-      		var s = document.createElement('script');
-      		s.type = 'text/javascript';
-      		s.async = true;
-      		s.src = src;
-      		s.addEventListener('load', function (e) {
-      			self.loaded(e);
-      		}, false);
-      		var head = document.getElementsByTagName('head')[0];
-      		head.appendChild(s);
-      	}
-      };
-      
-      var HighlightJSLoader = new Loader();
-      HighlightJSLoader.require([
-      	'//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js'
-      ], function () {
+      asyncLoad('//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js', function (event) {
       	if (typeof hljs !== 'undefined') {
       		hljs.initHighlighting();
       	}
       });
+      asyncLoad('public/js/main.min.js');
       
-      var jQueryLoader = new Loader();
-      jQueryLoader.require([
-      	'//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'
-      ], function () {
-      	menuHandler();
-      	bindGoogleAnalyticsTracking();
-      });
     </script></body></html>

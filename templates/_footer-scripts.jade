@@ -2,9 +2,31 @@
 
 //script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js")
 //script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/languages/javascript.min.js")
+//script(src="public/js/main.min.js")
+
+script(type="text/javascript").
+	function asyncLoad (src, callback) {
+		var s = document.createElement('script');
+		s.type = 'text/javascript';
+		s.async = true;
+		s.src = src;
+		if (typeof callback === 'function') {
+			s.addEventListener('load', callback, false);
+		}
+
+		var h = document.getElementsByTagName('head')[0];
+		h.appendChild(s);
+	}
+	asyncLoad('//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js', function (event) {
+		if (typeof hljs !== 'undefined') {
+			hljs.initHighlighting();
+		}
+	});
+	asyncLoad('public/js/main.min.js');
 
 //   * GA Tracking Code
-script(type="text/javascript").
+//script(type="text/javascript").
+	/*
 	function bindGoogleAnalyticsTracking () {
 		var downloadZipLink = document.getElementById('downloadZip');
 		if (downloadZipLink) {
@@ -120,3 +142,4 @@ script(type="text/javascript").
 		menuHandler();
 		bindGoogleAnalyticsTracking();
 	});
+	*/
