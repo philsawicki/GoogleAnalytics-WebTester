@@ -9,6 +9,9 @@ var gulp       = require('gulp'),
     fs         = require('fs');
 
 
+/**
+ * Compile Jade templates.
+ */
 gulp.task('jade', function () {
     return gulp.src('./templates/**/*.page.jade')
         //.pipe(plumber())
@@ -28,6 +31,9 @@ gulp.task('jade', function () {
         .pipe(gulp.dest('./'));
 });
 
+/**
+ * Generate "sitemap.xml" file.
+ */
 gulp.task('sitemap', function () {
     return gulp.src('./templates/**/*.page.jade')
         //.pipe(plumber())
@@ -46,6 +52,9 @@ gulp.task('sitemap', function () {
         .pipe(gulp.dest('./'));
 });
 
+/**
+ * Compile & minify JavaScript files.
+ */
 gulp.task('js', function () {
     return gulp.src('./javascripts/**/*.js')
         .pipe(uglify())
@@ -55,8 +64,14 @@ gulp.task('js', function () {
 });
 
 gulp.task('watch', function () {
+    // Compile Jade templates:
     gulp.watch('./templates/**/*.jade', ['jade']);
+    gulp.watch('./data/**/*.*', ['jade']);
+
+    // Generate "sitemap.xml" file:
     gulp.watch('./templates/**/*.page.jade', ['sitemap']);
+
+    // Concat & minify JavaScript files:
     gulp.watch('./javascripts/**/*.js', ['js']);
 });
 

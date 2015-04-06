@@ -12,7 +12,7 @@ block content
 	p To validate tracking of User Timings, use the following Array in your Jasmine expectations:
 
 	pre
-		code(class="javascript")
+		code(class="javascript hljs")
 			|['send', 'timing', { ────────────────────> 1&2. (Standard Google Analytics parameters)
 			|    'timingCategory': 'External Libs', ───> 3. Timing Category
 			|    'timingVar': 'Load Time', ────────────> 4. Timing Variable
@@ -23,7 +23,7 @@ block content
 	p Using direct <code>ga()</code> calls, checking proper tracking of User Timings could be done in the following manner:
 
 	pre
-		code(class="javascript").
+		code(class="javascript hljs").
 			describe('The Google Analytics "User Timing" tracking', function () {
 			   beforeEach(function () {
 			      // Load the page to test:

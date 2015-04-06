@@ -14,19 +14,39 @@ link(rel="stylesheet", href="public/css/main.css")
 //link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/monokai_sublime.min.css")
 
 
+
 // Facebook: (image: 1200x630)
 meta(property="og:site_name", content="Google Analytics Web Tester")
 meta(property="og:title", content="#{pageHeader}")
 meta(property="og:type", content="article")
-meta(property="og:image", content="")
+if typeof pageFacebookImage !== 'undefined'
+	meta(property="og:image", content="#{pageFacebookImage}")
 meta(property="og:url", content="#{siteUrl + pageUrl}")
-meta(property="og:description", content="#{pageDescription}")
+if typeof pageTwitterCardDescription !== 'undefined'
+	meta(property="og:description", content="#{pageTwitterCardDescription}")
+else
+	meta(property="og:description", content="#{pageDescription}")
 meta(property="article:author", content="https://facebook.com/philippe.sawicki")
+
 
 // Twitter: (image: 280x150)
 meta(name="twitter:card", content="summary_large_image")
 meta(name="twitter:site", content="@fyll_s")
 meta(name="twitter:creator", content="@fyll_s")
 meta(name="twitter:title", content="#{pageHeader}")
-meta(name="twitter:description", content="#{pageDescription}")
-meta(name="twitter:image:src", content="")
+if typeof pageTwitterCardDescription !== 'undefined'
+	meta(name="twitter:description", content="#{pageTwitterCardDescription}")
+else
+	meta(name="twitter:description", content="#{pageDescription}")
+if typeof pageTwitterCardImage !== 'undefined'
+	meta(name="twitter:image:src", content="#{pageTwitterCardImage}")
+
+
+// Google+:
+meta(itemprop="name", content="#{pageHeader}")
+if typeof pageTwitterCardDescription !== 'undefined'
+	meta(itemprop="description", content="#{pageTwitterCardDescription}")
+else
+	meta(itemprop="description", content="#{pageDescription}")
+if typeof pageTwitterCardImage !== 'undefined'
+	meta(itemprop="image", content="#{pageTwitterCardImage}")
