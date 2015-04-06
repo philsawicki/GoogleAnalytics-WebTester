@@ -14,7 +14,7 @@ nav.Nav
 	section.Nav-section
 		h1.Nav-category Code Samples
 		ol
-			- for navItem in [{"name":"Pageviews","link":"examples-pageviews.html"},{"name":"Events","link":"examples-events.html"},{"name":"Custom Metrics","link":"examples-custom-metrics.html"},{"name":"Custom Dimensions","link":"examples-custom-dimensions.html"},{"name":"Enhanced E-Commerce","link":"examples-enhanced-ecommerce.html","status":"New"},{"name":"Social Interactions","link":"examples-social-interactions.html"},{"name":"User Timings","link":"examples-user-timings.html"}]
+			- for navItem in [{"name":"Pageviews","link":"examples-pageviews.html"},{"name":"Events","link":"examples-events.html"},{"name":"Custom Metrics","link":"examples-custom-metrics.html"},{"name":"Custom Dimensions","link":"examples-custom-dimensions.html"},{"name":"Enhanced E-Commerce","link":"examples-enhanced-ecommerce.html","status":"New"},{"name":"Content Grouping","link":"examples-content-grouping.html","status":"New"},{"name":"Social Interactions","link":"examples-social-interactions.html"},{"name":"User Timings","link":"examples-user-timings.html"},{"name":"Cross-Device Tracking","link":"examples-cross-device-tracking.html","status":"New"}]
 				li
 					if pageName === navItem.name
 						if typeof navItem.status === 'undefined'

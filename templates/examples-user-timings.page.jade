@@ -1,12 +1,11 @@
 extends base
 
 block variables
-	- var pageTitle = "User Timings"
+	- var pageTitle = "User Timings Code Samples"
 	- var pageDescription = "Implementation guide including code samples to validate tracking of Google Analytics User Timings using Google Analytics Web Tester."
 	- var pageSubtitle = ""
 	- var pageHeader = "Tracking User Timings"
 	- var pageName = "User Timings"
-	- var pageStatus = ""
 	- var pageUrl = "examples-user-timings.html"
 
 block content
@@ -21,7 +20,7 @@ block content
 			|    'timingLabel': 'jQuery' ──────────────> 6. Timing Label
 			|}]
 
-	p Using direct <code>ga()</code> calls, checking proper tracking of Metrics could be done in the following manner:
+	p Using direct <code>ga()</code> calls, checking proper tracking of User Timings could be done in the following manner:
 
 	pre
 		code(class="javascript").
@@ -42,12 +41,23 @@ block content
 			      .then(
 			         // Validate the content of the "LastData" object:
 			         function successCallback (LastData) {
-			            expect( LastData ).toEqual( ['send', 'timing', {
-			               'timingCategory': 'External Libs',
-			               'timingVar': 'Load Time',
-			               'timingValue': 123,
-			               'timingLabel': 'jQuery'
-			            }] );
+			            // "LastData" will be similar to the following. Due to
+			            // the inability to know the exact value of "timingValue"
+			            // beforehand, it it necessary to work around the data:
+			            //
+			            // ['send', 'timing', {
+			            //    'timingCategory': 'External Libs',
+			            //    'timingVar': 'Load Time',
+			            //    'timingValue': 123,
+			            //    'timingLabel': 'jQuery'
+			            // }]
+
+			            expect( LastData[0] ).toEqual( 'send' );
+			            expect( LastData[1] ).toEqual( 'timing' );
+			            expect( LastData[2].timingCategory ).toEqual( 'External Libs' );
+			            expect( LastData[2].timingVar ).toEqual( 'Load Time' );
+			            expect( typeof LastData[2].timingValue ).toEqual( 'number' );
+			            expect( LastData[2].timingLabel ).toEqual( 'jQuery' );
 			         },
 			         // If there was an error getting back the "LastData" object from the browser, fail the test:
 			         function errorCallback (error) {

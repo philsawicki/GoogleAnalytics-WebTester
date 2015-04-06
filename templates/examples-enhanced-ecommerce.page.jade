@@ -1,12 +1,11 @@
 extends base
 
 block variables
-	- var pageTitle = "Enhanced E-Commerce"
+	- var pageTitle = "Enhanced E-Commerce Code Samples"
 	- var pageDescription = "Implementation guide including code samples to validate tracking of Google Analytics Enhanced E-Commerce using Google Analytics Web Tester."
 	- var pageSubtitle = ""
 	- var pageHeader = "Tracking Enhanced E-Commerce"
 	- var pageName = "Enhanced E-Commerce"
-	- var pageStatus = ""
 	- var pageUrl = "examples-enhanced-ecommerce.html"
 
 block content
@@ -42,20 +41,30 @@ block content
 			      browser.driver.registerGoogleAnalyticsEventDataInterceptor();
 			   });
 			 
-			   it('should fire a "setAction" event when proceeding to the Step #1 of the Checkout process', function (done) {
-			      // Get the "LastEvent" object back from the browser:
+			   it('should fire Enhanced E-Commerce events when proceeding to the Step #1 of the Checkout process', function (done) {
+			      // Get the "EventBuffer" object back from the browser:
 			      browser.driver.executeScript(function () {
-			         return window.GAWebTester.getLastEvent();
+			         return window.GAWebTester.getEventBuffer();
 			      })
 			      .then(
-			         // Validate the content of the "LastData" object:
-			         function successCallback (LastData) {
-			            expect( LastData ).toEqual( ['ec:setAction', 'checkout', {
+			         // Validate the content of the "EventBuffer" object:
+			         function successCallback (EventBuffer) {
+			            expect( EventBuffer ).toContain( ['ec:ec:addProduct', {
+			               'id': 'P12345',
+			               'name': 'Android Warhol T-Shirt',
+			               'category': 'Apparel',
+			               'brand': 'Google',
+			               'variant': 'black',
+			               'price': '29.20',
+			               'quantity': 1
+			            }] );
+
+			            expect( EventBuffer ).toContain( ['ec:setAction', 'checkout', {
 			               'step': 1,
 			               'option': 'MasterCard'
 			            }] );
 			         },
-			         // If there was an error getting back the "LastData" object from the browser, fail the test:
+			         // If there was an error getting back the "EventBuffer" object from the browser, fail the test:
 			         function errorCallback (error) {
 			            fail('Should not have received Error: ' + JSON.stringify(error));
 			         }

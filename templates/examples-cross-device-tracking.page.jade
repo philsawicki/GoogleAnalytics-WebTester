@@ -1,28 +1,28 @@
 extends base
 
 block variables
-	- var pageTitle = "Custom Metrics Code Samples"
-	- var pageDescription = "Implementation guide including code samples to validate tracking of Google Analytics Custom Metrics using Google Analytics Web Tester."
+	- var pageTitle = "Cross-Device Tracking Code Samples"
+	- var pageDescription = "Implementation guide including code samples to validate tracking of Google Analytics Cross-Device Usage using Google Analytics Web Tester."
 	- var pageSubtitle = ""
-	- var pageHeader = "Tracking Custom Metrics"
-	- var pageName = "Custom Metrics"
-	- var pageUrl = "examples-custom-metrics.html"
+	- var pageHeader = "Tracking Cross-Device Usage"
+	- var pageName = "Cross-Device Tracking"
+	- var pageUrl = "examples-cross-device-tracking.html"
 
 block content
-	p To validate tracking of Custom Metrics, use the following Array in your Jasmine expectations:
+	p To validate tracking of Cross-Device Usage, use the following Array in your Jasmine expectations:
 
 	pre
 		code(class="javascript").
-			['set', 'metric1', '123']
-			  │      │          └────────────────────> 3. Metric Value
-			  │      └───────────────────────────────> 2. Metric Index
+			['set', '&uid', '12345']
+			  │      │       └───────────────────────> 3. User ID value
+			  │      └───────────────────────────────> 2. User ID parameter
 			  └──────────────────────────────────────> 1. (Standard Google Analytics parameter)
 
-	p Using direct <code>ga()</code> calls, checking proper tracking of Metrics could be done in the following manner:
+	p Using direct <code>ga()</code> calls, checking proper tracking of Cross-Device usage could be done in the following manner:
 
 	pre
 		code(class="javascript").
-			describe('The Google Analytics "Metric" tracking', function () {
+			describe('The Google Analytics "Cross-Device Usage" tracking', function () {
 			   beforeEach(function () {
 			      // Load the page to test:
 			      browser.get('index.html');
@@ -31,10 +31,7 @@ block content
 			      browser.driver.registerGoogleAnalyticsEventDataInterceptor();
 			   });
 			 
-			   it('should fire a Metric when clicking on the Jumbotron CTA', function (done) {
-			      // Click on the "Jumbotron" CTA:
-			      element( by.css('#jumbotronCTA') ).click();
-			 
+			   it('should fire a Cross-Device Usage event when loading the page', function (done) {
 			      // Get the "LastEvent" object back from the browser:
 			      browser.driver.executeScript(function () {
 			         return window.GAWebTester.getLastEvent();
@@ -42,7 +39,7 @@ block content
 			      .then(
 			         // Validate the content of the "LastData" object:
 			         function successCallback (LastData) {
-			            expect( LastData ).toEqual( ['set', 'metric1', '123'] );
+			            expect( LastData ).toEqual( ['set', '&uid', '12345'] );
 			         },
 			         // If there was an error getting back the "LastData" object from the browser, fail the test:
 			         function errorCallback (error) {
