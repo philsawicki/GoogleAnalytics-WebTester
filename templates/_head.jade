@@ -20,7 +20,7 @@ meta(property="og:site_name", content="Google Analytics Web Tester")
 meta(property="og:title", content="#{pageHeader}")
 meta(property="og:type", content="article")
 if typeof pageFacebookImage !== 'undefined'
-	meta(property="og:image", content="#{pageFacebookImage}")
+	meta(property="og:image", content="#{siteUrl + pageFacebookImage}")
 meta(property="og:url", content="#{siteUrl + pageUrl}")
 if typeof pageTwitterCardDescription !== 'undefined'
 	meta(property="og:description", content="#{pageTwitterCardDescription}")
@@ -39,7 +39,7 @@ if typeof pageTwitterCardDescription !== 'undefined'
 else
 	meta(name="twitter:description", content="#{pageDescription}")
 if typeof pageTwitterCardImage !== 'undefined'
-	meta(name="twitter:image:src", content="#{pageTwitterCardImage}")
+	meta(name="twitter:image:src", content="#{siteUrl + pageTwitterCardImage}")
 
 
 // Google+:
@@ -49,4 +49,4 @@ if typeof pageTwitterCardDescription !== 'undefined'
 else
 	meta(itemprop="description", content="#{pageDescription}")
 if typeof pageTwitterCardImage !== 'undefined'
-	meta(itemprop="image", content="#{pageTwitterCardImage}")
+	meta(itemprop="image", content="#{siteUrl + pageTwitterCardImage}")

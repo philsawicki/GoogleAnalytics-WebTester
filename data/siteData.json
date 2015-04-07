@@ -5,6 +5,9 @@
 	"siteTitle": "Google Analytics Web Tester",
 	"siteUrl": "https://philsawicki.github.io/GoogleAnalytics-WebTester/",
 
+	"pageTwitterCardImage": "public/images/Google-Analytics-Web-Tester-Twitter-Card.png",
+	"pageFacebookImage": "public/images/Google-Analytics-Web-Tester-Facebook.png",
+
 	"structuredData": {
 		"@context" : "http://schema.org",
 		"@type" : "Person",
