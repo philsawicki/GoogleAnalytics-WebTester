@@ -1,0 +1,58 @@
+.Logo {
+  margin: 0 3em;
+}
+
+.Logo-full {
+  display: none;
+}
+
+.Logo-partial {
+  text-align: center;
+}
+
+.Logo-partial > svg {
+  fill: #aaa;
+  height: 16px;
+}
+
+.Logo-partial::after {
+  content: 'Web Tester';
+  color: #ddd;
+  display: block;
+  font-size: 1.4em;
+  font-weight: 300;
+  letter-spacing: -.03em;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-spacing: .2em;
+}
+
+@media (--break-sm) {
+  .Logo-partial > svg {
+    display: none;
+  }
+  .Logo-partial::after {
+    content: 'Google Analytics Web Tester';
+    line-height: normal;
+  }
+}
+
+@media (--break-lg) {
+  .Logo {
+    margin: 0;
+  }
+  .Logo-full {
+    display: block;
+  }
+  .Logo-full > svg {
+    display: inherit;
+    fill: var(--ga-gray);
+    height: var(--ga-logo-height);
+    width: var(--ga-logo-width);
+  }
+  .Logo-partial {
+    display: none;
+  }
+}

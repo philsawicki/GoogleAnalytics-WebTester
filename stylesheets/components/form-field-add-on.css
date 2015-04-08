@@ -1,0 +1,41 @@
+@import './form-field';
+
+
+.FormFieldAddOn {
+  display: flex;
+  width: 100%;
+}
+
+/* @extends .FormField */
+.FormFieldAddOn-field {
+  flex: 1;
+}
+
+.FormFieldAddOn-item {
+  align-items: center;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  display: flex;
+  font: inherit;
+  font-weight: normal;
+  padding: 0 0.6em;
+}
+.FormFieldAddOn-item:focus {
+  outline: 0;
+}
+
+.FormFieldAddOn-field:first-child,
+.FormFieldAddOn-item:first-child {
+  border-radius: 4px 0 0 4px;
+}
+.FormFieldAddOn-field:last-child,
+.FormFieldAddOn-item:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.FormFieldAddOn-item:first-child {
+  border-right: 0;
+}
+.FormFieldAddOn-item:last-child {
+  border-left: 0;
+}

@@ -1,0 +1,35 @@
+@import '../base/custom-media';
+
+.u-hidden {
+  display: none;
+}
+.u-block {
+  display: block;
+}
+
+@media (--break-sm) {
+  .u-sm-hidden {
+    display: none;
+  }
+  .u-sm-block {
+    display: block;
+  }
+}
+
+@media (--break-md) {
+  .u-md-hidden {
+    display: none;
+  }
+  .u-md-block {
+    display: block;
+  }
+}
+
+@media (--break-lg) {
+  .u-lg-hidden {
+    display: none;
+  }
+  .u-lg-block {
+    display: block;
+  }
+}

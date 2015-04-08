@@ -1,0 +1,18 @@
+.FlexLine {
+  /* display: flex; */
+
+  /*
+   * TODO(philipwalton): replace the below with the above once this FF bug is
+   * fixed: https://bugzilla.mozilla.org/show_bug.cgi?id=1146442
+   */
+   display: inline-flex;
+   width: 100%;
+}
+
+.FlexLine-item {
+  flex: 1 0 auto;
+}
+
+.FlexLine-item--flex {
+  flex-grow: 1;
+}

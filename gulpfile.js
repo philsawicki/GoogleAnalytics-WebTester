@@ -1,11 +1,15 @@
 var gulp       = require('gulp'),
     jade       = require('gulp-jade'),
+    cleanCSS   = require('gulp-cleancss'),
     data       = require('gulp-data'),
     minifyHTML = require('gulp-minify-html'),
+    prefix     = require('gulp-autoprefixer'),
     rename     = require('gulp-rename'),
+    rework     = require('gulp-rework'),
     sitemap    = require('gulp-sitemap'),
     uglify     = require('gulp-uglify'),
     path       = require('path'),
+    suit       = require('rework-suit'),
     fs         = require('fs');
 
 
@@ -63,6 +67,19 @@ gulp.task('js', function () {
         .pipe(gulp.dest('./public/js/'));
 });
 
+/**
+ * Concat & minify CSS files.
+ */
+gulp.task('css', function () {
+    return gulp.src('./stylesheets/main.css')
+        .pipe(rework(suit(), /*inline('./src/images'),*/ { sourcemap: true }))
+        .pipe(prefix('> 1%', 'last 2 versions', 'Safari >= 5.1', 'ie >= 10', 'Firefox ESR'))
+        .pipe(cleanCSS({ keepSpecialComments: 0}))
+        .pipe(gulp.dest('./public/css'));
+});
+
+
+
 gulp.task('watch', function () {
     // Compile Jade templates:
     gulp.watch('./templates/**/*.jade', ['jade']);
@@ -73,7 +90,11 @@ gulp.task('watch', function () {
 
     // Concat & minify JavaScript files:
     gulp.watch('./javascripts/**/*.js', ['js']);
+
+    // Concat & minify CSS files:
+    gulp.watch('./stylesheets/**/*.css', ['css']);
 });
+
 
 gulp.task('default', ['watch'], function (callback) {
     callback();

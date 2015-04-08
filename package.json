@@ -3,13 +3,19 @@
   "description": "GitHub site for GoogleAnalytics-WebTester",
   "devDependencies": {
     "gulp": "^3.8.11",
+    "gulp-autoprefixer": "^2.1.0",
+    "gulp-cleancss": "^0.2.2",
     "gulp-data": "^1.2.0",
     "gulp-jade": "^1.0.0",
     "gulp-minify-html": "^1.0.2",
     "gulp-rename": "^1.2.2",
+    "gulp-rework": "^1.0.3",
     "gulp-sitemap": "^2.0.2",
     "gulp-uglify": "^1.1.0",
-    "http-server": "^0.8.0"
+    "highlight.js": "^8.5.0",
+    "http-server": "^0.8.0",
+    "normalize.css": "^3.0.3",
+    "rework-suit": "^4.0.0"
   },
   "scripts": {
     "prestart": "npm install",

@@ -1,0 +1,89 @@
+.ViewSelector,
+.ViewSelector2 {
+  display: block
+}
+
+.ViewSelector2-item,
+/* For the old school view selector. */
+.ViewSelector table {
+  display: block;
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+.ViewSelector2-item > label,
+/* For the old school view selector. */
+.ViewSelector td:first-child {
+  font-weight: 700;
+  margin: 0 .25em .25em 0;
+  display: block;
+}
+
+.ViewSelector2-item > select {
+  width: 100%;
+}
+
+
+/*
+ * Additional hacks to get the native ViewSelector component (which uses
+ * closure widgets) to look like our custom ViewSelector extension.
+ */
+
+.ViewSelector table,
+.ViewSelector tbody,
+.ViewSelector tr,
+.ViewSelector td {
+  display: block;
+}
+
+.ViewSelector table {
+  height: auto!important;
+  width: auto!important;
+}
+
+.ViewSelector td {
+  width: auto!important;
+}
+
+.ViewSelector td:last-child * {
+  display: block;
+  text-align: left;
+}
+
+.ViewSelector td:last-child > div {
+  font-weight: 400;
+  margin: 0;
+}
+
+@media (--break-md) {
+  .ViewSelector,
+  .ViewSelector2 {
+    display: flex;
+    margin: 0 0 -1em -1em;
+    width: calc(100% + 1em);
+  }
+
+  .ViewSelector2-item,
+  /* For the old school view selector. */
+  .ViewSelector table {
+    flex: 1 1 calc(100%/3 - 1em);
+    margin-left: 1em;
+  }
+}
+
+/*
+ * Force each item onto its own line
+ * regardless of the breakpoint.
+ */
+.ViewSelector2--stacked,
+.ViewSelector--stacked {
+  display: block;
+  margin: 0;
+  width: auto;
+}
+
+.ViewSelector2--stacked .ViewSelector2-item,
+/* For the old school view selector. */
+.ViewSelector--stacked table {
+  margin-left: 0;
+}

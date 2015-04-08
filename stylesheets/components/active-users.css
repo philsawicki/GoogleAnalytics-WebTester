@@ -1,0 +1,48 @@
+@import './site';
+
+/**
+ * ActiveUsers Component
+ */
+
+.ActiveUsers {
+  background: var(--bg-color-light);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-weight: 300;
+  padding: .5em var(--gap);
+  white-space: nowrap;
+}
+
+.ActiveUsers-value {
+  display: inline-block;
+  font-weight: 600;
+  margin-right: -.25em;
+}
+
+.ActiveUsers.is-increasing {
+  animation: increase 3s;
+}
+
+.ActiveUsers.is-decreasing {
+  animation: decrease 3s;
+}
+
+@keyframes increase {
+  0% {}
+  10% {
+    background-color: hsl(120, 100%, 96%);
+    border-color: hsla(120, 100%, 25%, .5);
+    color: hsla(120, 100%, 25%, 1);
+  }
+  100% {}
+}
+
+@keyframes decrease {
+  0% {}
+  10% {
+    background-color: hsl(0, 100%, 96%);
+    border-color: hsla(0, 100%, 50%, .5);
+    color: hsl(0, 100%, 50%);
+  }
+  100% {}
+}

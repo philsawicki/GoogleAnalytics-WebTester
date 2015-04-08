@@ -1,0 +1,21 @@
+@import './form-field';
+
+
+.AccountExplorerSearch {
+  padding: 1.5em;
+}
+
+.AccountExplorerSearch-title {
+  font-size: 1.4em;
+  font-weight: 300;
+  margin: 0 0 var(--gap-lg);
+  text-align: center;
+}
+
+input.AccountExplorerSearch-field {
+  display: block;
+  height: auto;
+  margin: 0 auto 3em;
+  max-width: 32em;
+  padding: .75em 1em;
+}

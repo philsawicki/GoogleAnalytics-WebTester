@@ -1,0 +1,31 @@
+:root {
+
+  --gap: 1.5em;
+  --gap-lg: 2em;
+
+  --text-color: #333;
+  --text-color-light: #ddd;
+  --text-color-faded: #777;
+  --text-color-faint: #aaa;
+
+  --info-color: hsl(200, 75%, 55%);
+
+  --bg-color-dark: #333;
+  --bg-color-dark-faded: #444;
+  --bg-color-light: hsl(30, 10%, 95%);
+
+  --border-color: #d4d2d0;
+  --border-color-active: #3b99fc;
+
+  --ga-gray: #75787d;
+  --ga-orange-dark: #f05721;
+  --ga-orange-light: #f7991c;
+
+  --ga-logo-height: 32px;
+  --ga-logo-width: 316px;
+
+  --sidebar-width: 260px;
+  --sidebar-width-md: 280px;
+
+  --quantum-timing: cubic-bezier(.4,0,.2,1);
+}

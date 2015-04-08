@@ -1,0 +1,33 @@
+.AccountExplorerResults {
+  padding-top: var(--gap);
+}
+
+.AccountExplorerResults-title {
+  font-size: 1.4em;
+  font-weight: 300;
+  margin: 0 0 var(--gap-lg);
+  text-align: center;
+}
+
+.AccountExplorerResults table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.AccountExplorerResults th,
+.AccountExplorerResults td {
+  text-align: left;
+  padding: .75em 1em;
+  vertical-align: top;
+}
+
+.AccountExplorerResults td {
+  border-top: 1px solid #e8e8e8;
+  word-break: break-word;
+}
+
+.AccountExplorerResults-id {
+  color: var(--text-color-faded);
+  font-size: .9em;
+  margin-top: .5em;
+}

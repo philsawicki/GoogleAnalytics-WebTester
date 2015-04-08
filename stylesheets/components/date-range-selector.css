@@ -1,0 +1,37 @@
+@import '../base/custom-media';
+
+/**
+ * DateRangeSelector Component
+ */
+
+:root {
+  --DateRangeSelector-itemMinWidth: 150px;
+}
+
+.DateRangeSelector {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 -1em -1em;
+}
+
+.DateRangeSelector-item {
+  margin: 0 0 1em 1em;
+  flex: 1 0 calc(100% - 1em);
+}
+
+.DateRangeSelector-item > label {
+  font-weight: 700;
+  margin: 0 .25em .25em 0;
+  display: block;
+}
+
+.DateRangeSelector-item > input {
+  width: 100%;
+}
+
+@media (--break-md) {
+  .DateRangeSelector-item {
+    flex-basis: auto;
+    min-width: var(--DateRangeSelector-itemMinWidth);
+  }
+}

@@ -1,0 +1,34 @@
+.Chartjs {
+  font-size: .85em;
+}
+
+.Chartjs-figure {
+  height: 250px;
+}
+
+.Chartjs-legend {
+  list-style: none;
+  margin: 0;
+  padding: 1em 0 0;
+  text-align: center;
+}
+
+.Chartjs-legend > li {
+  display: inline-block;
+  padding: .25em .5em
+}
+
+.Chartjs-legend > li > i {
+  display: inline-block;
+  height: 1em;
+  margin-right: .5em;
+  vertical-align: -.1em;
+  width: 1em;
+}
+
+@media (--break-md) {
+  .Chartjs-figure {
+    /* Add some breathing room. */
+    margin-right: var(--gap);
+  }
+}

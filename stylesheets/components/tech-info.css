@@ -1,0 +1,43 @@
+.TechInfo {
+  background: #fff;
+  border: 1px solid var(--info-color);
+  border-radius: 4px;
+  display: flex;
+  margin: var(--gap) 0;
+  max-width: 52em;
+  padding: 1.25em;
+}
+
+.TechInfo-icon {
+  fill: var(--info-color);
+  flex: 0 0 auto;
+  margin-right: 1em;
+  height: 1.5em;
+  overflow: visible;
+  width: 1.5em;
+}
+
+.TechInfo-content {
+  color: var(--text-color-faded);
+  flex: 1;
+  font-size: .9em;
+  margin: 0;
+}
+
+.TechInfo-title {
+  color: var(--info-color);
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 0 0 .5em;
+}
+
+.TechInfo a {
+  color: var(--info-color);
+  text-decoration: underline;
+}
+
+@media (--break-lg) {
+  .TechInfo {
+    margin: var(--gap-lg) 0;
+  }
+}
