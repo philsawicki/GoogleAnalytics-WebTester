@@ -16,7 +16,7 @@ block content
 			['send', 'exception', { ──────────────────> 1&2. (Standard Google Analytics parameters)
 			   'exDescription': 'DatabaseError', ─────> 3. Exception Description
 			   'exFatal': false, ─────────────────────> 4. Indicates whether the exception was fatal
-			   'appName', 'myApp', ───────────────────> 5. Application Name
+			   'appName', 'Demo_Application', ────────> 5. Application Name
 			   'appVersion', '1.0' ───────────────────> 6. Application Version Number
 			}]
 
@@ -37,12 +37,12 @@ block content
 			      // Trigger a "crash" in the browser:
 			      //
 			      //   try {
-			      //      throw new Error('Something bad happened.');
+			      //      throw new Error('DatabaseError.');
 			      //   } catch (err) {
 			      //      // Send the exception to Google Analytics:
 			      //      ga('send', 'exception', {
 			      //         'exDescription': err.message,
-			      //         'exFatal': true,
+			      //         'exFatal': false,
 			      //         'appName': 'Demo_Application',
 			      //         'appVersion': '1.0'
 			      //      });
@@ -56,8 +56,8 @@ block content
 			         // Validate the content of the "LastData" object:
 			         function successCallback (LastData) {
 			            expect( LastData ).toEqual( ['send', 'exception', {
-			               'exDescription': 'Something bad happened',
-			               'exFatal': true,
+			               'exDescription': 'DatabaseError',
+			               'exFatal': false,
 			               'appName': 'Demo_Application',
 			               'appVersion': '1.0'
 			            }] );
