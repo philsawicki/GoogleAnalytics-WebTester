@@ -22,12 +22,10 @@ block content
 	p To get started, simply clone this repository and install the dependencies:
 
 	pre
-		code(class="bash hljs")
-			|git clone https://github.com/philsawicki/GoogleAnalytics-WebTester.git
-			|cd GoogleAnalytics-WebTester
-			|npm install
-
-
+		code(class="bash hljs").
+			git clone https://github.com/philsawicki/GoogleAnalytics-WebTester.git
+			cd GoogleAnalytics-WebTester
+			npm install
 
 	h2 Running the Demo Application
 
@@ -39,9 +37,6 @@ block content
 			npm run protractor
 
 	p The tests should now run, and the calls to Google Analytics' <code>ga()</code> method should be intercepted and logged to the console.
-
-
-
 
 	h2 Sample Spec file
 
@@ -80,8 +75,6 @@ block content
 			   });
 			});
 
-
-
 	h2 Getting the Google Analytics Event data
 
 	h3 Base mechanics
@@ -111,8 +104,6 @@ block content
 			    └──────────────────────────────────────> 1. (Standard Google Analytics parameter)
 
 	p <span style="color: red;">*</span>: If using Event tracking through Google Tag Manager (GTM), then the Container will generate some JavaScript exactly matching the pattern of the <code>ga()</code> call above. Just add the send and event values to the Array.
-
-
 
 	h3 Getting more samples
 
