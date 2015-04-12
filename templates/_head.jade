@@ -20,9 +20,13 @@ link(rel="stylesheet", href="public/css/main.css")
 
 
 // Facebook: (image: 1200x630)
+meta(property="fb:admins", content="814194595")
+meta(property="fb:app_id", content="1619012241663368") 
+meta(property="fb:profile_id", content="814194595")
 meta(property="og:site_name", content="Google Analytics Web Tester")
 meta(property="og:title", content="#{pageHeader}")
 meta(property="og:type", content="article")
+meta(property="og:see_also", content="https://philsawicki.github.io/GoogleAnalytics-WebTester,http://philippesawicki.com")
 if typeof pageFacebookImage !== 'undefined'
 	meta(property="og:image", content="#{siteUrl + pageFacebookImage}")
 meta(property="og:url", content="#{siteUrl + pageUrl}")
@@ -31,6 +35,7 @@ if typeof pageTwitterCardDescription !== 'undefined'
 else
 	meta(property="og:description", content="#{pageDescription}")
 meta(property="article:author", content="https://facebook.com/philippe.sawicki")
+meta(property="article:tag", content="google,analytics,validation")
 
 
 // Twitter: (image: 280x150)
