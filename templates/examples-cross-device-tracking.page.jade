@@ -9,6 +9,8 @@ block variables
 	- var pageUrl = "examples-cross-device-tracking.html"
 
 block content
+	h2 Google Analytics Data Structure
+	
 	p To validate tracking of Cross-Device Usage, use the following Array in your Jasmine expectations:
 
 	pre
@@ -17,6 +19,8 @@ block content
 			  │      │       └───────────────────────> 3. User ID value
 			  │      └───────────────────────────────> 2. User ID parameter
 			  └──────────────────────────────────────> 1. (Standard Google Analytics parameter)
+
+	h2 Sample Jasmine Spec File
 
 	p Using direct <code>ga()</code> calls, checking proper tracking of Cross-Device usage could be done in the following manner:
 

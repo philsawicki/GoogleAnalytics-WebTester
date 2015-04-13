@@ -9,16 +9,20 @@ block variables
 	- var pageUrl = "examples-user-timings.html"
 
 block content
+	h2 Google Analytics Data Structure
+	
 	p To validate tracking of User Timings, use the following Array in your Jasmine expectations:
 
 	pre
-		code(class="javascript hljs")
-			|['send', 'timing', { ────────────────────> 1&2. (Standard Google Analytics parameters)
-			|    'timingCategory': 'External Libs', ───> 3. Timing Category
-			|    'timingVar': 'Load Time', ────────────> 4. Timing Variable
-			|    'timingValue': 123, ──────────────────> 5. Timing Value (in ms)
-			|    'timingLabel': 'jQuery' ──────────────> 6. Timing Label
-			|}]
+		code(class="javascript hljs").
+			['send', 'timing', { ────────────────────> 1&2. (Standard Google Analytics parameters)
+			    'timingCategory': 'External Libs', ───> 3. Timing Category
+			    'timingVar': 'Load Time', ────────────> 4. Timing Variable
+			    'timingValue': 123, ──────────────────> 5. Timing Value (in ms)
+			    'timingLabel': 'jQuery' ──────────────> 6. Timing Label
+			}]
+
+	h2 Sample Jasmine Spec File
 
 	p Using direct <code>ga()</code> calls, checking proper tracking of User Timings could be done in the following manner:
 
@@ -67,3 +71,4 @@ block content
 			      .then(done);
 			   });
 			});
+			

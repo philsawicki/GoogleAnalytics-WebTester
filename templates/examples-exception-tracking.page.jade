@@ -9,6 +9,8 @@ block variables
 	- var pageUrl = "examples-exception-tracking.html"
 
 block content
+	h2 Google Analytics Data Structure
+
 	p To validate tracking of Exceptions, use the following Array in your Jasmine expectations:
 
 	pre
@@ -19,6 +21,8 @@ block content
 			   'appName', 'Demo_Application', ────────> 5. Application Name
 			   'appVersion', '1.0' ───────────────────> 6. Application Version Number
 			}]
+
+	h2 Sample Jasmine Spec File
 
 	p Using direct <code>ga()</code> calls, checking proper tracking of Exceptions could be done in the following manner:
 
@@ -70,3 +74,83 @@ block content
 			      .then(done);
 			   });
 			});
+
+	h2#loggingJSErrors Logging JavaScript Errors
+
+	p Few people know about this, but the free version of Google Analytics supports exception logging. It might be caused by the fact that Google Analytics does not provide any built-in Report surfacing that information. Fortunately, that does not prevent you from making your own.
+
+	p First, you will need to either:
+	ul
+		li Include the following JavaScript code snippet into your application.
+		li Use Google Tag Manager to inject it into every single page of your site.
+
+	p You can customize a few things:
+	ul
+		li <code>appName</code> (<em>string</em>): Name of the application you are tracking
+		li <code>appVersion</code> (<em>string</em>): Version number and/or deployment date of the application
+		li <code>exFatal</code> (<em>boolean</em>): “true” or “false”, depending on the Type of Error received
+
+	p You can test that the everything is properly set up by opening your browser’s developer console and typing <code>throw new Error('Crash!')</code>, then checking your Custom Report a few minutes later to make sure your Error is logged.
+
+	p For the complete walkthrough of how to set it up, and a free <em>Error Reporting Dashboard</em>, see the full post on <a href="http://philippesawicki.com/tracking-website-errors-with-google-analytics/" target="blank" title="Tracking Website Error with Google Analytics">philippesawicki.com</a>.
+
+	pre
+		code(class="javascript hljs")
+			|/**
+			|  * Send JavaScript error information to Google Analytics.
+			|  * 
+			|  * @param  {Window} window A reference to the "window".
+			|  * @return {void}
+			|  * @author Philippe Sawicki (https://github.com/philsawicki)
+			|  * @copyright Copyright 2015 Philippe Sawicki (http://philippesawicki.com)
+			|  */
+			|(function (window) {
+			|    // Retain a reference to the previous global error handler, in case it has been set:
+			|    var originalWindowErrorCallback = window.onerror;
+			|        
+			|    /**
+			|     * Log any script error to Google Analytics.
+			|     *
+			|     * Third-party scripts without CORS will only provide "Script Error." as an error message.
+			|     * 
+			|     * @param  {String}           errorMessage Error message.
+			|     * @param  {String}           url          URL where error was raised.
+			|     * @param  {Number}           lineNumber   Line number where error was raised.
+			|     * @param  {Number|undefined} columnNumber Column number for the line where the error occurred.
+			|     * @param  {Object|undefined} errorObject  Error Object.
+			|     * @return {Boolean}                       When the function returns true, this prevents the 
+			|     *                                         firing of the default event handler.
+			|     */
+			|    window.onerror = function customErrorHandler (errorMessage, url, lineNumber, columnNumber, errorObject) {
+			|        // Send error details to Google Analytics, if the library is already available:
+			|        if (typeof ga === 'function') {
+			|            // In case the "errorObject" is available, use its data, else fallback 
+			|            // on the default "errorMessage" provided:
+			|            var exceptionDescription = errorMessage;
+			|            if (typeof errorObject !== 'undefined' && typeof errorObject.message !== 'undefined') {
+			|                exceptionDescription = errorObject.message;
+			|            }
+			| 
+			|            // Format the message to log to Analytics (might also use "errorObject.stack" if defined):
+			|            exceptionDescription += ' @ ' + url + ':' + lineNumber + ':' + columnNumber;
+			| 
+			|            ga('send', 'exception', {
+			|                'exDescription': exceptionDescription,
+			|                'exFatal': false, // Some Error types might be considered as fatal.
+			|                'appName': 'Application_Name',
+			|                'appVersion': '1.0'
+			|            });
+			|        }
+			| 
+			|        // If the previous "window.onerror" callback can be called, pass it the data:
+			|        if (typeof originalWindowErrorCallback === 'function') {
+			|            return originalWindowErrorCallback(errorMessage, url, lineNumber, columnNumber, errorObject);
+			|        }
+			| 
+			|        // Otherwise, let the default handler run:
+			|        return false;
+			|    };
+			|})(window);
+			| 
+			|// Generate an error, for demonstration purposes:
+			|//throw new Error('Crash!');

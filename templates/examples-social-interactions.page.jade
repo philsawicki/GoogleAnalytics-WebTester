@@ -9,15 +9,19 @@ block variables
 	- var pageUrl = "examples-social-interactions.html"
 
 block content
+	h2 Google Analytics Data Structure
+	
 	p To validate tracking of Social Interactions, use the following Array in your Jasmine expectations:
 
 	pre
-		code(class="javascript hljs")
-			|['send', 'social', { ────────────────────> 1&2. (Standard Google Analytics parameters)
-			|    'socialNetwork': 'Facebook', ─────────> 3. Social Interaction Network
-			|    'socialAction': 'Like', ──────────────> 4. Social Interaction Action
-			|    'socialTarget': 'http://example.com' ─> 5. Social Interaction Target (URL)
-			|}]
+		code(class="javascript hljs").
+			['send', 'social', { ────────────────────> 1&2. (Standard Google Analytics parameters)
+			    'socialNetwork': 'Facebook', ─────────> 3. Social Interaction Network
+			    'socialAction': 'Like', ──────────────> 4. Social Interaction Action
+			    'socialTarget': 'http://example.com' ─> 5. Social Interaction Target (URL)
+			}]
+
+	h2 Sample Jasmine Spec File
 
 	p Using direct <code>ga()</code> calls, checking proper tracking of Social Interactions could be done in the following manner:
 

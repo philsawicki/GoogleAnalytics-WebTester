@@ -12,6 +12,10 @@ meta(name="theme-color", content="#{metaThemeColor}")
 
 link(rel="canonical", href="#{siteUrl + pageUrl}")
 
+// DNS Prefetch domains used on the page:
+each dnsPrefetchDomain in ["//fonts.googleapis.com", "//cdnjs.cloudflare.com"]
+	link(rel="dns-prefetch", href="#{dnsPrefetchDomain}")
+
 
 link(rel="stylesheet", href="//fonts.googleapis.com/css?family=Open+Sans:600,400,300")
 link(rel="stylesheet", href="public/css/main.css")
