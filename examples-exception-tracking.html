@@ -68,15 +68,17 @@
       .then(done);
    });
 });
-</code></pre><h2 id="loggingJSErrors">Logging JavaScript Errors</h2><p>Few people know about this, but the free version of Google Analytics supports exception logging. It might be caused by the fact that Google Analytics does not provide any built-in Report surfacing that information. Fortunately, that does not prevent you from making your own.</p><p>First, you will need to either:</p><ul><li>Include the following JavaScript code snippet into your application.</li><li>Use Google Tag Manager to inject it into every single page of your site.</li></ul><p>You can customize a few things:</p><ul><li><code>appName</code> (<em>string</em>): Name of the application you are tracking</li><li><code>appVersion</code> (<em>string</em>): Version number and/or deployment date of the application</li><li><code>exFatal</code> (<em>boolean</em>): “true” or “false”, depending on the Type of Error received</li></ul><p>You can test that the everything is properly set up by opening your browser’s developer console and typing <code>throw new Error('Crash!')</code>, then checking your Custom Report a few minutes later to make sure your Error is logged.</p><p>For the complete walkthrough of how to set it up, and a free <em>Error Reporting Dashboard</em>, see the full post on <a href="http://philippesawicki.com/tracking-website-errors-with-google-analytics/" target="blank" title="Tracking Website Error with Google Analytics">philippesawicki.com</a>.</p><pre><code class="javascript hljs">/**
+</code></pre><h2 id="loggingJSErrors">Logging JavaScript Errors</h2><p>Few people know about this, but the free version of Google Analytics supports exception logging. It might be caused by the fact that Google Analytics does not provide any built-in Report surfacing that information. Fortunately, that does not prevent you from making your own.</p><p>First, you will need to either:</p><ul><li>Include the following JavaScript code snippet into your application.</li><li>Use Google Tag Manager to inject it into every single page of your site.</li></ul><p>You can customize a few things:</p><ul><li><code>appName</code> (<em>string</em>): Name of the application you are tracking</li><li><code>appVersion</code> (<em>string</em>): Version number and/or deployment date of the application</li><li><code>exFatal</code> (<em>boolean</em>): “true” or “false”, depending on the Type of Error received</li></ul><p>You can test that the everything is properly set up by opening your browser’s developer console and typing <code>throw new Error('Crash!')</code>, then checking your Custom Report a few minutes later to make sure your Error is logged.</p><p>For the complete walkthrough of how to set it up, and a free <em>Error Reporting Dashboard</em>, see the full post on <a href="http://philippesawicki.com/tracking-website-errors-with-google-analytics/" target="blank" title="Tracking Website Error with Google Analytics">philippesawicki.com</a>.</p><pre><code class="javascript hljs">/**!
  * Send JavaScript error information to Google Analytics.
  * 
- * @param  {Window} window A reference to the "window".
+ * @param  {Window}           window  A reference to the "window".
+ * @param  {Object|undefined} options An object containing optional "applicationName" and
+ *                                    "applicationVersion" strings.
  * @return {void}
  * @author Philippe Sawicki (https://github.com/philsawicki)
  * @copyright Copyright 2015 Philippe Sawicki (http://philippesawicki.com)
  */
-(function (window) {
+(function (window, options) {
    // Retain a reference to the previous global error handler, in case it has been set:
    var originalWindowErrorCallback = window.onerror;
        
@@ -106,12 +108,24 @@
            // Format the message to log to Analytics (might also use "errorObject.stack" if defined):
            exceptionDescription += ' @ ' + url + ':' + lineNumber + ':' + columnNumber;
  
-           ga('send', 'exception', {
-               'exDescription': exceptionDescription,
-               'exFatal': false, // Some Error types might be considered as fatal.
-               'appName': 'Application_Name',
-               'appVersion': '1.0'
-           });
+           // Data Object to send to Google Analytics:
+           var exOptions = {
+               exDescription: exceptionDescription,
+               exFatal: false // Some Error types might be considered as fatal.
+           };
+ 
+           // Format additional Data Object Properties, if any option given:
+           if (typeof options !== 'undefined') {
+               if (typeof options.applicationName !== 'undefined') {
+                   exOptions.appName = options.applicationName;
+               }
+               if (typeof options.applicationVersion !== 'undefined') {
+                   exOptions.appVersion = options.applicationVersion;
+               }
+           }
+ 
+           // Send Data Object to Google Analytics:
+           ga('send', 'exception', exOptions);
        }
  
        // If the previous "window.onerror" callback can be called, pass it the data:
@@ -122,7 +136,10 @@
        // Otherwise, let the default handler run:
        return false;
    };
-})(window);
+})(window, {
+    applicationName: 'Application_Name', // Optional "Application Name" parameter (set your own).
+    applicationVersion: '1.0'            // Optional "Application Version" parameter (set your own).
+});
  
 // Generate an error, for demonstration purposes:
 //throw new Error('Crash!');</code></pre></div></main><script type="application/ld+json">{"@context":"http://schema.org","@type":"Person","name":"Philippe Sawicki","jobTitle":"Full Stack Developer","url":"http://philippesawicki.com","sameAs":["https://facebook.com/philippe.sawicki","https://twitter.com/fyll_s","https://plus.google.com/+PhilippeSawicki","https://linkedin.com/in/philippesawicki"]}</script><script type="text/javascript">

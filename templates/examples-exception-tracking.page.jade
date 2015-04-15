@@ -96,15 +96,17 @@ block content
 
 	pre
 		code(class="javascript hljs")
-			|/**
+			|/**!
 			|  * Send JavaScript error information to Google Analytics.
 			|  * 
-			|  * @param  {Window} window A reference to the "window".
+			|  * @param  {Window}           window  A reference to the "window".
+			|  * @param  {Object|undefined} options An object containing optional "applicationName" and
+			|  *                                    "applicationVersion" strings.
 			|  * @return {void}
 			|  * @author Philippe Sawicki (https://github.com/philsawicki)
 			|  * @copyright Copyright 2015 Philippe Sawicki (http://philippesawicki.com)
 			|  */
-			|(function (window) {
+			|(function (window, options) {
 			|    // Retain a reference to the previous global error handler, in case it has been set:
 			|    var originalWindowErrorCallback = window.onerror;
 			|        
@@ -134,12 +136,24 @@ block content
 			|            // Format the message to log to Analytics (might also use "errorObject.stack" if defined):
 			|            exceptionDescription += ' @ ' + url + ':' + lineNumber + ':' + columnNumber;
 			| 
-			|            ga('send', 'exception', {
-			|                'exDescription': exceptionDescription,
-			|                'exFatal': false, // Some Error types might be considered as fatal.
-			|                'appName': 'Application_Name',
-			|                'appVersion': '1.0'
-			|            });
+			|            // Data Object to send to Google Analytics:
+			|            var exOptions = {
+			|                exDescription: exceptionDescription,
+			|                exFatal: false // Some Error types might be considered as fatal.
+			|            };
+			| 
+			|            // Format additional Data Object Properties, if any option given:
+			|            if (typeof options !== 'undefined') {
+			|                if (typeof options.applicationName !== 'undefined') {
+			|                    exOptions.appName = options.applicationName;
+			|                }
+			|                if (typeof options.applicationVersion !== 'undefined') {
+			|                    exOptions.appVersion = options.applicationVersion;
+			|                }
+			|            }
+			| 
+			|            // Send Data Object to Google Analytics:
+			|            ga('send', 'exception', exOptions);
 			|        }
 			| 
 			|        // If the previous "window.onerror" callback can be called, pass it the data:
@@ -150,7 +164,10 @@ block content
 			|        // Otherwise, let the default handler run:
 			|        return false;
 			|    };
-			|})(window);
+			|})(window, {
+			|     applicationName: 'Application_Name', // Optional "Application Name" parameter (set your own).
+			|     applicationVersion: '1.0'            // Optional "Application Version" parameter (set your own).
+			|});
 			| 
 			|// Generate an error, for demonstration purposes:
 			|//throw new Error('Crash!');
