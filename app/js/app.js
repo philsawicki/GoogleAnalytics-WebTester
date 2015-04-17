@@ -1,7 +1,7 @@
 /**!
  * @file Main file for the Angular Demo Application.
- * @author Philippe Sawicki <http://github.com/philsawicki> 
- * @copyright Philippe Sawicki 2015
+ * @author Philippe Sawicki (https://github.com/philsawicki)
+ * @copyright Copyright Philippe Sawicki 2015
  * @license MIT
  */
 

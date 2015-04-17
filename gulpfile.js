@@ -1,6 +1,6 @@
 /**!
  * @file Gulpfile for Google Analytics Web Tester.
- * @author Philippe Sawicki <http://github.com/philsawicki>
+ * @author Philippe Sawicki (https://github.com/philsawicki)
  * @copyright Philippe Sawicki 2015
  * @license MIT
  */
@@ -138,7 +138,10 @@ gulp.task('minify-html', ['package-partials'], function () {
     return gulp.src('app/*.html')
         .pipe(htmlReplace({
             css: 'css/css.css',
-            js: 'js/scripts.js',
+            js: {
+                src: 'js/scripts.js',
+                tpl: '<script src="%s" async></script>'
+            },
             modernizr: 'js/modernizr-2.6.2.min.js'
         }))
         .pipe(minifyHTML({ conditionals: true, empty: true, quotes: true })) // There is an issue with IE conditionals being removed with "comments: true".
