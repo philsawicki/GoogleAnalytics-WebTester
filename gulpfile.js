@@ -49,7 +49,7 @@ var config = {
 /**
  * Package up the Angular Views into a single initial download:
  */
-gulp.task('package-partials', function() {
+gulp.task('package-partials', function () {
     return gulp.src(config.angularViews)
         .pipe(minifyHTML({ empty: true, quotes: true }))
         .pipe(templateCache('templates.js', { root: 'views/', module: 'myApp' }))
@@ -106,7 +106,7 @@ gulp.task('minify-css', function () {
 /**
  * Minify JS.
  */
-gulp.task('minify-js', ['package-partials'], function() {
+gulp.task('minify-js', ['package-partials'], function () {
     // Library references (order-dependent):
     var libs = [
         'app/bower_components/jquery/dist/jquery.js',

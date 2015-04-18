@@ -1,7 +1,7 @@
 {
   "name": "GoogleAnalytics-WebTester",
   "description": "A Spec Runner for Google Analytics",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/philsawicki/GoogleAnalytics-WebTester",
   "license": "MIT",
   "private": true,
