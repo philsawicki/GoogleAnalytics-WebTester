@@ -90,6 +90,7 @@
         if (typeof window.ga !== 'undefined' && typeof window.ga.q === 'undefined') {
             // Set "Tracking Enabled" Dimension:
             ga('set', 'dimension2', 'true');
+            ga('send', 'event', 'Client Tracking', 'Autodetect', 'Not Blocked', { 'nonInteraction': 1 });
         } else {
             var versionID = '1';
             var trackingID = 'UA-58402941-1';
@@ -104,7 +105,7 @@
 
             var eventCategory = 'Client Tracking';
             var eventAction = 'Autodetect';
-            var eventLabel = 'Tracking Blocked';
+            var eventLabel = 'Blocked';
 
             //var customDimensionIndex = 'cd2';
             var customDimensionValue = 'false';
