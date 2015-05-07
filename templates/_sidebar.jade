@@ -34,13 +34,13 @@ div(class="col-sm-3 col-md-2 sidebar")
 			if pageName === navItem.name
 				li.active
 					a(href="#{navItem.link}") #{navItem.name}
-						//if typeof navItem.status !== 'undefined'
-						//	span(class="label label-default", style="margin-left: 7px;") #{navItem.status}
+						if typeof navItem.status !== 'undefined'
+							small: span(class="label label-default", style="margin-left: 7px;") #{navItem.status}!
 			else
 				li
 					a(href="#{navItem.link}") #{navItem.name}
-						//if typeof navItem.status !== 'undefined'
-						//	small: span(class="label label-default", style="margin-left: 7px;") #{navItem.status}
+						if typeof navItem.status !== 'undefined'
+							small: span(class="label label-primary", style="margin-left: 7px;") #{navItem.status}!
 
 	p: strong Resources
 	ul(class="nav nav-sidebar")
