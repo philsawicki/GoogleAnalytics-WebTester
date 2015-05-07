@@ -14,7 +14,7 @@ html {
 
 body {
   color: var(--text-color);
-  font: 0.875em/1.4 'Open Sans', sans-serif;
+  font: 0.875em/1.4 'Source Sans Pro', sans-serif;
   text-rendering: optimizeLegibility;
 }
 

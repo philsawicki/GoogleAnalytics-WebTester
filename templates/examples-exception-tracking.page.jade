@@ -9,7 +9,7 @@ block variables
 	- var pageUrl = "examples-exception-tracking.html"
 
 block content
-	h2 Google Analytics Data Structure
+	h2.sub-header Google Analytics Data Structure
 
 	p To validate tracking of Exceptions, use the following Array in your Jasmine expectations:
 
@@ -22,7 +22,7 @@ block content
 			   'appVersion', '1.0' ──────────────────> 6. Application Version Number
 			}]
 
-	h2 Sample Jasmine Spec File
+	h2.sub-header Sample Jasmine Spec File
 
 	p Using direct <code>ga()</code> calls, checking proper tracking of Exceptions could be done in the following manner:
 
@@ -75,7 +75,7 @@ block content
 			   });
 			});
 
-	h2#loggingJSErrors Logging JavaScript Errors
+	h2.sub-header#loggingJSErrors Logging JavaScript Errors
 
 	p Few people know about this, but the free version of Google Analytics supports exception logging. It might be caused by the fact that Google Analytics does not provide any built-in Report surfacing that information. Fortunately, that does not prevent you from making your own.
 

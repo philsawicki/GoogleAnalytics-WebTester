@@ -1,9 +1,9 @@
 /* External dependencies. */
-@import 'normalize.css';
+/*@import 'normalize.css';*/
 
 /* Base styles, media queries, variables, etc. */
-@import './base/custom-media';
-@import './base/elements';
+/*@import './base/custom-media';
+@import './base/elements';*/
 @import './base/variables';
 
 /* Components. */
@@ -15,7 +15,7 @@
 @import './components/button';
 @import './components/chartjs';
 @import './components/checkbox';*/
-@import './components/content';
+/*@import './components/content';*/
 /*@import './components/dashboard';
 @import './components/date-range-selector';
 @import './components/error';
@@ -24,26 +24,179 @@
 @import './components/form-control';
 @import './components/form-field';
 @import './components/form-field-add-on';*/
-@import './components/header';
-@import './components/icon';
+/*@import './components/header';
+@import './components/icon';*/
 /*@import './components/inline-definition-list';*/
-@import './components/logo';
+/*@import './components/logo';
 @import './components/nav';
-@import './components/nav-header';
+@import './components/nav-header';*/
 /*@import './components/progress-bar';
 @import './components/query-report';
-@import './components/s2tag';
-@import './components/screenshot';*/
-@import './components/site';
+@import './components/s2tag';*/
+@import './components/screenshot';
+/*@import './components/site';*/
 /*@import './components/tech-info';*/
-@import './components/titles';
+/*@import './components/titles';*/
 /*@import './components/view-selector';*/
 
 /* Utilities. */
-@import './utilities/media.css';
-@import './utilities/space.css';
+/*@import './utilities/media.css';
+@import './utilities/space.css';*/
 
 /* Vendor styles (which don't necessarily follow conventions) */
 @import './vendor/highlight';
 /*@import './vendor/select2-overrides';
 @import './vendor/table-chart';*/
+
+
+
+/* Bootswatch: */
+/*@import './vendor/bootswatch/lumen';*/
+@import './vendor/bootswatch/bootswatch.min';
+
+
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+/**************************************
+ * Bootstrap "Dashboard" Example CSS: *
+ **************************************/
+
+
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+}
+
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+/*.navbar-fixed-top {
+  border: 0;
+}*/
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+  }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+
+
+
+/**************************************
+ * Bootstrap "Dashboard" Example CSS: *
+ **************************************/
+pre {
+	padding: 0px;
+	background-color: #fff;
+	border: 0px;
+
+	/* Added: */
+	word-wrap: normal;
+}
+code.hljs {
+	background-color: #f5f5f5;
+
+	/* Added: */
+	white-space: pre;
+}
+
+.nav-sidebar>li>a {
+	padding-left: 30px;
+
+	padding-top: 3px;
+	padding-bottom: 3px;
+}

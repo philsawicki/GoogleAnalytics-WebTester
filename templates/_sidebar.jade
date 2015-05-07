@@ -1,0 +1,52 @@
+div(class="col-sm-3 col-md-2 sidebar")
+
+	p: strong Project
+	ul(class="nav nav-sidebar")
+		if pageName === "How does it work"
+			li.active: a(href="how-does-it-work.html") How does it work?
+		else
+			li: a(href="how-does-it-work.html") How does it work?
+		if pageName === "About the Demo Application"
+			li.active: a(href="about-the-demo-application.html") About the Demo App
+		else
+			li: a(href="about-the-demo-application.html") About the Demo App
+		li: a#githubSite(href="https://github.com/philsawicki/GoogleAnalytics-WebTester", title="View Google Analytics Website Checker project on Github") View on GitHub
+		li: a#downloadZip(href="https://github.com/philsawicki/GoogleAnalytics-WebTester/zipball/master", title="Download Google Analytics Web Tester") Download <span class="Nav-status">Free</span>
+		//li: a#downloadTarGz(href="https://github.com/philsawicki/GoogleAnalytics-WebTester/tarball/master", title="Download Google Analytics Web Tester") Download .tar.gz <span class="Nav-status">Free</span>
+
+	p: strong Code Samples
+	ul(class="nav nav-sidebar")
+		- for navItem in [{"name":"Pageviews","link":"examples-pageviews.html"},{"name":"Events","link":"examples-events.html"},{"name":"Custom Metrics","link":"examples-custom-metrics.html"},{"name":"Custom Dimensions","link":"examples-custom-dimensions.html"},{"name":"Enhanced E-Commerce","link":"examples-enhanced-ecommerce.html","status":"New"},{"name":"Content Grouping","link":"examples-content-grouping.html","status":"New"},{"name":"Social Interactions","link":"examples-social-interactions.html"},{"name":"User Timings","link":"examples-user-timings.html"},{"name":"Cross-Device Tracking","link":"examples-cross-device-tracking.html","status":"New"},{"name":"Exception Tracking","link":"examples-exception-tracking.html","status":"New"}]
+			//li
+			//	if pageName === navItem.name
+			//		if typeof navItem.status === 'undefined'
+			//			a.Nav-link.Nav-link--selected(href="#{navItem.link}") #{navItem.name}
+			//		else
+			//			a.Nav-link.Nav-link--selected(href="#{navItem.link}") #{navItem.name}
+			//				span.Nav-status #{navItem.status}
+			//	else
+			//		if typeof navItem.status === 'undefined'
+			//			a.Nav-link(href="#{navItem.link}") #{navItem.name}
+			//		else
+			//			a.Nav-link(href="#{navItem.link}") #{navItem.name}
+			//				span.Nav-status #{navItem.status}
+
+			if pageName === navItem.name
+				li.active
+					a(href="#{navItem.link}") #{navItem.name}
+						//if typeof navItem.status !== 'undefined'
+						//	span(class="label label-default", style="margin-left: 7px;") #{navItem.status}
+			else
+				li
+					a(href="#{navItem.link}") #{navItem.name}
+						//if typeof navItem.status !== 'undefined'
+						//	small: span(class="label label-default", style="margin-left: 7px;") #{navItem.status}
+
+	p: strong Resources
+	ul(class="nav nav-sidebar")
+		li: a(href="index.html#about") About this Site
+		li: a(href="index.html#help") Help & Feedback
+		if pageName === "Contact"
+			li.active: a(href="contact.html") Contact
+		else
+			li: a(href="contact.html") Contact

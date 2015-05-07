@@ -1,5 +1,5 @@
 doctype html
-html(itemscope="", itemtype="http://schema.org/Article")
+html(itemscope="", itemtype="http://schema.org/Article", lang="en")
 	// Render "Variables" Block:
 	block variables
 
@@ -13,24 +13,37 @@ html(itemscope="", itemtype="http://schema.org/Article")
 		// Render "head_scripts" Block:
 		block head_scripts
 
-	body.Site
+	body
 		// Include "_analytics" Partial:
 		include _analytics
 
-		aside.Site-sidebar#sidebar
-			include _nav-header
-			include _nav
+		include _header-nav
 
-		main.Site-main
-			include _header
-			div.Content
-				div.u-lg-hidden
-					// Render "_titles" Partial:
+
+		// Container
+		div.container-fluid
+			div.row
+				include _sidebar
+
+				div(class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main")
 					include _titles
-				// Render "content" Block:
-				block content
-				// Render "tech" Block:
-				block tech
+					block content
+
+
+		//aside.Site-sidebar#sidebar
+		//	include _nav-header
+		//	include _nav
+
+		//main.Site-main
+		//	include _header
+		//	div.Content
+		//		div.u-lg-hidden
+		//			// Render "_titles" Partial:
+		//			include _titles
+		//		// Render "content" Block:
+		//		block content
+		//		// Render "tech" Block:
+		//		block tech
 
 		//script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
 		//script(src="https://ga-dev-tools.appspot.com/public/javascript/bundle.js")

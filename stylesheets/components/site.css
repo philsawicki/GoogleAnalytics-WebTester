@@ -84,7 +84,7 @@
   }
 
   .Site-main {
-    border-top: .4em solid #f7991c;
+    border-top: .4em solid /*#f7991c*/ var(--ga-orange-dark);
     box-shadow: 0 0 1em rgba(0,0,0,.3);
     flex: 1;
     position: relative; /* To get it stacked above the sidebar */

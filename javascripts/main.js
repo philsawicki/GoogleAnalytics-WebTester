@@ -8,7 +8,7 @@
      * @return {void}
      */
     var init = function () {
-        _loadLibraries();
+        //_loadLibraries();
         _bindGoogleAnalyticsTracking();
     };
 

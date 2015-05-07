@@ -7,7 +7,7 @@
   border-radius: 4px;
   font-family: Menlo, monospace;
   font-size: .9em;
-  max-width: 52em;
+  /*max-width: 52em;*/
   overflow: auto;
   padding: var(--gap);
 }

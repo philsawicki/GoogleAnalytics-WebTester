@@ -10,16 +10,16 @@
 
   --info-color: hsl(200, 75%, 55%);
 
-  --bg-color-dark: #333;
-  --bg-color-dark-faded: #444;
-  --bg-color-light: hsl(30, 10%, 95%);
+  --bg-color-dark: #193441; /*#333;*/
+  --bg-color-dark-faded: #050F13; /*#444;*/
+  --bg-color-light: #fcffF5; /*hsl(30, 10%, 95%);*/
 
   --border-color: #d4d2d0;
   --border-color-active: #3b99fc;
 
   --ga-gray: #75787d;
-  --ga-orange-dark: #f05721;
-  --ga-orange-light: #f7991c;
+  --ga-orange-dark: #2BBDFC; /*#f05721;*/
+  --ga-orange-light: #71D4FF; /*#f7991c;*/
 
   --ga-logo-height: 32px;
   --ga-logo-width: 316px;

@@ -16,7 +16,7 @@
 }
 
 .Logo-partial::after {
-  content: 'Web Tester';
+  content: 'GA Web Tester';
   color: #ddd;
   display: block;
   font-size: 1.4em;
