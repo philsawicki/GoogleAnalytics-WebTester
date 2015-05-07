@@ -1,5 +1,9 @@
 div(class="col-sm-3 col-md-2 sidebar")
 
+	p
+		a(href="/")
+			strong Home
+
 	p: strong Project
 	ul(class="nav nav-sidebar")
 		if pageName === "How does it work"
@@ -7,12 +11,12 @@ div(class="col-sm-3 col-md-2 sidebar")
 		else
 			li: a(href="how-does-it-work.html") How does it work?
 		if pageName === "About the Demo Application"
-			li.active: a(href="about-the-demo-application.html") About the Demo App
+			li.active: a(href="about-the-demo-application.html") About the Demo Application
 		else
-			li: a(href="about-the-demo-application.html") About the Demo App
+			li: a(href="about-the-demo-application.html") About the Demo Application
 		li: a#githubSite(href="https://github.com/philsawicki/GoogleAnalytics-WebTester", title="View Google Analytics Website Checker project on Github") View on GitHub
-		li: a#downloadZip(href="https://github.com/philsawicki/GoogleAnalytics-WebTester/zipball/master", title="Download Google Analytics Web Tester") Download <span class="Nav-status">Free</span>
-		//li: a#downloadTarGz(href="https://github.com/philsawicki/GoogleAnalytics-WebTester/tarball/master", title="Download Google Analytics Web Tester") Download .tar.gz <span class="Nav-status">Free</span>
+		li: a#downloadZip(href="https://github.com/philsawicki/GoogleAnalytics-WebTester/zipball/master", title="Download Google Analytics Web Tester") Download <small><span class="label label-primary">Free!</span></small>
+		//li: a#downloadTarGz(href="https://github.com/philsawicki/GoogleAnalytics-WebTester/tarball/master", title="Download Google Analytics Web Tester") Download .tar.gz <span class="label label-primary">Free</span>
 
 	p: strong Code Samples
 	ul(class="nav nav-sidebar")
