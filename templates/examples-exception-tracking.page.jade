@@ -14,7 +14,7 @@ block content
 	p To validate tracking of Exceptions, use the following Array in your Jasmine expectations:
 
 	pre
-		code(class="javascript hljs").
+		code(class="javascript hljs well").
 			['send', 'exception', { ─────────────────> 1&2. (Standard Google Analytics parameters)
 			   'exDescription': 'DatabaseError', ────> 3. Exception Description
 			   'exFatal': false, ────────────────────> 4. Indicates whether the exception was fatal
@@ -27,7 +27,7 @@ block content
 	p Using direct <code>ga()</code> calls, checking proper tracking of Exceptions could be done in the following manner:
 
 	pre
-		code(class="javascript hljs").
+		code(class="javascript hljs well").
 			describe('The Google Analytics "Exception" tracking', function () {
 			   beforeEach(function () {
 			      // Load the page to test:
@@ -95,7 +95,7 @@ block content
 	p For the complete walkthrough of how to set it up, and a free <em>Error Reporting Dashboard</em>, see the full post on <a href="http://philippesawicki.com/tracking-website-errors-with-google-analytics/" target="blank" title="Tracking Website Error with Google Analytics" rel="me">philippesawicki.com</a>.
 
 	pre
-		code(class="javascript hljs")
+		code(class="javascript hljs well")
 			|/**!
 			|  * Send JavaScript error information to Google Analytics.
 			|  * 

@@ -188,7 +188,7 @@ pre {
 	word-wrap: normal;
 }
 code.hljs {
-	background-color: #f5f5f5;
+	/*background-color: #f5f5f5;*/
 
 	/* Added: */
 	white-space: pre;

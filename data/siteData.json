@@ -9,17 +9,26 @@
 	"pageTwitterCardImage": "public/images/Google-Analytics-Web-Tester-Social.png",
 	"pageFacebookImage": "public/images/Google-Analytics-Web-Tester-Social.png",
 
-	"structuredData": {
-		"@context" : "http://schema.org",
-		"@type" : "Person",
-		"name": "Philippe Sawicki",
-		"jobTitle": "Full Stack Developer",
-		"url": "http://philippesawicki.com",
-		"sameAs": [
-			"https://facebook.com/philippe.sawicki",
-			"https://twitter.com/fyll_s",
-			"https://plus.google.com/+PhilippeSawicki",
-			"https://linkedin.com/in/philippesawicki"
-        ]
-	}
+	"structuredData": [
+		{
+			"@context" : "http://schema.org",
+			"@type" : "Person",
+			"name": "Philippe Sawicki",
+			"jobTitle": "Full Stack Developer",
+			"url": "http://philippesawicki.com",
+			"sameAs": [
+				"https://facebook.com/philippe.sawicki",
+				"https://twitter.com/fyll_s",
+				"https://plus.google.com/+PhilippeSawicki",
+				"https://linkedin.com/in/philippesawicki"
+			]
+		},
+		{
+			"@context" : "http://schema.org",
+			"@type" : "WebSite",
+			"name" : "Google Analytics Web Tester",
+			"alternateName" : "GA Web Tester",
+			"url" : "https://philsawicki.github.io/GoogleAnalytics-WebTester/"
+		}
+	]
 }

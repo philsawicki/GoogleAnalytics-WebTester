@@ -14,7 +14,7 @@ block content
 	p To validate tracking of Custom Events, use the following Array in your Jasmine expectations:
 
 	pre
-		code(class="javascript hljs").
+		code(class="javascript hljs well").
 			['send', 'event', 'Button', 'Click', 'Jumbotron CTA']
 			  │       │        │         │        └──> 5. Event Label
 			  │       │        │         └───────────> 4. Event Action
@@ -27,7 +27,7 @@ block content
 	p Using direct <code>ga()</code> calls, checking proper tracking of Events could be done in the following manner:
 
 	pre
-		code(class="javascript hljs").
+		code(class="javascript hljs well").
 			describe('The Google Analytics "click" tracking', function () {
 			   beforeEach(function () {
 			      // Load the page to test:

@@ -22,7 +22,7 @@ block content
 	p To get started, simply clone this repository and install the dependencies:
 
 	pre
-		code(class="bash hljs").
+		code(class="bash hljs well").
 			git clone https://github.com/philsawicki/GoogleAnalytics-WebTester.git
 			cd GoogleAnalytics-WebTester
 			npm install
@@ -32,7 +32,7 @@ block content
 	p The project comes preconfigured with a simple web server. If you want, you can check the demo by opening up a browser and heading over to <code>http://localhost:8000/dist/index.html#/</code>.
 
 	pre
-		code(class="bash hljs").
+		code(class="bash hljs well").
 			npm start
 			npm run protractor
 
@@ -43,7 +43,7 @@ block content
 	p Testing a website can be done using Protractor specification files. As an example, here is how the a Custom Event can be tracked, when clicking on a CTA button:
 
 	pre
-		code(class="javascript hljs").
+		code(class="javascript hljs well").
 			describe('The Google Analytics "click" tracking', function () {
 			   beforeEach(function () {
 			      // Load the page to test:
@@ -84,7 +84,7 @@ block content
 	p Let's say your standard <code>ga()</code> call looks like this when clicking on the Jumbotron CTA of the demo application (will be the same if Event Tracking is set through GTM <span style="color: red;">*</span>):
 
 	pre
-		code(class="javascript hljs").
+		code(class="javascript hljs well").
 			ga('send', 'event', 'Button', 'Click', 'Jumbotron CTA');
 			    │       │        │         │        └──> 5. Event Label
 			    │       │        │         └───────────> 4. Event Action
@@ -95,7 +95,7 @@ block content
 	p Then, after the <code>ga()</code> is executed, the value of <code>window.GAWebTester.getLastEvent()</code> will be:
 
 	pre
-		code(class="javascript hljs").
+		code(class="javascript hljs well").
 			  ['send', 'event', 'Button', 'Click', 'Jumbotron CTA']
 			    │       │        │         │        └──> 5. Event Label
 			    │       │        │         └───────────> 4. Event Action

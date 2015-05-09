@@ -14,7 +14,7 @@ block content
 	p To validate tracking of Enhanced E-Commerce actions, use the following Array in your Jasmine expectations:
 
 	pre
-		code(class="javascript hljs")
+		code(class="javascript hljs well")
 			|['ec:addProduct', { ─────────────────────> 1. (Standard Google Analytics parameters)
 			|    'id': 'P12345', ──────────────────────> 2. Product ID
 			|    'name': 'Android Warhol T-Shirt', ────> 3. Product Name
@@ -35,7 +35,7 @@ block content
 	p Using direct <code>ga()</code> calls, checking proper tracking of Enhanced E-Commerce actions could be done in the following manner:
 
 	pre
-		code(class="javascript hljs").
+		code(class="javascript hljs well").
 			describe('The Google Analytics "Enhanced E-Commerce" tracking', function () {
 			   beforeEach(function () {
 			      // Load the page to test:
