@@ -1,7 +1,9 @@
 div.Titles.Titles--hero
-	h1.page-header #{pageHeader}
-	//if pageSubtitle
-	//	div.Titles-sub #{pageSubtitle}
+	if pageSubtitle
+		h1.page-header #{pageHeader + ' '}
+			small #{pageSubtitle}
+	else
+		h1.page-header #{pageHeader}
 
 	//if pageHeaderCTAText && pageHeaderCTALink
 	//	a.Titles-action(href="#{pageHeaderCTALink}") #{pageHeaderCTAText}

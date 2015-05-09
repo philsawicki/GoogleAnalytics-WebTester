@@ -1,4 +1,4 @@
-(function (window, document, undefined) {
+(function (document, undefined) {
     'use strict';
 
 
@@ -17,23 +17,14 @@
      * 
      * @return {void}
      */
-    var _loadLibraries = function () {
-        //var HighlightJSLoader = new Loader();
-        //HighlightJSLoader.require([
-        //    '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js'
-        //], function () {
-        //    if (typeof hljs !== 'undefined') {
-        //        hljs.initHighlighting();
-        //    }
-        //});
-
+    /*var _loadLibraries = function () {
         var jQueryLoader = new Loader();
         jQueryLoader.require([
             '//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'
         ], function () {
             _menuHandler();
         });
-    };
+    };*/
 
     /**
      * Bind Google Analytics Event Tracking to DOMElements.
@@ -106,7 +97,7 @@
      * 
      * @return {void}
      */
-    var _menuHandler = function () {
+    /*var _menuHandler = function () {
         (function () {
             return {
                 init: function () {
@@ -144,11 +135,11 @@
                 }
             };
         })().init();
-    };
+    };*/
 
 
 
-    var Loader = function () { };
+    /*var Loader = function () { };
     Loader.prototype = {
         require: function (scripts, callback) {
             this.nbLoadedScripts = 0;
@@ -182,8 +173,8 @@
             var head = document.getElementsByTagName('head')[0];
             head.appendChild(s);
         }
-    };
+    };*/
 
 
     init(); // Bootstrap the Module.
-})(window, document);
+})(document);

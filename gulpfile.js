@@ -1,6 +1,7 @@
 var gulp       = require('gulp'),
     jade       = require('gulp-jade'),
     cleanCSS   = require('gulp-cleancss'),
+    concat     = require('gulp-concat'),
     data       = require('gulp-data'),
     minifyHTML = require('gulp-minify-html'),
     prefix     = require('gulp-autoprefixer'),
@@ -60,10 +61,15 @@ gulp.task('sitemap', function () {
  * Compile & minify JavaScript files.
  */
 gulp.task('js', function () {
-    return gulp.src('./javascripts/**/*.js')
+    var javaScriptFiles = [
+        './javascripts/bootstrap.js',
+        './javascripts/bootswatch.js',
+        './javascripts/main.js'
+    ];
+
+    return gulp.src(javaScriptFiles)
+        .pipe(concat('main.min.js'))
         .pipe(uglify())
-        .pipe(rename({ extname: '' }))
-        .pipe(rename({ extname: '.min.js' }))
         .pipe(gulp.dest('./public/js/'));
 });
 
