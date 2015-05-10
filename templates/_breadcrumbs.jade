@@ -1,9 +1,10 @@
-ol.breadcrumb
-	li(itemscope, itemtype="http://data-vocabulary.org/Breadcrumb")
-		a(href="#{siteUrl + 'index.html'}", itemprop="url") <span itemprop="title">Home</span>
-	if parentPage
+if pageUrl !== 'index.html'
+	ol.breadcrumb
 		li(itemscope, itemtype="http://data-vocabulary.org/Breadcrumb")
-			a(href="#{parentPage}", itemprop="url") <span itemprop="title">#{parentPage}</span>
-	li.active(itemscope, itemtype="http://data-vocabulary.org/Breadcrumb")
-		span.hidden(itemprop="url") #{siteUrl + pageUrl}
-		span(itemprop="title") #{pageHeader}
+			a(href="#{siteUrl + 'index.html'}", itemprop="url") <span itemprop="title">Home</span>
+		if parentPage
+			li(itemscope, itemtype="http://data-vocabulary.org/Breadcrumb")
+				a(href="#{parentPage}", itemprop="url") <span itemprop="title">#{parentPage}</span>
+		li.active(itemscope, itemtype="http://data-vocabulary.org/Breadcrumb")
+			span.hidden(itemprop="url") #{siteUrl + pageUrl}
+			span(itemprop="title") #{pageHeader}

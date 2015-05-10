@@ -8,8 +8,19 @@ block variables
 	- var pageName = "Exception Tracking"
 	- var pageUrl = "examples-exception-tracking.html"
 
+
+//block tableOfContents
+	div(class="panel panel-default")
+		div(class="panel-heading")
+			h3(class="panel-title") Table of Contents
+		ul.list-group
+			li.list-group-item: a(href="#gaDataStructure") Google Analytics Data Structure
+			li.list-group-item: a(href="#sampleJasmineSpecFile") Sample Jasmine Spec File
+			li.list-group-item: a(href="#loggingJSErrors") Logging JavaScript Errors
+
+
 block content
-	h2.sub-header Google Analytics Data Structure
+	h2.sub-header#gaDataStructure Google Analytics Data Structure
 
 	p To validate tracking of Exceptions, use the following Array in your Jasmine expectations:
 
@@ -22,7 +33,7 @@ block content
 			   'appVersion', '1.0' ──────────────────> 6. Application Version Number
 			}]
 
-	h2.sub-header Sample Jasmine Spec File
+	h2.sub-header#sampleJasmineSpecFile Sample Jasmine Spec File
 
 	p Using direct <code>ga()</code> calls, checking proper tracking of Exceptions could be done in the following manner:
 
@@ -38,20 +49,6 @@ block content
 			   });
 			 
 			   it('should register an Exception when causing an application crash', function (done) {
-			      // Trigger a "crash" in the browser:
-			      //
-			      //   try {
-			      //      throw new Error('DatabaseError.');
-			      //   } catch (err) {
-			      //      // Send the exception to Google Analytics:
-			      //      ga('send', 'exception', {
-			      //         'exDescription': err.message,
-			      //         'exFatal': false,
-			      //         'appName': 'Demo_Application',
-			      //         'appVersion': '1.0'
-			      //      });
-			      //   }
-
 			      // Get the "LastEvent" object back from the browser:
 			      browser.driver.executeScript(function () {
 			         return window.GAWebTester.getLastEvent();
@@ -74,6 +71,33 @@ block content
 			      .then(done);
 			   });
 			});
+
+	p To manually simulate an Error in the browser, the following code will send a <code>DatabaseError</code> Exception:
+
+	pre
+		code(class="javascript hljs well").
+			/**
+			 * Trigger an Exception in the Browser by throwing an Error then catching
+			 * it with a "ga()" call.
+			 *
+			 * @return {void}
+			 */
+			function triggerGoogleAnalyticsException () {
+			   try {
+			      throw new Error('DatabaseError.');
+			   } catch (err) {
+			      // Send the exception to Google Analytics:
+			      ga('send', 'exception', {
+			         'exDescription': err.message,
+			         'exFatal': false,
+			         'appName': 'Demo_Application',
+			         'appVersion': '1.0'
+			      });
+			   }
+			}
+
+			// Trigger a "crash" in the browser:
+			triggerGoogleAnalyticsException();
 
 	h2.sub-header#loggingJSErrors Logging JavaScript Errors
 
