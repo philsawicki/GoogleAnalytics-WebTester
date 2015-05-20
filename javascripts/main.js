@@ -10,6 +10,12 @@
     var init = function () {
         //_loadLibraries();
         _bindGoogleAnalyticsTracking();
+
+        window.addEventListener('load', function load (event) {
+            window.removeEventListener('load', load, false); // Remove listener (no longer needed).
+
+            _startScreenshotSlideshow();
+        }, false);
     };
 
     /**
@@ -90,6 +96,59 @@
                 ga('send', 'event', 'Button', 'Click', 'Contact: LinkedIn');
             });
         }
+    };
+
+    var _startScreenshotSlideshow = function () {
+        var slideshow = document.getElementById('screenshotsSlideshow');
+        if (slideshow) {
+            var protractorScreenshot = document.getElementById('protractorScreenshot');
+            var consoleScreenshot = document.getElementById('consoleScreenshot');
+
+            if (protractorScreenshot && consoleScreenshot) {
+                _preloadScreenshotSlideshowImages();
+            }
+        }
+    };
+
+    var _preloadScreenshotSlideshowImages = function () {
+        for (var i = 0; i < _nbImages; i++) {
+            try {
+                var imageIndex = (i < 10 ? '0' + i : i);
+
+                var browserScreenshot = new Image();
+                browserScreenshot.onload = _screenshotSlideshowImagesPreloaded;
+                browserScreenshot.src = '/images/screenshots/Google Analytics Web Tester - Protractor Screenshot ' + imageIndex + '.png';
+
+                var consoleScreenshot = new Image();
+                consoleScreenshot.onload = _screenshotSlideshowImagesPreloaded;
+                consoleScreenshot.src = '/images/screenshots/Google Analytics Web Tester - Console Screenshot ' + imageIndex + '.png';
+            } catch (e) { }
+        }
+    };
+
+    var _nbImages = 29;
+    var _preloadCounter = 0;
+    var _screenshotSlideshowImagesPreloaded = function () {
+        if (_preloadCounter++ === _nbImages*2 - 1) {
+            _allImagesPreloaded();
+        }
+    };
+
+    var _slideCounter = 0;
+    var _allImagesPreloaded = function () {
+        var imageIndex = _slideCounter++;
+        if (imageIndex >= _nbImages) {
+            _slideCounter = 0;
+        }
+        imageIndex = (_slideCounter < 10 ? '0' + _slideCounter : _slideCounter);
+
+        var browserScreenshot = document.getElementById('protractorScreenshot');
+        var consoleScreenshot = document.getElementById('consoleScreenshot');
+
+        browserScreenshot.src = 'images/screenshots/Google Analytics Web Tester - Protractor Screenshot ' + imageIndex + '.png';;
+        consoleScreenshot.src = 'images/screenshots/Google Analytics Web Tester - Console Screenshot ' + imageIndex + '.png';;
+
+        setTimeout(_allImagesPreloaded, 0.5*1000);
     };
 
     /**
