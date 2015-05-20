@@ -10,3 +10,4 @@ GoogleAnalytics-WebTester.sublime-project
 GoogleAnalytics-WebTester.sublime-workspace
 build/
 tmp/
+test/*.png
