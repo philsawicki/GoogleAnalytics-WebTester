@@ -117,11 +117,11 @@
 
                 var browserScreenshot = new Image();
                 browserScreenshot.onload = _screenshotSlideshowImagesPreloaded;
-                browserScreenshot.src = '/images/screenshots/Google Analytics Web Tester - Protractor Screenshot ' + imageIndex + '.png';
+                browserScreenshot.src = 'images/screenshots/Google Analytics Web Tester - Protractor Screenshot ' + imageIndex + '.png';
 
                 var consoleScreenshot = new Image();
                 consoleScreenshot.onload = _screenshotSlideshowImagesPreloaded;
-                consoleScreenshot.src = '/images/screenshots/Google Analytics Web Tester - Console Screenshot ' + imageIndex + '.png';
+                consoleScreenshot.src = 'images/screenshots/Google Analytics Web Tester - Console Screenshot ' + imageIndex + '.png';
             } catch (e) { }
         }
     };
