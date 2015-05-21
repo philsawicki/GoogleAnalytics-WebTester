@@ -1,22 +1,6 @@
-(function (document, undefined) {
+(function (window, document, undefined) {
     'use strict';
 
-
-    /**
-     * Initialize the Module.
-     * 
-     * @return {void}
-     */
-    var init = function () {
-        //_loadLibraries();
-        _bindGoogleAnalyticsTracking();
-
-        window.addEventListener('load', function load (event) {
-            window.removeEventListener('load', load, false); // Remove listener (no longer needed).
-
-            _startScreenshotSlideshow();
-        }, false);
-    };
 
     /**
      * Async load the required librairies.
@@ -98,105 +82,156 @@
         }
     };
 
-    var _startScreenshotSlideshow = function () {
-        var slideshow = document.getElementById('screenshotsSlideshow');
-        if (slideshow) {
-            var protractorScreenshot = document.getElementById('protractorScreenshot');
-            var consoleScreenshot = document.getElementById('consoleScreenshot');
-
-            if (protractorScreenshot && consoleScreenshot) {
-                _preloadScreenshotSlideshowImages();
-            }
-        }
-    };
-
-    var _preloadScreenshotSlideshowImages = function () {
-        for (var i = 0; i < _nbImages; i++) {
-            try {
-                var imageIndex = (i < 10 ? '0' + i : i);
-
-                var browserScreenshot = new Image();
-                browserScreenshot.onload = _screenshotSlideshowImagesPreloaded;
-                browserScreenshot.src = 'images/screenshots/Google Analytics Web Tester - Protractor Screenshot ' + imageIndex + '.png';
-
-                var consoleScreenshot = new Image();
-                consoleScreenshot.onload = _screenshotSlideshowImagesPreloaded;
-                consoleScreenshot.src = 'images/screenshots/Google Analytics Web Tester - Console Screenshot ' + imageIndex + '.png';
-            } catch (e) { }
-        }
-    };
-
-    var _nbImages = 29;
-    var _preloadCounter = 0;
-    var _screenshotSlideshowImagesPreloaded = function () {
-        if (_preloadCounter++ === _nbImages*2 - 1) {
-            _allImagesPreloaded();
-        }
-    };
-
-    var _slideCounter = 0;
-    var _allImagesPreloaded = function () {
-        var imageIndex = _slideCounter++;
-        if (imageIndex >= _nbImages) {
-            _slideCounter = 0;
-        }
-        imageIndex = (_slideCounter < 10 ? '0' + _slideCounter : _slideCounter);
-
-        var browserScreenshot = document.getElementById('protractorScreenshot');
-        var consoleScreenshot = document.getElementById('consoleScreenshot');
-
-        browserScreenshot.src = 'images/screenshots/Google Analytics Web Tester - Protractor Screenshot ' + imageIndex + '.png';;
-        consoleScreenshot.src = 'images/screenshots/Google Analytics Web Tester - Console Screenshot ' + imageIndex + '.png';;
-
-        setTimeout(_allImagesPreloaded, 0.5*1000);
-    };
 
     /**
-     * Handler for the Mobile/Tablet Menu.
+     * "Preview" Slideshow image rotator.
      * 
-     * @return {void}
+     * @return {Object}
      */
-    /*var _menuHandler = function () {
-        (function () {
-            return {
-                init: function () {
-                    this.addOpenHandler();
-                },
-                addOpenHandler: function () {
-                    $(document).on('touchend.sidebar click.sidebar', '#header-menu', function (event) {
-                        event.preventDefault();
+    var PreviewAnimation = (function () {
 
-                        $(document).off('.sidebar');
-                        this.open();
-                        this.addCloseHandler();
-                    }.bind(this));
-                },
-                addCloseHandler: function () {
-                    $(document).on('touchend.sidebar click.sidebar', function (event) {
-                        var $target = $(event.target);
+        var _slideMap = [
+            // [ Protractor ; Console ]
+            ['00', '00'],
+            ['01', '01'],
+            [null, '02'],
+            ['03', '03'],
+            [null, '04'],
+            [null, '05'],
+            [null, '06'],
+            [null, '07'],
+            [null, '08'],
+            [null, '09'],
+            [null, '10'],
+            [null, '11'],
+            [null, '12'],
+            [null, '13'],
+            [null, '14'],
+            [null, '15'],
+            [null, '16'],
+            [null, '17'],
+            ['18', '18'],
+            ['19', '19'],
+            [null, '20'],
+            [null, '21'],
+            ['22', '22'],
+            ['23', '23'],
+            ['24', '24'],
+            ['25', '25'],
+            ['26', '26'],
+            [null, '27'],
+            [null, '28'],
+            [null, '29']
+        ];
+        var _nbImages = _slideMap.length;
+        var _preloadCounter = 0;
+        var _slideCounter = 0;
+        var _nbImagesToPreload = 0;
 
-                        // Close of the user clicked the close icon or clicked
-                        // outside of the sidebar.
-                        if ($target.closest('#sidebar-close').length || !$target.closest('#sidebar').length) {
-                            event.preventDefault();
+        /**
+         * Bootstrap the "Preview" Slideshow animation.
+         * 
+         * @return {void}
+         * @private
+         */
+        var _init = function () {
+            var slideshow = document.getElementById('screenshotsSlideshow');
+            if (slideshow) {
+                var protractorScreenshot = document.getElementById('protractorScreenshot');
+                var consoleScreenshot = document.getElementById('consoleScreenshot');
 
-                            $(document).off('.sidebar');
-                            this.close();
-                            this.addOpenHandler();
+                if (protractorScreenshot && consoleScreenshot) {
+                    // Compute the number of slides to preload:
+                    for (var i = 0; i < _nbImages; i++) {
+                        var slideFilenames = _slideMap[i];
+
+                        if (slideFilenames[0] != null) {
+                            _nbImagesToPreload++;
                         }
-                    }.bind(this));
-                },
-                open: function () {
-                    $(document.body).addClass('is-expanded');
-                },
-                close: function () {
-                    $(document.body).removeClass('is-expanded');
+                        if (slideFilenames[1] != null) {
+                            _nbImagesToPreload++;
+                        }
+                    }
+
+                    _preloadScreenshotSlideshowImages();
                 }
-            };
-        })().init();
-    };*/
+            }
+        };
 
+        /**
+         * Preload the "Preview" Slideshow images.
+         * 
+         * @return {void}
+         * @private
+         */
+        var _preloadScreenshotSlideshowImages = function () {
+            for (var i = 0; i < _nbImages; i++) {
+                try {
+                    var slideFilenameIndex = _slideMap[i];
 
+                    // Preload "Protractor" screenshots:
+                    if (slideFilenameIndex[0] != null) {
+                        var browserScreenshot = new Image();
+                        browserScreenshot.onload = _screenshotSlideshowImagesPreloaded;
+                        browserScreenshot.src = 'images/screenshots/Google Analytics Web Tester - Protractor Screenshot ' + slideFilenameIndex[0] + '.png';
+                    }
+
+                    // Preload "Console" screenshots:
+                    if (slideFilenameIndex[1] != null) {
+                        var consoleScreenshot = new Image();
+                        consoleScreenshot.onload = _screenshotSlideshowImagesPreloaded;
+                        consoleScreenshot.src = 'images/screenshots/Google Analytics Web Tester - Console Screenshot ' + slideFilenameIndex[1] + '.png';
+                    }
+                } catch (ex) { }
+            }
+        };
+
+        /**
+         * Callback called when each preloaded image is successfully loaded.
+         * 
+         * @return {void}
+         * @private
+         */
+        var _screenshotSlideshowImagesPreloaded = function (event) {
+            if (++_preloadCounter === _nbImagesToPreload) {
+                _allImagesPreloaded();
+            }
+        };
+
+        /**
+         * Callback called after all images are preloaded, which kicks off the actual image rotation.
+         * 
+         * @return {void}
+         * @private
+         */
+        var _allImagesPreloaded = function () {
+            if (_slideCounter++ == _nbImages - 1) {
+                _slideCounter = 0;
+            }
+            var imageData = _slideMap[_slideCounter];
+
+            // Switch "Protractor" image:
+            if (imageData[0] != null) {
+                var browserScreenshot = document.getElementById('protractorScreenshot');
+                browserScreenshot.src = 'images/screenshots/Google Analytics Web Tester - Protractor Screenshot ' + imageData[0] + '.png';
+            }
+
+            // Switch "Console" image:
+            if (imageData[1] != null) {
+                var consoleScreenshot = document.getElementById('consoleScreenshot');
+                consoleScreenshot.src = 'images/screenshots/Google Analytics Web Tester - Console Screenshot ' + imageData[1] + '.png';
+            }
+
+            // Queue the next image to rotate:
+            setTimeout(_allImagesPreloaded, 0.5*1000);
+        };
+
+        return {
+            init: _init
+        };
+    })();
+
+    
 
     /*var Loader = function () { };
     Loader.prototype = {
@@ -235,5 +270,24 @@
     };*/
 
 
+
+    /**
+     * Initialize the Module.
+     * 
+     * @return {void}
+     */
+    var init = function () {
+        //_loadLibraries();
+        _bindGoogleAnalyticsTracking();
+
+        window.addEventListener('load', function load (event) {
+            if (typeof PreviewAnimation !== 'undefined') {
+                PreviewAnimation.init();
+            }
+
+            window.removeEventListener('load', load, false); // Remove listener (no longer needed).
+        }, false);
+    };
+
     init(); // Bootstrap the Module.
-})(document);
+})(window, document);
