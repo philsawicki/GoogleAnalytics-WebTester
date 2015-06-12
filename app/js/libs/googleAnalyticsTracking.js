@@ -73,108 +73,6 @@
         }
     };
 
-    /**
-     * Track whether or not Analytics tracking is disabled on the client-side.
-     * @return {void}
-     */
-    var _trackAnalyticsLoaded = function () {
-        setTimeout(_sendAnalyticsLoadedData, 5*1000);
-    };
-
-    /**
-     * Sends a Custom Dimension recording whether or not Analytics tracking is disabled 
-     * on the client-side.
-     * @return {void}
-     */
-    var _sendAnalyticsLoadedData = function () {
-        if (typeof window.ga !== 'undefined' && typeof window.ga.q === 'undefined') {
-            // Set "Tracking Enabled" Dimension:
-            ga('set', 'dimension2', 'true');
-            ga('send', 'event', 'Client Tracking', 'Autodetect', 'Not Blocked', { 'nonInteraction': 1 });
-        } else {
-            var versionID = '1';
-            var trackingID = 'UA-58402941-1';
-            var clientID = _getClientID();
-            var dataSource = 'web';
-            var hitType = 'event';
-
-            var userAgent = navigator.userAgent;
-
-            var documentLocationURL = document.location.origin + document.location.pathname + document.location.search;
-            var documentTitle = document.title;
-
-            var eventCategory = 'Client Tracking';
-            var eventAction = 'Autodetect';
-            var eventLabel = 'Blocked';
-
-            //var customDimensionIndex = 'cd2';
-            var customDimensionValue = 'false';
-
-            var nonInteraction = '1';
-            var cacheBuster = _getCacheBuster();
-
-            var debug = false;
-
-            $.ajax({
-                url: 'https://www.google-analytics.com/' + (debug ? 'debug/' : '') + 'collect',
-                method: 'POST',
-                data: {
-                    'v': versionID,
-                    'tid': trackingID,
-                    'cid': clientID,
-                    'ds': dataSource,
-                    't': hitType,
-                    'ua': userAgent,
-                    'dl': documentLocationURL,
-                    'dt': documentTitle,
-                    'ec': eventCategory,
-                    'ea': eventAction,
-                    'el': eventLabel,
-                    'cd2': customDimensionValue, // Set "Tracking Enabled" Dimension:
-                    'ni': nonInteraction,
-                    'z': cacheBuster
-                },
-                success: function (data) {
-                    //console.log('SUCCESS', data);
-                },
-                error: function (jqXHR, textStatus, errorThrown ) {
-                    //console.log('ERROR', jqXHR, textStatus, errorThrown );
-                }
-            });
-        }
-    };
-
-    /**
-     * Returns a UUID for the Device.
-     * 
-     * This anonymously identifies a particular user, device, or browser instance. For the web, 
-     * this is generally stored as a first-party cookie with a two-year expiration. The value of 
-     * this field should be a random UUID (version 4) as described in 
-     * http://www.ietf.org/rfc/rfc4122.txt
-     * 
-     * @return {String} A UUID for the Device.
-     * @private
-     */
-    var _getClientID = function () {
-        var UUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0,
-                v = c == 'x' ? r : (r & 0x3 | 0x8);
-
-            return v.toString(16);
-        });
-        return UUID;
-    };
-
-    /**
-     * Returns a cache-busting parameter (i.e. a Timestamp).
-     * @return {String} A cache-busting parameter (i.e. a Timestamp).
-     * @private
-     */
-    var _getCacheBuster = function () {
-        var timestamp = (new Date()).getTime();
-        return timestamp.toString();
-    };
-
 
     /**
      * Register all tracking functions.
@@ -185,8 +83,7 @@
             _trackJumbotronCTA,
             _trackHeadingCTA,
             _trackBlogArchives,
-            _trackAddToCartClicks,
-            _trackAnalyticsLoaded
+            _trackAddToCartClicks
        ];
 
         for (var i = 0, nbCallbacks = trackingCallbacks.length; i < nbCallbacks; i++) {
