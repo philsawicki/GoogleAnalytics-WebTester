@@ -26,20 +26,50 @@ block content
 			cd GoogleAnalytics-WebTester
 			npm install
 
+	h2.sub-header Installing Protractor
+
+	p Using <code>npm</code>, install Protractor globally using:
+
+	pre
+		code(class="bash hljs well").
+			npm install -g protractor
+
+	p This will install two command-line tools: <code>protractor</code> and <code>webdriver-manager</code>, a helper tool to get an instance of a running Selenium Server. Use it to download the necessary binaries with:
+
+	pre
+		code(class="bash hljs well").
+			webdriver-manager update
+
+	p The Selenium Server can be started with:
+
+	pre
+		code(class="bash hljs well").
+			webdriver-manager start
+
+	p Protractor tests will send requests to this server to control a local browser. Information about the status of the server can be found at <code>http://localhost:4444/wd/hub</code>.
+
+	p For detailed installation and configuration instructions, refer to <a href="https://angular.github.io/protractor/#/tutorial" target="_blank">Protractor's tutorial</a>.
+
 	h2.sub-header Configuring Protractor
 
-	p In order to intercept calls to Analytics' <code>ga()</code> function, some custom JavaScript code must be injected into each page at the beginning of a test. In your <code>protractor.conf.js</code> file, simply add the following to the <code>onPrepare</code> callback, after configuring the test parameters:
+	p In order to intercept calls to Analytics' <code>ga()</code> function, some custom JavaScript code must be injected into each page at the beginning of a test. In your <code>protractor.conf.js</code> file, simply add the following to the <code>onPrepare</code> callback.
 
 	pre
 		code(class="javascript hljs well").
+			// protractor.conf.js
+
 			exports.config = {
 			   // ...
 
-			   // Files matching the "*Spec.js" pattern will be considered as test to execute.
-			   // Spec patterns are relative to the location of this config.
+			   // Base URL for the application under test. Calls to "protractor.get()"
+			   // with relative paths will be prepended with this.
+			   // This may also be a directory on a local system, prefixed with "file://".
+			   baseUrl: 'http://localhost:8000/',
+
+			   // Test files to execute (relative to the location of this config).
 			   specs: [
 			      // ...
-			      '**/*Spec.js'
+			      'jumbotronSpec.js'
 			   ],
 
 			   // ...
@@ -73,13 +103,16 @@ block content
 			   }
 			}
 
-	h2.sub-header Sample Spec file
+	p The configuration tells Protractor where the test files are located, and use the default values for all other configuration options. For a list of available options and their default values, check the <a href="https://github.com/angular/protractor/blob/master/docs/referenceConf.js" target="_blank">reference configuration file</a>.
+
+	h2.sub-header Writing a Test
 
 	p Tests can now be created using Protractor specification files. As an example, here is how the a Custom Event can be tracked, when clicking on a CTA button:
 
 	pre
 		code(class="javascript hljs well").
 			// jumbotronSpec.js
+
 			describe('The Google Analytics "click" tracking', function () {
 
 			   // Before each test: 
@@ -118,3 +151,23 @@ block content
 			      .then(done);
 			   });
 			});
+
+	p The <code>describe</code> and <code>it</code> syntax come from the Jasmine framework. <code>browser</code> is a global object created by Proctractor, which is used for browser-level commands such as navigating to a page (by calling <code>browser.get</code>).
+
+	h2.sub-header Running the Test
+
+	p Assuming everything is set up correctly, you should now be able to launch <strong>Protractor</strong> to execute the test suite:
+
+	pre
+		code(class="bash hljs well").
+			protractor protractor.conf.js
+
+	p A Chrome browser window should open up and navigate to the "index.html" page of the configured server, then close itself (this might be very fast!). 
+
+	p If the "index.html" page of your website contains a DOMElement with ID "jumbotronCTA" which calls <code>ga('send', 'event', 'Button', 'Click', 'Jumbotron CTA');</code> when clicked, Proctractor should report the following:
+
+	pre
+		code(class="bash hljs well").
+			1 test, 1 assertions, 0 failures
+
+	p Congratulations!
