@@ -10,6 +10,10 @@ div(class="col-sm-3 col-md-2 sidebar")
 			li.active: a(href="how-does-it-work.html") How does it work?
 		else
 			li: a(href="how-does-it-work.html") How does it work?
+		if pageName === "Installation"
+			li.active: a(href="installation.html") Installation
+		else
+			li: a(href="installation.html") Installation
 		if pageName === "About the Demo Application"
 			li.active: a(href="about-the-demo-application.html") About the Demo Application
 		else

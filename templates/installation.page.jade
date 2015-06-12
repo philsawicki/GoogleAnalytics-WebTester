@@ -1,0 +1,120 @@
+extends base
+
+block variables
+	- var pageTitle = "Installation"
+	- var pageDescription = "Installation instructions and usage guide for Google Analytics Web Tester. Includes code samples to validate proper Analytics tracking of a website."
+	- var pageSubtitle = ""
+	- var pageHeader = "Installation"
+	- var pageName = "Installation"
+	- var pageUrl = "installation.html"
+	- var pageTwitterCardDescription = "Installation instructions and usage guide for Google Analytics Web Tester. Includes code samples to validate proper Google Analytics tracking of a website, whether using direct 'ga()' calls or GTM."
+
+block content
+	h2.sub-header Getting the library
+
+	p To get started, add the repository to your project:
+
+	pre
+		code(class="bash hljs well").
+			npm install git+https://git@github.com/philsawicki/GoogleAnalytics-WebTester.git
+
+	//p Or, if you only wish to install the library in a standalone way, simply clone this repository and install the dependencies:
+
+	//pre
+		code(class="bash hljs well").
+			git clone https://github.com/philsawicki/GoogleAnalytics-WebTester.git
+			cd GoogleAnalytics-WebTester
+			npm install
+
+	h2.sub-header Configuring Protractor
+
+	p In order to intercept calls to Analytics' <code>ga()</code> function, some custom JavaScript code must be injected into each page at the beginning of a test. In your <code>protractor.conf.js</code> file, simply add the following to the <code>onPrepare</code> callback, after configuring the test parameters:
+
+	pre
+		code(class="javascript hljs well").
+			exports.config = {
+			   // ...
+
+			   // Files matching the "*Spec.js" pattern will be considered as test to execute.
+			   // Spec patterns are relative to the location of this config.
+			   specs: [
+			      // ...
+			      '**/*Spec.js'
+			   ],
+
+			   // ...
+
+			   // The params object will be passed directly to the Protractor instance,
+			   // and can be accessed from the tests. It is an arbitrary object and can
+			   // contain anything needed for tests.
+			   // This can be changed via the command line as:
+			   //   --params.login.user 'Joe'
+			   params: {
+			      GoogleAnalyticsWebTester: {
+			          // Submit test data to Google Analytics? "false" will not actually send the data to "ga()" 
+			          // in order to avoid skew results by recording test data.
+			         submitToGA: false
+			      }
+			   },
+
+			   // A callback function called once Protractor is ready and available, and
+			   // before the specs are executed.
+			   // You can specify a file containing code to run by setting onPrepare to
+			   // the filename string.
+			   onPrepare: function () {
+			      // Load the Web Tester (the path may vary depending on your setup):
+			      var GoogleAnalyticsWebTester = require('GoogleAnalytics-WebTester/lib/GoogleAnalyticsWebTester');
+
+			      // Initialize the Web Tester:
+			      GoogleAnalyticsWebTester.initialize({
+			         browserParams: browser.params, // Browser params (from Protractor's "browser.params").
+			         browserDriver: browser.driver  // A reference to Protractor's WebDriver (i.e. the actual browser instance).
+			      });
+			   }
+			}
+
+	h2.sub-header Sample Spec file
+
+	p Tests can now be created using Protractor specification files. As an example, here is how the a Custom Event can be tracked, when clicking on a CTA button:
+
+	pre
+		code(class="javascript hljs well").
+			// jumbotronSpec.js
+			describe('The Google Analytics "click" tracking', function () {
+
+			   // Before each test: 
+			   //   1. Navigate to the "index.html" page.
+			   //   2. Register the Analytics Data Interceptor.
+			   beforeEach(function () {
+			      // Load the page to test:
+			      browser.get('index.html');
+			
+			      // Register the Google Analytics Event Data Interceptor:
+			      browser.driver.registerGoogleAnalyticsEventDataInterceptor();
+			   });
+			   
+			   // Execute a test:
+			   //   1. Click on the button with ID "jumbotronCTA".
+			   //   2. Get the last event recorded by the Analytics Data Interceptor.
+			   //   3. Validate that the last event data matches the expected values.
+			   it('should fire an Event when clicking on the Jumbotron CTA', function (done) {
+			      // Click on the "Jumbotron" CTA:
+			      element( by.css('#jumbotronCTA') ).click();
+			 
+			      // Get the "LastEvent" object back from the browser:
+			      browser.driver.executeScript(function () {
+			         return window.GAWebTester.getLastEvent();
+			      })
+			      .then(
+			         // Validate the content of the "LastData" object:
+			         function successCallback (LastData) {
+			            expect( LastData ).toEqual( ['send', 'event', 'Button', 'Click', 'Jumbotron CTA'] );
+			         },
+			         // If there was an error getting back the "LastData" object from the browser, fail the test:
+			         function errorCallback (error) {
+			            fail('Should not have received Error: ' + JSON.stringify(error));
+			         }
+			      )
+			      .then(done);
+			   });
+			});

@@ -7,6 +7,10 @@ nav.Nav
 				li: a.Nav-link.Nav-link--selected(href="how-does-it-work.html") How does it work?
 			else
 				li: a.Nav-link(href="how-does-it-work.html") How does it work?
+			if pageName === "Installation"
+				li: a.Nav-link.Nav-link--selected(href="installation.html") Installation
+			else
+				li: a.Nav-link(href="installation.html") Installation
 			if pageName === "About the Demo Application"
 				li: a.Nav-link.Nav-link--selected(href="about-the-demo-application.html") About the Demo Application
 			else

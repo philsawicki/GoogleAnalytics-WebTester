@@ -1,0 +1,118 @@
+<!DOCTYPE html><html itemscope itemtype="http://schema.org/Article" lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Installation instructions and usage guide for Google Analytics Web Tester. Includes code samples to validate proper Analytics tracking of a website."><meta name="author" content="Philippe Sawicki"><meta name="copyright" content="Philippe Sawicki 2014-2015"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#f7991c"><link rel="canonical" href="https://philsawicki.github.io/GoogleAnalytics-WebTester/installation.html"><link rel="dns-prefetch" href="//fonts.googleapis.com"><link rel="dns-prefetch" href="//cdnjs.cloudflare.com"><link rel="dns-prefetch" href="//ajax.googleapis.com"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic"><link rel="stylesheet" href="public/css/main.css"><meta property="fb:admins" content="814194595"><meta property="fb:app_id" content="1619012241663368"><meta property="fb:profile_id" content="814194595"><meta property="og:site_name" content="Google Analytics Web Tester"><meta property="og:title" content="Installation"><meta property="og:type" content="article"><meta property="og:see_also" content="https://philsawicki.github.io/GoogleAnalytics-WebTester,http://philippesawicki.com"><meta property="og:image" content="https://philsawicki.github.io/GoogleAnalytics-WebTester/public/images/Google-Analytics-Web-Tester-Social.png"><meta property="og:url" content="https://philsawicki.github.io/GoogleAnalytics-WebTester/installation.html"><meta property="og:description" content="Installation instructions and usage guide for Google Analytics Web Tester. Includes code samples to validate proper Google Analytics tracking of a website, whether using direct 'ga()' calls or GTM."><meta property="article:author" content="https://facebook.com/philippe.sawicki"><meta property="article:tag" content="google,analytics,validation"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@fyll_s"><meta name="twitter:creator" content="@fyll_s"><meta name="twitter:title" content="Installation"><meta name="twitter:description" content="Installation instructions and usage guide for Google Analytics Web Tester. Includes code samples to validate proper Google Analytics tracking of a website, whether using direct 'ga()' calls or GTM."><meta name="twitter:image:src" content="https://philsawicki.github.io/GoogleAnalytics-WebTester/public/images/Google-Analytics-Web-Tester-Social.png"><meta itemprop="name" content="Installation"><meta itemprop="description" content="Installation instructions and usage guide for Google Analytics Web Tester. Includes code samples to validate proper Google Analytics tracking of a website, whether using direct 'ga()' calls or GTM."><meta itemprop="image" content="https://philsawicki.github.io/GoogleAnalytics-WebTester/public/images/Google-Analytics-Web-Tester-Social.png"><title>Installation - Google Analytics Web Tester</title></head><body><script type="text/javascript">
+      if (location.hostname === 'localhost') {
+      	(function (w) {
+      		w.ga = function () {};
+      	})(window);
+      } else {
+      	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      }
+      ga('create', {
+      	trackingId: 'UA-60737019-3',
+      	cookieDomain: 'auto', 
+      	siteSpeedSampleRate: 100
+      });
+      ga('require', 'displayfeatures');
+      ga('send', 'pageview');
+    </script><nav class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a href="index.html" class="navbar-brand">Google Analytics Web Tester</a> <button type="button" data-toggle="collapse" data-target="#navbar-main" aria-expanded="flase" aria-controls="navbar" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div><div id="navbar-main" class="navbar-collapse collapse"><ul class="nav navbar-nav"><li class="dropdown"><a data-toggle="dropdown" href="#" id="Project" class="dropdown-toggle">Project <span class="caret"></span></a><ul aria-labelledby="Project" class="dropdown-menu"><li><a href="how-does-it-work.html">How does it work?</a></li><li><a href="about-the-demo-application.html">About the Demo App</a></li><li><a id="githubSite" href="https://github.com/philsawicki/GoogleAnalytics-WebTester" title="View Google Analytics Website Checker project on Github">View on GitHub</a></li><li><a id="downloadZip" href="https://github.com/philsawicki/GoogleAnalytics-WebTester/zipball/master" title="Download Google Analytics Web Tester">Download <span class="label label-default" style="margin-left: 7px;">Free</span></a></li></ul></li><li class="dropdown"><a data-toggle="dropdown" href="#" id="codeSamples" class="dropdown-toggle">Code Samples <span class="caret"></span></a><ul aria-labelledby="codeSamples" class="dropdown-menu"><li><a href="examples-pageviews.html">Pageviews</a></li><li><a href="examples-events.html">Events</a></li><li><a href="examples-custom-metrics.html">Custom Metrics</a></li><li><a href="examples-custom-dimensions.html">Custom Dimensions</a></li><li><a href="examples-enhanced-ecommerce.html">Enhanced E-Commerce<span style="margin-left: 7px;" class="label label-default">New</span></a></li><li><a href="examples-content-grouping.html">Content Grouping<span style="margin-left: 7px;" class="label label-default">New</span></a></li><li><a href="examples-social-interactions.html">Social Interactions</a></li><li><a href="examples-user-timings.html">User Timings</a></li><li><a href="examples-cross-device-tracking.html">Cross-Device Tracking<span style="margin-left: 7px;" class="label label-default">New</span></a></li><li><a href="examples-exception-tracking.html">Exception Tracking<span style="margin-left: 7px;" class="label label-default">New</span></a></li></ul></li><li class="dropdown"><a data-toggle="dropdown" href="#" id="resources" class="dropdown-toggle">Resources <span class="caret"></span></a><ul aria-labelledby="resources" class="dropdown-menu"><li><a href="index.html#about">About this Site</a></li><li><a href="index.html#help">Help & Feedback</a></li><li><a href="contact.html">Contact</a></li></ul></li></ul></div></div></nav><div class="container-fluid"><div class="row"><div class="col-sm-3 col-md-2 sidebar"><p><a href="index.html"><strong>Home</strong></a></p><p><strong>Project</strong></p><ul class="nav nav-sidebar"><li><a href="how-does-it-work.html">How does it work?</a></li><li class="active"><a href="installation.html">Installation</a></li><li><a href="about-the-demo-application.html">About the Demo Application</a></li><li><a id="githubSite" href="https://github.com/philsawicki/GoogleAnalytics-WebTester" title="View Google Analytics Website Checker project on Github">View on GitHub</a></li><li><a id="downloadZip" href="https://github.com/philsawicki/GoogleAnalytics-WebTester/zipball/master" title="Download Google Analytics Web Tester">Download <small><span class="label label-primary">Free!</span></small></a></li></ul><p><strong>Code Samples</strong></p><ul class="nav nav-sidebar"><li><a href="examples-pageviews.html">Pageviews</a></li><li><a href="examples-events.html">Events</a></li><li><a href="examples-custom-metrics.html">Custom Metrics</a></li><li><a href="examples-custom-dimensions.html">Custom Dimensions</a></li><li><a href="examples-enhanced-ecommerce.html">Enhanced E-Commerce<small><span style="margin-left: 7px;" class="label label-primary">New!</span></small></a></li><li><a href="examples-content-grouping.html">Content Grouping<small><span style="margin-left: 7px;" class="label label-primary">New!</span></small></a></li><li><a href="examples-social-interactions.html">Social Interactions</a></li><li><a href="examples-user-timings.html">User Timings</a></li><li><a href="examples-cross-device-tracking.html">Cross-Device Tracking<small><span style="margin-left: 7px;" class="label label-primary">New!</span></small></a></li><li><a href="examples-exception-tracking.html">Exception Tracking<small><span style="margin-left: 7px;" class="label label-primary">New!</span></small></a></li></ul><p><strong>Resources</strong></p><ul class="nav nav-sidebar"><li><a href="index.html#about">About this Site</a></li><li><a href="index.html#help">Help & Feedback</a></li><li><a href="contact.html">Contact</a></li></ul></div><div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"><div class="Titles Titles--hero"><h1 class="page-header">Installation</h1></div><ol class="breadcrumb"><li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://philsawicki.github.io/GoogleAnalytics-WebTester/index.html" itemprop="url"><span itemprop="title">Home</span></a></li><li itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="active"><span itemprop="url" class="hidden">https://philsawicki.github.io/GoogleAnalytics-WebTester/installation.html</span><span itemprop="title">Installation</span></li></ol><h2 class="sub-header">Getting the library</h2><p>To get started, add the repository to your project:</p><pre><code class="bash hljs well">npm install git+https://git@github.com/philsawicki/GoogleAnalytics-WebTester.git
+</code></pre><h2 class="sub-header">Configuring Protractor</h2><p>In order to intercept calls to Analytics' <code>ga()</code> function, some custom JavaScript code must be injected into each page at the beginning of a test. In your <code>protractor.conf.js</code> file, simply add the following to the <code>onPrepare</code> callback, after configuring the test parameters:</p><pre><code class="javascript hljs well">exports.config = {
+   // ...
+
+   // Files matching the "*Spec.js" pattern will be considered as test to execute.
+   // Spec patterns are relative to the location of this config.
+   specs: [
+      // ...
+      '**/*Spec.js'
+   ],
+
+   // ...
+
+   // The params object will be passed directly to the Protractor instance,
+   // and can be accessed from the tests. It is an arbitrary object and can
+   // contain anything needed for tests.
+   // This can be changed via the command line as:
+   //   --params.login.user 'Joe'
+   params: {
+      GoogleAnalyticsWebTester: {
+          // Submit test data to Google Analytics? "false" will not actually send the data to "ga()" 
+          // in order to avoid skew results by recording test data.
+         submitToGA: false
+      }
+   },
+
+   // A callback function called once Protractor is ready and available, and
+   // before the specs are executed.
+   // You can specify a file containing code to run by setting onPrepare to
+   // the filename string.
+   onPrepare: function () {
+      // Load the Web Tester (the path may vary depending on your setup):
+      var GoogleAnalyticsWebTester = require('GoogleAnalytics-WebTester/lib/GoogleAnalyticsWebTester');
+
+      // Initialize the Web Tester:
+      GoogleAnalyticsWebTester.initialize({
+         browserParams: browser.params, // Browser params (from Protractor's "browser.params").
+         browserDriver: browser.driver  // A reference to Protractor's WebDriver (i.e. the actual browser instance).
+      });
+   }
+}
+</code></pre><h2 class="sub-header">Sample Spec file</h2><p>Tests can now be created using Protractor specification files. As an example, here is how the a Custom Event can be tracked, when clicking on a CTA button:</p><pre><code class="javascript hljs well">// jumbotronSpec.js
+describe('The Google Analytics "click" tracking', function () {
+
+   // Before each test: 
+   //   1. Navigate to the "index.html" page.
+   //   2. Register the Analytics Data Interceptor.
+   beforeEach(function () {
+      // Load the page to test:
+      browser.get('index.html');
+
+      // Register the Google Analytics Event Data Interceptor:
+      browser.driver.registerGoogleAnalyticsEventDataInterceptor();
+   });
+   
+   // Execute a test:
+   //   1. Click on the button with ID "jumbotronCTA".
+   //   2. Get the last event recorded by the Analytics Data Interceptor.
+   //   3. Validate that the last event data matches the expected values.
+   it('should fire an Event when clicking on the Jumbotron CTA', function (done) {
+      // Click on the "Jumbotron" CTA:
+      element( by.css('#jumbotronCTA') ).click();
+ 
+      // Get the "LastEvent" object back from the browser:
+      browser.driver.executeScript(function () {
+         return window.GAWebTester.getLastEvent();
+      })
+      .then(
+         // Validate the content of the "LastData" object:
+         function successCallback (LastData) {
+            expect( LastData ).toEqual( ['send', 'event', 'Button', 'Click', 'Jumbotron CTA'] );
+         },
+         // If there was an error getting back the "LastData" object from the browser, fail the test:
+         function errorCallback (error) {
+            fail('Should not have received Error: ' + JSON.stringify(error));
+         }
+      )
+      .then(done);
+   });
+});</code></pre><hr><footer class="footer"><p class="text-muted">&copy; Copyright 2015 <a href="http://philippesawicki.com" target="_blank" title="Philippe Sawicki - Full Stack Developer &amp; Digital Analyst" rel="me">Philippe Sawicki</a></p></footer></div></div></div><script type="application/ld+json">[{"@context":"http://schema.org","@type":"Person","name":"Philippe Sawicki","jobTitle":"Full Stack Developer","url":"http://philippesawicki.com","sameAs":["https://facebook.com/philippe.sawicki","https://twitter.com/fyll_s","https://plus.google.com/+PhilippeSawicki","https://linkedin.com/in/philippesawicki"]},{"@context":"http://schema.org","@type":"WebSite","name":"Google Analytics Web Tester","alternateName":"GA Web Tester","url":"https://philsawicki.github.io/GoogleAnalytics-WebTester/"}]</script><script type="text/javascript">
+      function asyncLoad (src, callback) {
+      	var s = document.createElement('script');
+      	s.type = 'text/javascript';
+      	s.async = true;
+      	s.src = src;
+      	if (typeof callback === 'function') {
+      		s.addEventListener('load', callback, false);
+      	}
+      	var h = document.getElementsByTagName('head')[0];
+      	h.appendChild(s);
+      }
+      asyncLoad('//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js', function (event) {
+      	if (typeof hljs !== 'undefined') {
+      		hljs.initHighlighting();
+      	}
+      });
+      asyncLoad('//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js', function (event) {
+      	asyncLoad('public/js/main.min.js');
+      });
+    </script></body></html>
