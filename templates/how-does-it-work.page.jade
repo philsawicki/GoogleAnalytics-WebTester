@@ -10,12 +10,34 @@ block variables
 	- var pageTwitterCardDescription = "Installation instructions and usage guide for Google Analytics Web Tester. Includes code samples to validate proper Google Analytics tracking of a website, whether using direct 'ga()' calls or GTM."
 
 block content
-	p The tool packages a set of helper functions for <a href="http://angular.github.io/protractor/#/" target="_blank">Protractor</a>, an end-to-end test framework runnings tests against an application running in a real browser, interacting with it as a user would.
+	h2.sub-header Motivation
 
-	p It's fast, lightweight, easy to configure, and integrates beautifully with existing build systems, providing nice integration reports with Jenkins, Travis CI and many others.
+	h3.sub-header The problem
+
+	p Developing websites often require interventions from multiple people, from developers to QAs, Business Analysts to Digital Analysts, and many more. On large modern websites with rich user interactions, like typical E-Commerce sites, validating Analytics features can become tricky.
+
+	p While everyone agrees that these features are essential in order to gauge the success of a website, it might take a few iterations before starting to gather reliable, actionable data. Incomplete implementations due to cut back features or short deadlines, lack of understanding of best practices, lack of ownership are but a few causes of improper or unreliable data.
+
+	p Without reliable or complete data, decisions cannot be made. Insights cannot be gathered. Reports cannot be analysed.
+
+	p This is why members of the team should all be mindful of the importance of collecting proper data as soon as possible in the development lifecycle. As soon as a feature with an Analytics component is added, it should be part of a test plan.
+
+	p Only testing Analytics requirements can be long. Few people are willing to manually execute test suites requiring opening browser tabs and waiting for data to appear in the <em>Realtime</em> View... And thus, it is easy to stop executing these tests. And then, it is too late.
+
+	p Once in production, data is skewed, missing, incomplete or incorrect.
+
+	h3.sub-header The solution
+
+	p The solution is to run tests regularly, and to involve the whole team.
+
+	p By allowing tests to be run automatically, in real browsers, in multiple resolutions, by mimicking the actions real users do, it becomes possible to gain visibility on the data collected. Reacting to changes becomes easier, changing implementations without losing features becomes easier to validate, and people become more involved in the process because they can now see the data, which is no more invisible to them.
+
+	p This is the problem <strong>Google Analytics Web Tester</strong> tries to solve.
 
 
 	h2.sub-header How it works
+
+	p The tool packages a set of helper functions for <a href="http://angular.github.io/protractor/#/" target="_blank">Protractor</a>, an end-to-end test framework runnings tests against an application running in a real browser, interacting with it as a user would.
 
 	p Using <strong>Protractor</strong> as a test runner, the tool injects custom JavaScript code into the browser for each page loaded, so that calls made to Analytics' <code>ga()</code> function can be intercepted.
 
