@@ -310,14 +310,27 @@ describe('GoogleAnalyticsWebTester Module', function () {
                     beforeEach(function () {
                         window.ga('value1', 'value2');
                     });
-
-                    it('sets the "window.GAWebTester.EventBuffer" variable', function () {
+                    it('sets the "window.GAWebTester.EventBuffer" variable', function(){
                         var eventBuffer = [
                             window.GAWebTester.getEventBuffer()[1][0],
                             window.GAWebTester.getEventBuffer()[1][1]
                         ];
 
                         expect( eventBuffer ).toEqual(['value1', 'value2']);
+                    });
+                });
+                describe('The call to "ga()"', function () {
+                    it('test the "window.GAWebTester.listenOnce"', function (done) {
+                        window.GAWebTester.listenOnce(['value1', 'value2'], function(){
+                            var eventBuffer = [
+                                window.GAWebTester.getEventBuffer()[1][0],
+                                window.GAWebTester.getEventBuffer()[1][1]
+                            ];
+                            expect( eventBuffer ).toEqual(['value1', 'value2']);
+                            done();
+                        });
+                        window.ga('value1', 'value2');
+                        expect( false ).toBeTruly();
                     });
                 });
             });
