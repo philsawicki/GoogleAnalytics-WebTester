@@ -5,6 +5,7 @@
  * @license MIT
  */
 
+ 'use strict';
 
 /**
  * Node modules:
@@ -31,9 +32,9 @@ var gulp = require('gulp'),
  */
 var paths = {
     angularViews: 'app/views/**/*.html',
-	library:      'lib/**/*.js',
-	unitTest:     'test/unit/**/*.js',
-    e2eTest:      'test/e2e/scenarios/**/*.js'
+	library: 'lib/**/*.js',
+	unitTest: 'test/unit/**/*.js',
+    e2eTest: 'test/e2e/scenarios/**/*.js'
 };
 
 /**
@@ -41,7 +42,7 @@ var paths = {
  */
 var config = {
     angularViews: [paths.angularViews],
-    filesToLint:  [paths.library, paths.unitTest, paths.e2eTest]
+    filesToLint: [paths.library, paths.unitTest, paths.e2eTest]
 };
 
 
@@ -57,7 +58,7 @@ gulp.task('package-partials', function () {
 });
 
 /**
- * If there is a linting error, the "failOnError" will fail 
+ * If there is a linting error, the "failOnError" will fail
  * the task, making the process exit with an error code (1).
  */
 gulp.task('js-linting', function () {

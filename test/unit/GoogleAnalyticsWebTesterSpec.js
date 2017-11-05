@@ -306,7 +306,7 @@ describe('GoogleAnalyticsWebTester Module', function () {
                     expect( window.GAWebTester.OriginalGA ).toHaveBeenCalled();
                 });
 
-                describe('The call to "ga()"', function () {
+                describe('Calls to "ga()", synchronous', function () {
                     beforeEach(function () {
                         window.ga('value1', 'value2');
                     });
@@ -318,6 +318,65 @@ describe('GoogleAnalyticsWebTester Module', function () {
                         ];
 
                         expect( eventBuffer ).toEqual(['value1', 'value2']);
+                    });
+                });
+
+                describe('Calls to "ga()", asynchronous', function () {
+                    it('allows registration of async callbacks', function (done) {
+                        window.GAWebTester.registerSingleEventCallback(
+                            ['value1', 'value2'],
+                            function () {
+                                var eventBuffer = [
+                                    window.GAWebTester.getEventBuffer()[1][0],
+                                    window.GAWebTester.getEventBuffer()[1][1]
+                                ];
+
+                                expect( eventBuffer ).toEqual(['value1', 'value2']);
+                                done();
+                            }
+                        );
+
+                        window.ga('value1', 'value2');
+                    });
+
+                    it('fires async callbacks only once', function () {
+                        var callCounter = 0;
+
+                        return new Promise(function (resolve) {
+                                // This callback should only be executed once, even
+                                // when the same "ga()" event data is sent multiple
+                                // times:
+                                window.GAWebTester.registerSingleEventCallback(
+                                    ['value1', 'value2'],
+                                    function () {
+                                        ++callCounter;
+                                        resolve();
+                                    }
+                                );
+
+                                window.ga('value1', 'value2');
+                            })
+                            .then(function () {
+                                expect( callCounter ).toEqual(1);
+                            })
+                            .then(function () {
+                                // At this point, the first callback should have been
+                                // unregistered, thus no incrementing the "callCounter":
+                                return new Promise(function (resolve) {
+                                    window.GAWebTester.registerSingleEventCallback(
+                                        ['value1', 'value2'],
+                                        function () {
+                                            ++callCounter;
+                                            resolve();
+                                        }
+                                    );
+
+                                    window.ga('value1', 'value2');
+                                });
+                            })
+                            .then(function () {
+                                expect( callCounter ).toEqual(2);
+                            });
                     });
                 });
             });
