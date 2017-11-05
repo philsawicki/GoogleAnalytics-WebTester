@@ -259,6 +259,30 @@ describe('The Browser API', function () {
                 expect( window.GAWebTester.getGTMTrackerName() ).toEqual('GTMTrackerName');
             });
         });
+
+        describe('The "registerSingleEventCallback()" method', function () {
+            it('should throw an Error if no event data is provided', function () {
+                expect(function () {
+                        window.GAWebTester.registerSingleEventCallback(
+                            undefined, // An Array is expected
+                            function () {}
+                        );
+                    })
+                    .toThrow(new Error('Expected "eventData" to be an Array.'));
+            });
+        });
+
+        describe('The "registerSingleEventCallback()" method', function () {
+            it('should throw an Error if no callback is provided', function () {
+                expect(function () {
+                        window.GAWebTester.registerSingleEventCallback(
+                            ['value1', 'value2'],
+                            undefined // A Function is expected
+                        );
+                    })
+                    .toThrow(new Error('Expected "callback" to be a Function.'));
+            });
+        });
     });
 
 

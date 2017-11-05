@@ -15,7 +15,7 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 		});
 
 		it('should redirect to "/" when location hash/fragment is empty', function () {
-			expect( browser.getLocationAbsUrl() ).toMatch( '/' );
+			expect( browser.getCurrentUrl() ).toMatch( '/' );
 		});
 
 		it('should redirect to the Blog when clicking on the Jumbotron CTA', function () {
@@ -226,7 +226,7 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 						fail('Should not have received Error: ' + JSON.stringify(error));
 					}
 				)
-				.then(done);
+                .then(done);
 			});
 		});
 
@@ -236,25 +236,26 @@ describe('Demo application for the Home page of the Google Analytics WebTester',
 				element( by.css('#jumbotronCTA') ).click();
 
 				// Click on the first "Heading" CTA:
-				element.all( by.css('.heading-cta') ).get(0).click();
-
-				// Get the "LastEvent" object back from the browser:
-				browser.driver.executeScript(function () {
-					return window.GAWebTester.getLastEvent();
-				})
-				.then(
-					// Validate the content of the "LastEvent" object:
-					function successCallback (LastEvent) {
-						expect( LastEvent ).not.toEqual( ['send', 'event', 'Button', 'Click', 'Jumbotron CTA'] );
-						expect( LastEvent ).toEqual( ['send', 'event', 'Button', 'Click', 'Heading CTA'] );
-						expect( LastEvent ).not.toEqual( ['send', 'event', 'Button', 'Click', 'Non-existing Label'] );
-					},
-					// If there was an error getting back the "LastEvent" object from the browser, fail the test:
-					function errorCallback (error) {
-						fail('Should not have received Error: ' + JSON.stringify(error));
-					}
-				)
-				.then(done);
+                element.all( by.css('.heading-cta') ).get(0).click()
+                    .then(function () {
+                        // Get the "LastEvent" object back from the browser:
+                        return browser.driver.executeScript(function () {
+                            return window.GAWebTester.getLastEvent();
+                        });
+                    })
+                    .then(
+                        // Validate the content of the "LastEvent" object:
+                        function successCallback (LastEvent) {
+                            expect( LastEvent ).not.toEqual( ['send', 'event', 'Button', 'Click', 'Jumbotron CTA'] );
+                            expect( LastEvent ).toEqual( ['send', 'event', 'Button', 'Click', 'Heading CTA'] );
+                            expect( LastEvent ).not.toEqual( ['send', 'event', 'Button', 'Click', 'Non-existing Label'] );
+                        },
+                        // If there was an error getting back the "LastEvent" object from the browser, fail the test:
+                        function errorCallback (error) {
+                            fail('Should not have received Error: ' + JSON.stringify(error));
+                        }
+                    )
+                    .then(done);
 			});
 		});
 

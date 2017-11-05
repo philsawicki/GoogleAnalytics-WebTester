@@ -9,22 +9,22 @@ exports.config = {
     //    'scenarios/**/*.js'
     //],
 
-    // When run without a command line parameter, all suites will run. If run with 
-    // --suite=smoke or --suite=smoke,full only the patterns matched by the specified 
+    // When run without a command line parameter, all suites will run. If run with
+    // --suite=smoke or --suite=smoke,full only the patterns matched by the specified
     // suites will run.
     suites: {
-        home:      'scenarios/home/*.js',
-        blog:      'scenarios/blog/*.js',
-        addToCart: 'scenarios/addToCart/*.js',
+        home: 'scenarios/home/*.js',
+        blog: 'scenarios/blog/*.js',
+        addToCart: 'scenarios/addToCart/*.js'
     },
-    
+
     // Patterns to exclude:
     exclude: [],
 
-    // If true, Protractor will connect directly to the browser Drivers at the locations 
-    // specified by "chromeDriver" and "firefoxPath". Only Chrome and Firefox are supported 
+    // If true, Protractor will connect directly to the browser Drivers at the locations
+    // specified by "chromeDriver" and "firefoxPath". Only Chrome and Firefox are supported
     // for direct connect.
-    directConnect: false,
+    directConnect: true,
 
     capabilities: {
         'browserName': 'chrome'
@@ -81,7 +81,7 @@ exports.config = {
             disableClicks: false
         }
     },
-    
+
     // Place the "ga()" interceptor before executing the Specs in the browser:
     onPrepare: './onPrepare.js'
 };
