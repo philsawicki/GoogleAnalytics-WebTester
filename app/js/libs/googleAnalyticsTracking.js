@@ -35,7 +35,7 @@
                 var button = $(this);
                 var buttonIndex = button.closest('.col-md-4').index() + 1;
                 ga('set', 'metric1', buttonIndex.toString());
-                
+
                 // Send "click" Event:
                 ga('send', 'event', 'Button', 'Click', 'Heading CTA');
             });
