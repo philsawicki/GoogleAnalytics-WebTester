@@ -6,6 +6,8 @@ patch:
   'npm:debug:20170905':
     - karma > socket.io > socket.io-adapter > socket.io-parser > debug:
         patched: '2018-03-08T23:02:38.445Z'
+    - karma > log4js > mailgun-js > debug:
+        patched: '2018-03-09T03:40:09.146Z'
   'npm:minimatch:20160620':
     - gulp > vinyl-fs > glob-stream > minimatch:
         patched: '2018-03-08T23:02:38.445Z'
@@ -16,3 +18,5 @@ patch:
   'npm:ms:20170412':
     - karma > socket.io > socket.io-adapter > socket.io-parser > debug > ms:
         patched: '2018-03-08T23:02:38.445Z'
+    - karma > log4js > mailgun-js > debug > ms:
+        patched: '2018-03-09T03:40:09.146Z'
