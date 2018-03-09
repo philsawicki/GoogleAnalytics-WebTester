@@ -15,20 +15,20 @@
   "devDependencies": {
     "bower": "^1.4.1",
     "combined-stream": "^1.0.3",
-    "coveralls": "^2.11.2",
+    "coveralls": "^3.0.0",
     "event-stream": "^3.3.1",
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.0",
     "gulp-angular-templatecache": "^1.6.0",
     "gulp-concat": "^2.5.2",
-    "gulp-eslint": "^0.13.2",
+    "gulp-eslint": "^2.0.0",
     "gulp-html-replace": "^1.5.0",
     "gulp-minify-css": "^1.1.6",
     "gulp-minify-html": "^1.0.3",
     "gulp-replace": "^0.5.3",
     "gulp-uglify": "^1.2.0",
     "http-server": "0.10.0",
-    "jasmine-core": "^2.3.4",
-    "karma": "1.7.1",
+    "jasmine-core": "^3.1.0",
+    "karma": "2.0.0",
     "karma-chrome-launcher": "2.2.0",
     "karma-coverage": "1.1.1",
     "karma-firefox-launcher": "1.0.1",
@@ -48,7 +48,13 @@
     "update-webdriver": "webdriver-manager update",
     "preprotractor": "npm run update-webdriver",
     "protractor": "protractor test/e2e/protractor.conf.js",
-    "update-index-async": "node -e \"require('shelljs/global'); sed('-i', /\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/, '//@@NG_LOADER_START@@\\n' + sed(/sourceMappingURL=angular-loader.min.js.map/,'sourceMappingURL=bower_components/angular-loader/angular-loader.min.js.map','app/bower_components/angular-loader/angular-loader.min.js') + '\\n//@@NG_LOADER_END@@', 'app/index-async.html');\""
+    "update-index-async": "node -e \"require('shelljs/global'); sed('-i', /\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/, '//@@NG_LOADER_START@@\\n' + sed(/sourceMappingURL=angular-loader.min.js.map/,'sourceMappingURL=bower_components/angular-loader/angular-loader.min.js.map','app/bower_components/angular-loader/angular-loader.min.js') + '\\n//@@NG_LOADER_END@@', 'app/index-async.html');\"",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
-  "main": "./lib/GoogleAnalyticsWebTester.js"
+  "main": "./lib/GoogleAnalyticsWebTester.js",
+  "snyk": true,
+  "dependencies": {
+    "snyk": "^1.69.10"
+  }
 }
