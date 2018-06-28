@@ -55,6 +55,6 @@
   "main": "./lib/GoogleAnalyticsWebTester.js",
   "snyk": true,
   "dependencies": {
-    "snyk": "^1.69.10"
+    "snyk": "^1.85.0"
   }
 }
