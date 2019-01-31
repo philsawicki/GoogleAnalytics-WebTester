@@ -13,7 +13,7 @@
     "digital analysis"
   ],
   "devDependencies": {
-    "bower": "^1.4.1",
+    "bower": "^1.8.8",
     "combined-stream": "^1.0.3",
     "coveralls": "^3.0.0",
     "event-stream": "^3.3.1",
