@@ -20,7 +20,7 @@
     "gulp": "^4.0.0",
     "gulp-angular-templatecache": "^1.6.0",
     "gulp-concat": "^2.5.2",
-    "gulp-eslint": "^2.0.0",
+    "gulp-eslint": "^4.0.0",
     "gulp-html-replace": "^1.5.0",
     "gulp-minify-css": "^1.1.6",
     "gulp-minify-html": "^1.0.3",
@@ -35,7 +35,7 @@
     "karma-jasmine": "1.1.0",
     "karma-junit-reporter": "1.2.0",
     "lcov-filter": "0.0.3",
-    "protractor": "5.2.0",
+    "protractor": "6.0.0",
     "shelljs": "^0.5.1"
   },
   "scripts": {
