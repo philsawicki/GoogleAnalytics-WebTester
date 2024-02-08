@@ -18,7 +18,7 @@
     "coveralls": "^3.0.0",
     "event-stream": "^3.3.1",
     "gulp": "^4.0.0",
-    "gulp-angular-templatecache": "^1.6.0",
+    "gulp-angular-templatecache": "^3.0.1",
     "gulp-concat": "^2.5.2",
     "gulp-eslint": "^2.0.0",
     "gulp-html-replace": "^1.5.0",
@@ -35,7 +35,7 @@
     "karma-jasmine": "1.1.0",
     "karma-junit-reporter": "1.2.0",
     "lcov-filter": "0.0.3",
-    "protractor": "5.2.0",
+    "protractor": "7.0.0",
     "shelljs": "^0.5.1"
   },
   "scripts": {
